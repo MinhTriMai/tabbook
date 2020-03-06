@@ -1,0 +1,23 @@
+<div class="category-module">
+	<h3>{{heading_title}}</h3>
+	<div class="ul list-unstyled">
+	{% for category in categories %}
+		{% if category.category_id == category_id %} 
+			<div class="li"><a href="{{ category.href }}" class=" active">{{ category.name }}</a></div>
+			{% if category.children %}
+				<div class="list-child">
+				{% for child in category.children %}
+					{% if child.category_id == child_id %}
+						<div class="li"><a href="{{ child.href }}" class=" active">{{ child.name }}</a></div>
+					{% else %} 
+						<div class="li"><a href="{{ child.href }}" class="">{{ child.name }}</a></div>
+					{% endif %}
+				{% endfor %}
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="li"><a href="{{ category.href }}" class="">{{ category.name }}</a></div>
+		{% endif %}
+	{% endfor %}
+	</div>
+</div>

@@ -1,0 +1,41 @@
+{{ header }}
+<div class="container main">
+<div class="main">
+    <div id="content">
+    <h1>{{ heading_title }}</h1>
+	{{ content_top }}
+        <ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li> <a href="{{ breadcrumb['href'] }}"> {{ breadcrumb['text'] }} </a> </li>
+		{% endfor %}
+	</ul>
+        <div class="testimonial-product">
+        
+		{% if testimonials %}
+            <div class="testimonial-content">
+              		{% for testimonial in testimonials %}
+				<div class="row-testimonials">
+					<div class="testimonial-images"><img src="{{ testimonial['image'] }}" alt="image" /></div>
+					<div class="box-testimonial ">
+						<div class="testimonial-std">{{ testimonial['content'] }}</div>
+						<div class="testimonial-name"><h4>--{{ testimonial['customer_name'] }}--</h4></div>
+					</div>
+				</div>
+              {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-sm-6 text-left">{{ pagination }}</div>
+                <div class="col-sm-6 text-right">{{ results }}</div>
+            </div>
+           {% else %}
+            <p>{{ text_empty }}</p>
+            <div class="buttons">
+                <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+            </div>
+           {% endif %}
+        </div>
+    </div>
+</div>
+    {{ content_bottom }}
+</div>
+{{ footer }}

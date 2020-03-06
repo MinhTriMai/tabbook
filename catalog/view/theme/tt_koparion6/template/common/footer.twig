@@ -1,0 +1,101 @@
+<footer>
+	
+	<div class="footer-top">
+	  <div class="container">
+		{% if block4 %}
+			{{ block4 }}
+		{% endif %}	
+		<div class="row">
+			  
+			  {% if informations %}
+			  <div class="col-md-3 col-sm-6 col-footer">
+				<div class="footer-title"><h5>{{ text_information }}</h5></div>
+				<div class="footer-content">
+					<ul class="list-unstyled text-content">
+					 {% for information in informations %}
+					  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+					  {% endfor %}
+					  <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+					 
+					</ul>
+				</div>
+			  </div>
+			  {% endif %}
+			  <div class="col-md-3 col-sm-6 col-footer">
+				<div class="footer-title"><h5>{{ text_service }}</h5></div>
+				<div class="footer-content">
+					<ul class="list-unstyled text-content">
+					  <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+					  <li><a href="{{ return }}">{{ text_return }}</a></li>
+					  <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+					  <li><a href="{{ order }}">{{ text_order }}</a></li>
+					  <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+					  
+					</ul>
+				</div>
+			  </div>
+			  <div class="col-md-3 col-sm-6 col-footer">
+				<div class="footer-title"><h5>{{ text_extra }}</h5></div>
+				<div class="footer-content">
+					<ul class="list-unstyled text-content">
+					  <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+					  <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+					  <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+					  <li><a href="{{ special }}">{{ text_special }}</a></li>
+					  <li><a href="{{ account }}">{{ text_account }}</a></li>
+					 
+					</ul>
+				</div>
+			  </div>
+			  <div class="col-md-3 col-sm-6 col-footer">
+					{% if block5 %}
+						{{ block5 }}
+					{% endif %}	
+				</div>
+		</div>
+	  </div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="container-inner">
+				<div class="footer-copyright">
+					<p>{{ powered }}</p>
+				</div>
+				{% if block6 %}
+					{{ block6 }}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div id="back-top"><i class="fa fa-angle-up"></i></div>
+</footer>
+<script >
+$(document).ready(function(){
+	// hide #back-top first
+	$("#back-top").hide();
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > $('body').height()/3) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-top').click(function () {
+			$('body,html').animate({scrollTop: 0}, 800);
+			return false;
+		});
+	});
+});
+</script>
+{% for script in scripts %}
+<script src="{{ script }}" ></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</div><!-- wrapper -->
+</body></html>

@@ -1,0 +1,33 @@
+<div class="brand-slider">
+  <div id="banner{{ module }}" class="swiper-container">
+    <div class="swiper-wrapper">{% for banner in banners %}
+      <div class="swiper-slide">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>
+      {% endfor %}</div>
+  </div>
+</div>
+<script ><!--
+$('#banner{{ module }}').swiper({
+	slidesPerView: 8,
+	spaceBetween: 30,
+	autoplay: false,
+	loop: true,
+    autoplayDisableOnInteraction: false,
+	// Responsive breakpoints
+	breakpoints: {
+		479: {
+		  slidesPerView: 2
+		},
+		767: {
+		  slidesPerView: 3
+		},
+		991: {
+		  slidesPerView: 4
+		  
+		},
+		1599: {
+		  slidesPerView: 5
+		  
+		}
+	}
+});
+--></script> 

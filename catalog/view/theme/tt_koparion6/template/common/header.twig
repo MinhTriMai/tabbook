@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" ></script>
+
+<script src="catalog/view/javascript/jquery/jquery-ui.min.js" ></script>
+<script src="catalog/view/javascript/opentheme/ocquickview/ocquickview.js" ></script>
+<link href="catalog/view/theme/tt_koparion6/stylesheet/opentheme/ocquickview/css/ocquickview.css" rel="stylesheet" type="text/css" />
+<script src="catalog/view/javascript/jquery/owl-carousel/js/owl.carousel.min.js" ></script>
+<link href="catalog/view/javascript/jquery/owl-carousel/css/owl.carousel.min.css" rel="stylesheet" />
+<link href="catalog/view/javascript/jquery/owl-carousel/css/owl.theme.green.min.css" rel="stylesheet" />
+<script src="catalog/view/javascript/jquery/elevatezoom/jquery.elevatezoom.js" ></script>
+<script src="catalog/view/javascript/opentheme/countdown/jquery.plugin.min.js" ></script>
+<script src="catalog/view/javascript/opentheme/countdown/jquery.countdown.min.js" ></script>
+<script src="catalog/view/javascript/opentheme/hozmegamenu/custommenu.js" ></script>
+<script src="catalog/view/javascript/opentheme/hozmegamenu/mobile_menu.js" ></script>
+<script src="catalog/view/javascript/opentheme/vermegamenu/ver_menu.js" ></script>
+<link href="catalog/view/theme/tt_koparion6/stylesheet/opentheme/vermegamenu/css/ocvermegamenu.css" rel="stylesheet" />
+<link href="catalog/view/theme/tt_koparion6/stylesheet/opentheme/hozmegamenu/css/custommenu.css" rel="stylesheet" />
+<link href="catalog/view/theme/tt_koparion6/stylesheet/opentheme/css/animate.css" rel="stylesheet" />
+
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" ></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/pe-icon-7-stroke/css/helper.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/javascript/ionicons/css/ionicons.css" rel="stylesheet" type="text/css" />
+
+<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" />
+<link href="catalog/view/theme/tt_koparion6/stylesheet/stylesheet.css" rel="stylesheet" />
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% for script in scripts %}
+<script src="{{ script }}" ></script>
+{% endfor %}
+<script src="catalog/view/javascript/common.js" ></script>
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+{% if theme_option_status[store_id] %}
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        {% if header_tag[store_id].font_family == header_tag[store_id].font_family %}
+		families: ['{{ header_tag[store_id].font_family ? header_tag[store_id].font_family }}']
+		{% else %}
+		families: ['{{ header_tag[store_id].font_family ? header_tag[store_id].font_family }}', '{{ body_css[store_id].font_family ? body_css[store_id].font_family }}']
+		{% endif %}
+      }
+    });
+	
+  </script>
+  <style>
+    {% if a_tag %}
+    {{ a_tag[store_id].color ? 'a { color: #' ~ a_tag[store_id].color ~ '; }' : '' }}
+    {{ a_tag[store_id].hover_color ? 'a:hover { color: #' ~ a_tag[store_id].hover_color ~ '; }' : '' }}
+    {% endif %}
+
+    {% if header_tag %}
+    h1, h2, h3, h4, h5, h6 {
+    {{ header_tag[store_id].color ? 'color: #' ~ header_tag[store_id].color ~ ';' : '' }}
+    {{ header_tag[store_id].font_family ? 'font-family: ' ~ header_tag[store_id].font_family ~ ';' : '' }}
+    {{ header_tag[store_id].font_weight ? 'font-weight: ' ~ header_tag[store_id].font_weight ~ ';' : ''}}
+    }
+    {{ header_tag[store_id].h1.font_size ? 'h1 { font-size: ' ~ header_tag[store_id].h1.font_size ~ '; }' : '' }}
+    {{ header_tag[store_id].h2.font_size ? 'h2 { font-size: ' ~ header_tag[store_id].h2.font_size ~ '; }' : '' }}
+    {{ header_tag[store_id].h3.font_size ? 'h3 { font-size: ' ~ header_tag[store_id].h3.font_size ~ '; }' : '' }}
+    {{ header_tag[store_id].h4.font_size ? 'h4 { font-size: ' ~ header_tag[store_id].h4.font_size ~ '; }' : '' }}
+    {{ header_tag[store_id].h5.font_size ? 'h5 { font-size: ' ~ header_tag[store_id].h5.font_size ~ '; }' : '' }}
+    {{ header_tag[store_id].h6.font_size ? 'h6 { font-size: ' ~ header_tag[store_id].h6.font_size ~ '; }' : '' }}
+    {% endif %}
+
+    {% if body_css %}
+    body {
+    {{ body_css[store_id].color ? 'color: #' ~ body_css[store_id].color ~ ';' : '' }}
+    {{ body_css[store_id].font_family ? 'font-family: ' ~ body_css[store_id].font_family ~ ';' : '' }}
+    {{ body_css[store_id].font_size ? 'font-size: ' ~ body_css[store_id].font_size ~ ';' : '' }}
+    {{ body_css[store_id].font_weight ? 'font-weight: ' ~ body_css[store_id].font_weight ~ ';' : '' }}
+    {{ body_css[store_id].line_height ? 'line-height: ' ~ body_css[store_id].line_height ~ ';' : '' }}
+    }
+    {% endif %}
+  </style>
+{% endif %}
+</head>
+<body class="{{ class }} home6">
+<div class="wrapper">
+
+<nav id="top">
+  <div class="container">
+	<div class="container-inner">	
+		<ul class="box box-left">
+			<li class="currency">{{ currency }}</li>
+			<li class="language">{{ language }}</li>
+		</ul>
+		<ul class="box box-right">
+			
+			<li class="setting">
+				<div class="btn-group">
+					<button class="btn btn-link dropdown-toggle" data-toggle="dropdown">{{ text_account }} <i class="fa fa-angle-down"></i></button>
+					<div class="dropdown-menu" id="top-links">
+						{% if use_ajax_login %}
+							<ul class="ul-account list-unstyled">
+						{% else %}
+							<ul class="list-unstyled">
+						{% endif %}
+						{% if logged %}
+						<li><a href="{{ account }}">{{ text_account }}</a></li>
+						<li><a href="{{ order }}">{{ text_order }}</a></li>
+						<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+						<li><a href="{{ download }}">{{ text_download }}</a></li>				
+						<li>
+							{% if use_ajax_login %}
+								<a id="a-logout-link" href="{{ logout }}">{{ text_logout }}</a>
+							{% else %}
+								<a href="{{ logout }}">{{ text_logout }}</a>
+							{% endif %}
+						</li>			
+						{% else %}
+						<li>
+							{% if use_ajax_login %}
+								<a id="a-register-link" href="{{ register }}">{{ text_register }}</a>
+							{% else %}
+								<a href="{{ register }}">{{ text_register }}</a> 
+							{% endif %}
+						</li>
+						<li>
+							{% if use_ajax_login %}
+								<a id="a-login-link" href="{{ login }}">{{ text_login }}</a>
+							{% else %}
+								<a href="{{ login }}">{{ text_login }}</a> 
+							{% endif %}
+						</li>
+						{% endif %}
+					  </ul>
+					</div>
+				</div>
+			</li>
+			<li class="order">
+				{% if block3 %}
+					{{ block3 }}
+				{% endif %}
+			</li>
+		</ul>
+		
+	</div>
+ </div>
+</nav>
+
+<header>
+	<div class="header-inner ">
+	  <div class="container">
+		<div class="container-inner">
+			<div class="logo-container">
+				<div id="logo">
+				  {% if logo %}
+					<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+				  {% else %}
+					<a href="{{ home }}">{{ name }}</a>
+				  {% endif %}
+				</div>
+			</div>
+			<div class="top-search">
+				{{ search }}
+			</div>
+			<div class="box-cart">
+				<div class="links" >
+					<div class="wishlist">
+						<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist2 }}"><span>{{ text_wishlist }}</span></a>
+					</div>
+					<div class="compare">
+						<a href="{{ compare }}" id="link-compare" title="{{ text_compare }}"><span>{{ text_compare }}</span></a>
+					</div>
+				</div>
+				{{ cart }}
+			</div>
+		  <div class="clearfix"></div>
+		</div>
+	  </div>
+	</div>
+	<div class="top-menu fix">
+		<div class="container">
+			<div class="container-inner">
+				{% if block1 %}
+					{{ block1 }}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</header>

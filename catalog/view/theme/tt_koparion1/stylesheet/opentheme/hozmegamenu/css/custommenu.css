@@ -1,0 +1,548 @@
+.pt_custommenu {
+    font-size: 14px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 90;
+    display: inline-block;
+    vertical-align: top;
+}
+.pt_custommenu div.pt_menu {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+.pt_custommenu div.pt_menu:last-child {
+	margin-right:0;
+}
+.pt_custommenu div.pt_menu  .parentMenu {
+	bottom:-2px;
+}
+.pt_custommenu div.pt_menu .parentMenu a,
+.pt_custommenu div.pt_menu .parentMenu span.block-title{
+	color: #666666;
+    display: block;
+    font-size: 22px;
+    padding: 0 20px 8px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+div.pt_menu .parentMenu a, .parentMenu .block-title {
+    color: #666;
+    font-size: 18px;
+}
+.pt_custommenu div.popup {
+    position:absolute;
+    z-index:3000;
+    text-align:left;
+    margin: 0;
+}
+
+.pt_custommenu div.column {
+    float: left;
+    width: 230px;
+    padding-left: 30px;
+}
+.pt_custommenu div.column.last {
+	margin-right: 30px;
+}
+.pt_custommenu div.blockright {
+	width:300px;
+    float: right
+}
+.pt_custommenu div.popup .blockright img {
+    max-width: 100%;
+}
+.pt_custommenu div.column.last {
+    border-right: 0 none;
+}
+.pt_custommenu .block2{
+    margin-top: 37px;
+    float: left;
+    padding: 0 30px;
+}
+#block2_pt_item_menu_custom_menu {
+    width: 700px;
+	padding:0;
+}
+.static-menu-img {
+    margin: 0 20px 0 0;
+	width:40%;
+	float:left;
+}
+.pt_custommenu div.popup .block1{
+    overflow: hidden;
+    float: left;
+}
+#block2_pt_item_menu_custom_menu .content-custom {
+	font-size:14px;
+	color:#444444;
+	font-weight:normal;
+	line-height:20px;
+	margin:10px 0 0;
+	float:left;
+	width:50%;
+}
+.pt_custommenu div.popup .block1 .column{
+    /* margin-bottom: -99999px; */
+    /* padding-bottom: 99999px; */
+}
+.pt_custommenu div.popup .blockright img{
+    max-width: 100%;
+} 
+.pt_custommenu div.pt_menu .parentMenu p{
+    margin: 0;
+    padding: 0;
+}
+.pt_custommenu #pt_menu_link{
+    padding: 0;
+}
+.pt_custommenu #pt_menu_link .parentMenu ul li{
+    float: left;
+    list-style: none;
+}
+.pt_custommenu #pt_menu_link .parentMenu ul li a{
+    float: left;
+    padding: 0 10px;
+    display: block;
+}
+.pt_custommenu .clearBoth {
+    clear:both;
+}
+/*mobile menu*/
+/*------Accordion ---------*/
+/********** < Navigation */
+.nav-collapse {
+    text-align: left;
+}
+.navbar .nav > li {
+    padding: 10px 30px 20px 0;
+}
+#ma-mobilemenu {
+    top: 100%;
+    left: 0;
+    margin:0;
+    width: 100%;
+    position: absolute;
+    padding: 10px 20px;
+    -webkit-box-shadow: 0 0 50px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 0 50px 0 rgba(0,0,0,0.1);
+}
+.nav-collapse, .nav-collapse.collapse {
+}
+.navbar-inner {
+    border: 0;
+    border-radius: 0;
+}
+.navbar .btn-navbar .icon-bar{
+	background: #434343
+}
+.navbar .btn-navbar:hover .icon-bar{
+	background: #f07c29 !important;
+}
+.navbar .btn-navbar{
+	border: none;
+	background: none !important;
+	padding: 0 0 0px 0;
+	height: auto;
+	box-shadow: none !important;
+	background: none !important;
+}
+.navbar .btn-navbar:hover{
+	background: none !important;
+}
+.mobilemenu>li.last a {
+    border-bottom: 0;
+}
+.mobilemenu {
+	list-style-type: none;
+	padding: 0;
+    margin: 0;
+}
+.mobilemenu ul {
+	padding: 0;
+	margin: 0;
+	display: block;
+	width: 100%;
+}
+.mobilemenu .level2,.mobilemenu .level3,.originalmenu > li ul{
+    padding-left: 20px;
+}
+.mobilemenu li {
+	cursor: pointer;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+	width: 100%;
+	position: relative;
+	border-radius: 0 !important;
+	border-bottom: 1px solid #ebebeb;
+}
+.mobilemenu li:last-child {
+	border: 0;
+}
+.mobilemenu li.level0.last {
+    margin-bottom: 20px;
+}
+.mobilemenu li.active>a {
+	/*background: url('../images/close.gif') no-repeat center right;*/
+}
+.mobilemenu li div {
+	padding: 20px;
+	background: #aef;
+	display: block;
+	clear: both;
+	float: left;
+	width: 360px;
+}
+.mobilemenu a {
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 40px;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #202226;
+}
+.mobilemenu li:last-child a{
+	border: none;
+}
+.button-view1 a,.originalmenu > li > a {
+	font-size: 14px;
+	color: #202226;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.button-view2 > a,.originalmenu .had_child .had_child > a {
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 13px;
+	color: #202226;
+}
+.button-view1 a:hover,.originalmenu > li > a:hover {
+	color: #f07c29;
+}
+.mobilemenu ul ul a, .mobilemenu ul li.active ul a {
+	/* color: #666 !important; */
+}
+.mobilemenu ul ul ul a, .mobilemenu ul ul li.active ul a {
+	color: #666 !important;
+}
+
+.mobilemenu ul ul ul ul a, .mobilemenu ul ul ul li.active ul a {
+	color: #666 !important;
+}
+.mobilemenu li.active>ul {
+
+}
+.mobilemenu ul ul a {
+}
+.mobilemenu ul ul ul a {
+	padding-left: 30px;
+}
+.mobilemenu ul ul ul ul a {
+	padding-left: 45px;
+}
+.mobilemenu ul ul ul ul ul a {
+	padding-left: 60px;
+}
+/*----------- button mobilemenu -------------*/
+.mobilemenu span.ttclose,.mobilemenu span.ttopen {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	padding: 5px 0;
+}
+.mobilemenu span.ttclose a {
+	 border: 0 none;
+	 color: #333333;
+	 height: 30px;
+	 padding: 0;
+	 width: 30px;
+	 line-height: 30px;
+	 text-align: center;
+}
+.mobilemenu span.ttclose a:before {
+	content: "\f107";
+	font-family: 'FontAwesome';
+	
+}
+.mobilemenu span.ttopen a {
+	 border: 0 none;
+	 display: block;
+	 height: 30px;
+	 padding: 0;
+	 width: 30px;
+	 line-height: 30px;
+	 text-align: center;
+}
+.mobilemenu span.ttopen a:before {
+	content: "\f106";
+	font-family: 'FontAwesome';
+	
+}
+.mobilemenu span.no-close .ttnavigation a{display: none;}
+.mobilemenu span.up a { 
+	background: url("../images/menu_up.png") no-repeat scroll 50% 50%;
+}
+/*.mobilemenu span.head a:hover*/
+.mobilemenu li.active>span.ttclose a {
+	background: url(../images/menu_up.png) no-repeat 50% 50%;
+}
+.mobilemenu li.selected span.ttclose a {
+	background: url(../images/menu_up.png) no-repeat 50% 50%;
+}
+.menu-mobile {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    border-radius: 0px;
+    padding: 10px 15px;
+    background: #f07c29;
+    border-radius: 3px;
+}
+.menu-mobile .btn-navbar {
+	padding: 0 10px;
+	border-radius:0;
+	margin:0;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: 400;
+	background: transparent;
+	color: #fff;
+}
+.menu-mobile .navbar-brand {
+	line-height: 30px;
+	padding:0;
+	text-transform:uppercase;
+	height: auto;
+	font-size: 16px;
+	color: #fff;
+}
+.menu-mobile .btn-navbar .icon-bar {
+	display: none;
+}
+.menu-mobile .btn-navbar:before {
+	content: "\f0c9";
+	font-family:'FontAwesome';
+}
+/** hozmegamenu **/
+
+body:not(.common-home) #pt_custommenu {
+	margin: 0;
+}
+#pt_custommenu {
+    position: relative;
+    z-index: 111;
+    width: 100%;
+    text-align: left;
+}
+#pt_custommenu .parentMenu{
+    bottom:0
+}
+.pt_custommenu div.pt_menu .parentMenu {
+    padding: 0px;
+}
+.pt_menu_had_child .parentMenu > a{
+	position: relative;
+}
+.pt_menu_had_child.active .parentMenu > a::before,
+.pt_menu_had_child .parentMenu > a:hover::before{
+	color: #f07c29 !important;
+}
+
+.pt_custommenu div.pt_menu .parentMenu a {
+  display: block;
+  line-height: 25px;
+  padding: 13px 20px;
+  color: #fff;
+  background: transparent;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+}
+.pt_custommenu div.pt_menu .parentMenu a:before {
+	  position: absolute;
+	  content: "";
+	  left: 0;
+	  right: 0;
+	  top: -8px;
+	  bottom: 0;
+	  background: #f07c29;
+	  opacity: 0;
+	  z-index: -1;
+	  -webkit-transition: all 0.3s ease-in-out;
+	  -moz-transition: all 0.3s ease-in-out;
+	  -ms-transition: all 0.3s ease-in-out;
+	  -o-transition: all 0.3s ease-in-out;
+}
+.pt_custommenu div.pt_menu .parentMenu a:hover:before,
+.pt_custommenu div.pt_menu.act .parentMenu a:before,
+.pt_custommenu div.pt_menu.active .parentMenu a:before {
+	opacity: 1;
+}
+.pt_custommenu div.pt_menu.pt_menu_had_child .parentMenu a:after {
+	  content: "\f107";
+	  font-family: 'FontAwesome';
+	  display: inline-block;
+	  vertical-align: top;
+	  margin-left: 8px;
+}
+.pt_custommenu div.pt_menu .parentMenu a span:before {
+	content: "";
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  border: 4px solid transparent;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.pt_custommenu div.pt_menu .parentMenu a span:after {
+	  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #f07c29;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.pt_custommenu div.pt_menu .parentMenu a:hover span:before,
+.pt_custommenu div.pt_menu.act .parentMenu a span:before,
+.pt_custommenu div.pt_menu.active .parentMenu a span:before {
+	 border-left-color: #a74600;
+  	border-bottom-color: #a74600;
+}
+.pt_custommenu div.pt_menu .parentMenu a:hover span:after,
+.pt_custommenu div.pt_menu.act .parentMenu a span:after,
+.pt_custommenu div.pt_menu.active .parentMenu a span:after  {
+	opacity: 1;
+  	width: 220%;
+}
+.pt_custommenu div.pt_menu:last-child .parentMenu a:hover span:after {
+	display: none;
+}
+.pt_custommenu div.popup{
+    margin: 0px !important; 
+}
+.pt_custommenu div.popup .inner-popup img:hover{
+	opacity: .9;
+}
+.pt_custommenu div.popup .inner-popup{
+	padding: 30px 0 25px 0;
+	background: #fff;
+	float: left;
+	width: 100%;
+	-webkit-box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.1);
+
+}
+.pt_custommenu div.popup .block1 {
+    overflow: hidden !important;
+    float: left !important;
+    padding: 0px !important;
+    border-top: medium none !important;
+    
+}
+.pt_custommenu .column > .itemMenu > .itemMenuName {
+	font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 20px;
+    margin-bottom: 12px;
+    color: #393939;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+}
+.pt_custommenu .itemMenu .itemSubMenu .itemMenuName:hover,.pt_custommenu .column > .itemMenu > .itemMenuName:hover {
+    color: #f07c29;
+}
+
+.pt_custommenu .itemMenu.level1 a.itemMenuName.level2:last-child {
+	margin-bottom: 0 !important;
+}
+.pt_custommenu .itemMenu.level1 .itemSubMenu.level1{
+  margin-top:15px;
+}
+.pt_custommenu .itemMenu.level1 .itemSubMenu.level1 .itemMenuName.level2:last-child{
+	background: none;
+}
+.pt_custommenu .itemMenu .itemSubMenu .itemMenuName{
+	text-transform: capitalize;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 30px;
+    color: #777;
+    display: block;
+}
+
+.pt_custommenu .itemMenu.level1 .itemSubMenu.level1 .itemMenuName.level2:last-child{
+	border: none;
+}
+.pt_custommenu div.pt_menu .parentMenu a:hover,
+.pt_custommenu div.pt_menu .parentMenu span.block-title:hover,
+.pt_custommenu #pt_menu_link .parentMenu ul li a.act,
+.pt_custommenu #pt_menu_link .parentMenu ul li a:hover,
+.pt_custommenu div.pt_menu.act .parentMenu a::before,
+.pt_custommenu div.pt_menu.act .parentMenu a,
+.pt_custommenu div.pt_menu.active .parentMenu a{
+}
+
+
+/*hozmobile*/
+.ma-nav-mobile-container{
+	display: none;
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
+}
+.ma-nav-mobile-container .navbar{
+  border: none;
+  background: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+}
+#ma-mobilemenu{
+  background: #fff;
+}
+.navbar .brand {
+   line-height: 30px;
+   padding: 0;
+   text-transform: uppercase;
+   height: auto;
+   font-size: 18px;
+   color: #fff;
+   font-weight: 700;
+}
+/** /hozmegamenu **/
+#pt_menu_home a{
+	margin-left: 0 !important;
+}
+@media(max-width: 1199px){
+	.pt_custommenu div.pt_menu {
+		margin-right: 5px;
+	}
+	.pt_custommenu div.pt_menu .parentMenu a, .pt_custommenu div.pt_menu .parentMenu span.block-title {
+		font-size: 13px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+@media(max-width: 991px){
+	.ma-nav-mobile-container {
+		display: block;
+		margin: 30px 0;
+	}
+}
