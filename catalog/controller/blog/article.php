@@ -10,7 +10,7 @@ class ControllerBlogArticle extends Controller {
 		} else {
 			$article_id = 0;
 		}
-
+		
 		$article_info = $this->model_blog_article->getArticle($article_id);
 
 		if ($article_info) {
