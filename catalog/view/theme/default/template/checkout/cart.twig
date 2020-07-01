@@ -90,13 +90,17 @@
           </table>
         </div>
       </form>
-      {% if modules %}
-      <h2>{{ text_next }}</h2>
-      <p>{{ text_next_choice }}</p>
-      <div class="panel-group" id="accordion"> {% for module in modules %}
-        {{ module }}
-        {% endfor %} </div>
-      {% endif %} <br />
+      <!--start volyminhnhan@gmail.com comment for later use-->
+      <div style="display: none!important;">
+        {% if modules %}
+        <h2>{{ text_next }}</h2>
+        <p>{{ text_next_choice }}</p>
+        <div class="panel-group" id="accordion"> {% for module in modules %}
+          {{ module }}
+          {% endfor %} </div>
+        {% endif %} <br />
+      </div>
+      <!--end volyminhnhan@gmail.com comment for later use-->
       <div class="row">
         <div class="col-sm-4 col-sm-offset-8">
           <table class="table table-bordered">
