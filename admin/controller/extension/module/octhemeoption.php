@@ -37,7 +37,9 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             DIR_APPLICATION . '../database/opencart_db1.sql' => 'Home Page 1',
             DIR_APPLICATION . '../database/opencart_db2.sql' => 'Home Page 2',
             DIR_APPLICATION . '../database/opencart_db3.sql' => 'Home Page 3',
-            DIR_APPLICATION . '../database/opencart_db4.sql' => 'Home Page 4'
+            DIR_APPLICATION . '../database/opencart_db4.sql' => 'Home Page 4',
+            DIR_APPLICATION . '../database/opencart_db5.sql' => 'Home Page 5',
+            DIR_APPLICATION . '../database/opencart_db6.sql' => 'Home Page 6'
         );
 
         $this->load->model('setting/store');
