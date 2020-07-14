@@ -17,8 +17,8 @@ $_['date_timezone']        = 'UTC';
 $_['db_engine']            = 'mysqli'; // mpdo, mssql, mysql, mysqli or postgre
 $_['db_hostname']          = 'localhost';
 $_['db_username']          = 'root';
-$_['db_password']          = 'szdVXyNXQpjtf8xS';
-$_['db_database']          = 'tabbook';
+$_['db_password']          = '';
+$_['db_database']          = '';
 $_['db_port']              = 3306;
 $_['db_autostart']         = false;
 

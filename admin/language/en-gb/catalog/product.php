@@ -34,6 +34,7 @@ $_['entry_meta_keyword']     = 'Meta Tag Keywords';
 $_['entry_meta_description'] = 'Meta Tag Description';
 $_['entry_store']            = 'Stores';
 $_['entry_keyword']          = 'Keyword';
+$_['entry_seller_id']            = 'Seller ID';
 $_['entry_model']            = 'Model';
 $_['entry_sku']              = 'SKU';
 $_['entry_upc']              = 'UPC';

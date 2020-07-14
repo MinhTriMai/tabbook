@@ -2,3 +2,4 @@
 system/storage/*
 config.php
 install/*
+image/cache/*
