@@ -925,7 +925,8 @@ a:hover,.banner-3 a:hover::before,
 .box-cart .links {
 	display: inline-block;
 	vertical-align: top;
-	margin-right: 45px;
+	margin-right: 35px;
+	margin-left: 10px;
 }
 .box-cart .links a {
 	font-size: 14px;
