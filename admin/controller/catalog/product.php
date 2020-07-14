@@ -863,6 +863,30 @@ class ControllerCatalogProduct extends Controller {
 			$data['manufacturer'] = '';
 		}
 
+		//seller ID render - volyminhnhan@gmail.com
+		$this->load->model('customer/customer');
+		if (isset($this->request->post['seller_id'])) {
+			$data['seller_id'] = $this->request->post['seller_id'];
+		} elseif (!empty($product_info)) {
+			$data['seller_id'] = $product_info['seller_id'];
+		} else {
+			$data['seller_id'] = 0;
+		}
+
+		if (isset($this->request->post['seller'])) {
+			$data['seller'] = $this->request->post['seller'];
+		} elseif (!empty($product_info)) {
+			$customer_info = $this->model_customer_customer->getCustomer($product_info['seller_id']);
+
+			if ($manufacturer_info) {
+				$data['seller'] = $customer_info['email'];
+			} else {
+				$data['seller'] = '';
+			}
+		} else {
+			$data['seller'] = '';
+		}
+
 		// Categories
 		$this->load->model('catalog/category');
 
