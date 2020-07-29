@@ -1,0 +1,135 @@
+/*KnowBand Marketplace CSS*/
+.kbmp-thumb {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.kbmp-thumb .image {
+    text-align: center;
+}
+
+.kbmp-thumb .image img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kbmp-thumb .image a {
+    display: block;
+}
+
+.kbmp-thumb .caption {
+    padding: 0 20px;
+}
+
+.kbmp-thumb h4 {
+    font-weight: bold;
+}
+
+.kbmp-thumb .rating {
+    padding-bottom: 10px;
+}
+
+.rating .fa-stack {
+    font-size: 8px;
+}
+
+.seller_banner {
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.seller_logo {
+    float: left;
+    margin-right: 20px;
+    margin-top: -90px;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.seller_logo img {
+    border: 1px solid #CCC;
+    padding: 5px;
+    border-radius: 10px;
+    width: 160px;
+    background-color: #fff;
+}
+
+.seller_title {
+    float: left;
+}
+
+.seller_title_heading {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+#kbmp-seller-info {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.kbmp_block {
+    clear: both;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.box-info-product {
+    background: #f6f6f6;
+    border: 1px solid #d2d0d0;
+    border-top: 1px solid #b0afaf;
+    border-bottom: 1px solid #b0afaf;
+}
+
+.kbmp_row {
+    display: block;
+}
+
+.kbmp_inner_block {
+    display: inline-block;
+}
+
+.kbmp_inner_block .title {
+    font-weight: bold;
+    font-size: 13px;
+    color: #666;
+}
+
+.kbmp_inner_block a {
+    text-decoration: underline;
+    color: #333;
+}
+
+.vss_seller_ratings {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    color: #d3d3d3;
+    line-height: 16px;
+    font-size: 15px;
+    background: 0;
+    font-family: "Arial Unicode MS",Arial,Tahoma,Verdana,sans-serif;
+}
+
+.vss_rating_filled {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    color: #e9ce18;
+    white-space: nowrap;
+    overflow: hidden;
+    background: 0;
+    width: 0px;
+}
+
+.vss_active_link {
+    color: #2e8ab8 !important;
+    font-size: 11px;
+    margin-left: 15px;
+    text-decoration: none !important;
+}

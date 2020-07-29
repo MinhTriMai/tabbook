@@ -1,0 +1,396 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_tickets }} 
+                </h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>{{ total_tickets }}</h3>
+                                <p>{{ text_all_tickets }}</p>
+                            </div>
+                            <div class="icon" style="padding-top: 12px"><i class="fa fa-asterisk" style="font-size: inherit"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>{{ total_open_tickets }}</h3>
+                                <p>{{ text_open_tickets }}</p>
+                            </div>
+                            <div class="icon" style="padding-top: 12px"><i class="fa fa-star-o" style="font-size: inherit"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3>{{ total_closed_tickets }}</h3>
+                                <p>{{ text_closed_tickets }}</p>
+                            </div>
+                            <div class="icon" style="padding-top: 12px">
+                                <i class="fa fa-book" style="font-size: inherit"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="well">
+                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-return-id">{{ text_ticket_id }}</label>
+                                    <input type="text" name="filter_ticket_id" value="{{ filter_ticket_id }}" placeholder="{{ text_ticket_id }}" id="filter_ticket_id" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-order-id">{{ text_customer_email }}</label>
+                                    <input type="text" name="filter_email" value="{{ filter_email }}" placeholder="{{ text_customer_email }}" id="filter_email" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-customer">{{ text_customer_name }}</label>
+                                    <input type="text" name="filter_customer" value="{{ filter_customer }}" placeholder="{{ text_customer_name }}" id="filter_customer" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-product">{{ text_subject }}</label>
+                                    <input type="text" name="filter_subject" value="{{ filter_subject }}" placeholder="{{ text_subject }}" id="filter_subject" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_status">{{ text_status }}</label>
+                                    <select name="filter_status" id="filter_status" class="form-control">
+                                        <option value="*"></option>
+                                        <option value="1" {% if (filter_status == '1') %} {{ 'selected="selected"' }}{% endif %}>{{ text_open }}</option>
+                                        <option value="2" {% if (filter_status == '2') %} {{ 'selected="selected"' }}{% endif %}>{{ text_in_progress }}</option>
+                                        <option value="3" {% if (filter_status == '3') %} {{ 'selected="selected"' }}{% endif %}>{{ text_awaiting_reply }}</option>
+                                        <option value="4" {% if (filter_status == '4') %} {{ 'selected="selected"' }}{% endif %}>{{ text_replied }}</option>
+                                        <option value="5" {% if (filter_status == '5') %} {{ 'selected="selected"' }}{% endif %}>{{ text_on_hold }}</option>
+                                        <option value="6" {% if (filter_status == '6') %} {{ 'selected="selected"' }}{% endif %}>{{ text_closed }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_priority">{{ text_priority }}</label>
+                                    <select name="filter_priority" id="filter_priority" class="form-control">
+                                        <option value="*"></option>
+                                        <option value="1" {% if (filter_priority == '1') %} {{ 'selected="selected"' }}{% endif %}>{{ text_low }}</option>
+                                        <option value="2" {% if (filter_priority == '2') %} {{ 'selected="selected"' }}{% endif %}>{{ text_medium }}</option>
+                                        <option value="3" {% if (filter_priority == '3') %} {{ 'selected="selected"' }}{% endif %}>{{ text_high }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-date-added">{{ text_last_updated }}</label>
+                                    <div class="input-group date">
+                                      <input type="text" name="filter_date_added" value="{{ filter_date_added }}" placeholder="{{ text_last_updated }}" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                                      <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-date-modified">{{ text_created_date }}</label>
+                                    <div class="input-group date">
+                                      <input type="text" name="filter_date_modified" value="{{ filter_date_modified }}" placeholder="{{ text_created_date }}" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
+                                      <span class="input-group-btn">
+                                      <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                                      </span>
+                                    </div>
+                                </div>
+                                <div class="filter-button">
+                                    <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:15px;">
+                                        {{ text_reset }} 
+                                    </a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">
+                                        {{ text_filter }} 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="background-color: white;padding: 10px">
+                    <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-coupon">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                                        <td class="text-left">{% if (sort == 'id') %} 
+                                            <a href="{{ sort_id }}" class="">{{ text_ticket_id }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_id }}">{{ text_ticket_id }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'email') %} 
+                                            <a href="{{ sort_email }}" class="">{{ text_customer_email }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_email }}">{{ text_customer_email }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-right">{% if (sort == 'name') %} 
+                                            <a href="{{ sort_name }}" class="">{{ text_customer_name }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_name }}">{{ text_customer_name }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'subject') %} 
+                                            <a href="{{ sort_subject }}" class="">{{ text_subject }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_subject }}">{{ text_subject }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'status') %} 
+                                            <a href="{{ sort_status }}" class="">{{ text_status }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_status }}">{{ text_status }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'priority') %} 
+                                            <a href="{{ sort_priority }}" class="">{{ text_priority }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_priority }}">{{ text_priority }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'date_updated') %} 
+                                            <a href="{{ sort_date_updated }}" class="">{{ text_last_updated }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_date_updated }}">{{ text_last_updated }}</a>
+                                            {% endif %} 
+                                        </td>
+                                        <td class="text-left">{% if (sort == 'date_added') %} 
+                                            <a href="{{ sort_date_added }}" class="">{{ text_created_date }}</a>
+                                            {% else %} 
+                                            <a href="{{ sort_date_added }}">{{ text_created_date }}</a>
+                                            {% endif %} 
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if (tickets) %} 
+                                    {% for ticket in tickets %} 
+                                    <tr>
+                                      <td class="text-center">{% if ((ticket['id'] in selected)) %} 
+                                        <input type="checkbox" name="selected[]" value="{{ ticket['id'] }}" checked="checked" />
+                                        {% else %} 
+                                        <input type="checkbox" name="selected[]" value="{{ ticket['id'] }}" />
+                                        {% endif %}</td>
+                                      <td class="text-left"><a href="{{ view_ticket~'&ticket_id='~ticket['ticket_id'] }}">#{{ ticket['ticket_id'] }}</a></td>
+                                      <td class="text-left">{{ ticket['email'] }}</td>
+                                      <td class="text-right">{{ ticket['name'] }}</td>
+                                      <td class="text-left">{{ ticket['subject'] }}</td>
+                                      <td class="text-left">{{ ticket['status'] }}</td>
+                                      <td class="text-left">{{ ticket['priority'] }}</td>
+                                      <td class="text-left">{{ ticket['date_added'] }}</td>
+                                      <td class="text-left">{{ ticket['date_updated'] }}</td>
+                                    </tr>
+                                    {% endfor %} 
+                                    {% else %} 
+                                    <tr>
+                                      <td class="text-center" colspan="9">{{ text_no_results }}</td>
+                                    </tr>
+                                    {% endif %} 
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-sm-6 text-left">{{ pagination }}</div>
+                        <div class="col-sm-6 text-right">{{ results }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+	url = 'index.php?route=kbmp_marketplace/support';
+	
+	var filter_ticket_id = $('input[name=\'filter_ticket_id\']').val();
+	
+	if (filter_ticket_id) {
+		url += '&filter_ticket_id=' + encodeURIComponent(filter_ticket_id);
+	}
+	
+	var filter_email = $('input[name=\'filter_email\']').val();
+	
+	if (filter_email) {
+		url += '&filter_email=' + encodeURIComponent(filter_email);
+	}	
+		
+	var filter_customer = $('input[name=\'filter_customer\']').val();
+	
+	if (filter_customer) {
+		url += '&filter_customer=' + encodeURIComponent(filter_customer);
+	}
+	
+	var filter_status = $('#filter_status').val();
+	
+	if (filter_status != '*') {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+
+	var filter_priority = $('#filter_priority').val();
+	
+	if (filter_priority != '*') {
+		url += '&filter_priority=' + encodeURIComponent(filter_priority);
+	}
+		
+	var filter_subject = $('#filter_subject').val();
+	
+	if (filter_subject != '*') {
+		url += '&filter_subject=' + encodeURIComponent(filter_subject);
+	}	
+	
+	var filter_date_added = $('input[name=\'filter_date_added\']').val();
+	
+	if (filter_date_added) {
+		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+	}
+
+	var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+	
+	if (filter_date_modified) {
+		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+	}
+			
+	location = url;
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('.date').datetimepicker({
+	pickTime: false
+});
+$('#button-reset').on('click', function() {
+    var url = 'index.php?route=kbmp_marketplace/support';
+    location = url;
+});
+//--></script></div>
+<script>
+    $(function() {
+
+		var d1 = [{{ last_week_earning_list }}] ;
+                var d2 = [{{ last_week_orders_list }}];
+                var d3 = [{{ last_week_ordered_products_list }}];
+		// first correct the timestamps - they are recorded as the daily
+		// midnights in UTC+0100, but Flot always displays dates in UTC
+		// so we have to add one hour to hit the midnights in the plot
+
+		for (var i = 0; i < d1.length; ++i) {
+			d1[i][0] += 60 * 60 * 1000;
+		}
+                for (var i = 0; i < d2.length; ++i) {
+			d2[i][0] += 60 * 60 * 1000;
+		}
+                for (var i = 0; i < d3.length; ++i) {
+			d3[i][0] += 60 * 60 * 1000;
+		}
+
+		var options = {
+                        series: {
+				lines: { show: true },
+				points: { show: true }
+			},
+			xaxis: {
+				mode: "time",
+                                timeformat: "%m/%d/%Y",
+			},
+			selection: {
+				mode: "x"
+			},
+			grid: {
+				hoverable: true
+			},
+		};
+
+		var plot = $.plot("#placeholder", [
+                    { label: "{{ text_your_revenue }}", data: d1 },
+                    { label: "{{ text_total_order }}", data: d2 },
+                    { label: "{{ text_total_products_sold }}", data: d3 }], options);
+
+		//Start Changes to display Tooltip on the Graph points 24-Dec-2018 - Harsh Agarwal
+		$("<div id='tooltip'></div>").css({
+			position: "absolute",
+			display: "none",
+			border: "1px solid #fdd",
+			padding: "2px",
+			"background-color": "#fee",
+			opacity: 0.80
+		}).appendTo("body");
+
+		$("#placeholder").bind("plothover", function (event, pos, item) {
+
+			if (item) {
+				var x = item.datapoint[0],
+					y = item.datapoint[1];
+
+				$("#tooltip").html(item.series.label + " = " + y)
+					.css({top: item.pageY+5, left: item.pageX+5})
+					.fadeIn(200);
+			} else {
+				$("#tooltip").hide();
+			}
+		});
+		//Ends
+
+		// now connect the two
+
+		$("#placeholder").bind("plotselected", function (event, ranges) {
+
+			// do the zooming
+
+			plot = $.plot("#placeholder", [
+                                { label: "{{ text_your_revenue }}", data: d1 },
+                                { label: "{{ text_total_order }}", data: d2 },
+                                { label: "{{ text_total_products_sold }}", data: d3 }], $.extend(true, {}, options, {
+				xaxis: {
+					min: ranges.xaxis.from,
+					max: ranges.xaxis.to
+				}
+			}));
+			
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+</script>
+
+</body></html>

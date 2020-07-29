@@ -1,0 +1,381 @@
+{{ header }} 
+{% set counter = 1 %}
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_shipping }} 
+                    <div class="pull-right">
+                        <button type="button" id="add_shipping_button" form="form-shipping" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ button_save }}"><i class="fa fa-save"></i></button>
+                    </div>
+                </h2>
+                <form action="" method="post" enctype="multipart/form-data" style="background-color: white" id="form-shipping" class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <ul class="nav nav-pills nav-stacked">
+                                
+ {% set active = "active" %}
+ {% for geo_zone in geo_zones %} 
+                                <li class="{{ active }}"><a href="#tab-geo-zone{{ geo_zone['geo_zone_id'] }}" data-toggle="tab">{{ geo_zone['name'] }}</a></li>
+                                
+ {% set active = '' %}
+ {% endfor %} 
+                            </ul>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="tab-content kbmp-tabs-content">
+                                
+ {% set active = "active" %}
+ {% for geo_zone in geo_zones %} 
+ {% set counter = 1 %}
+ 
+                                <input type="hidden" name="zone_id[]" value="{{ geo_zone['geo_zone_id'] }}" />
+                                <div class="tab-pane {{ active }}" id="tab-geo-zone{{ geo_zone['geo_zone_id'] }}">
+                                    
+ {% if (seller_shipping[geo_zone['geo_zone_id']] is defined and seller_shipping[geo_zone['geo_zone_id']] is not empty) %}
+ {% for sellershipping in seller_shipping[geo_zone['geo_zone_id']] %} 
+ 
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <label>{{ label_weight_from }}<em>*</em></label>
+                                                <input data-value="{{ counter }}" name="weight_from_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" value="{{ sellershipping['weight_from'] }}" />
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                <label>{{ label_weight_to }}<em>*</em></label>
+                                                <input data-value="{{ counter }}" name="weight_to_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" value="{{ sellershipping['weight_to'] }}" />
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <label>{{ label_price }}<em>*</em></label>
+                                                <input data-value="{{ counter }}" name="price_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" value="{{ sellershipping['rate'] }}" />
+                                            </div>
+                                             {% if (counter > 1) %}
+ 
+                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-right" style="margin-top: 24px;">
+                                                <button type="button" onclick="removeWeightRange(this);" data-toggle="tooltip" title="{{ button_range_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                            </div>
+                                             {% endif %}
+ 
+                                        </div>
+                                         {% set counter = counter + 1 %}
+ {% endfor %}
+ {% else %} 
+ 
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <label>{{ label_weight_from }}<em>*</em></label>
+                                            <input data-value="{{ counter }}" name="weight_from_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" />
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <label>{{ label_weight_to }}<em>*</em></label>
+                                            <input data-value="{{ counter }}" name="weight_to_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <label>{{ label_price }}<em>*</em></label>
+                                            <input data-value="{{ counter }}" name="price_{{ geo_zone['geo_zone_id'] }}[]" class="form-control" />
+                                        </div>
+                                    </div>
+                                    {% endif %} 
+                                    <div id="add_option_{{ geo_zone['geo_zone_id'] }}" class="form-group">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                                            <button type="button" onclick="addWeightRange('{{ geo_zone['geo_zone_id'] }}');" data-toggle="tooltip" title="{{ button_range_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                 {% set counter = counter + 1 %}
+ {% set active = '' %}
+ {% endfor %} 
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+var shipping_row = {{ counter }};
+    
+function addWeightRange(zone_id) {
+    var html = '<div class="form-group">'
+                    +'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
+                        +'<label>{{ label_weight_from }}<em>*</em></label>'
+                        +'<input data-value="'+shipping_row+'" name="weight_from_'+zone_id+'[]" class="form-control" />'
+                    +'</div>'
+                    +'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
+                        +'<label>{{ label_weight_to }}<em>*</em></label>'
+                        +'<input data-value="'+shipping_row+'" name="weight_to_'+zone_id+'[]" class="form-control" />'
+                    +'</div>'
+                    +'<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">'
+                        +'<label>{{ label_price }}<em>*</em></label>'
+                        +'<input data-value="'+shipping_row+'" name="price_'+zone_id+'[]" class="form-control" />'
+                    +'</div>'
+                    +'<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-right" style="margin-top: 24px;">'
+                        +'<button type="button" onclick="removeWeightRange(this);" data-toggle="tooltip" title="{{ button_range_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>'
+                    +'</div>'
+                +'</div>';
+    $("#add_option_"+zone_id).before(html);
+    
+    shipping_row++;
+}
+
+function removeWeightRange(ele) {
+    $(ele).parent().parent().remove();
+}
+
+function shipping_submit_validation(elem)
+{
+    var is_error = false;
+    $("#error").hide();
+    $('.kb_error_message').remove();
+    $('#form-shipping input').removeClass('kb_error_field');
+
+    //Weight From Validation
+    $('input[name^="weight_from_"]').each(function() {
+        var weight_from_err = velovalidation.checkMandatory($(this), 15, 1);
+        if (weight_from_err != true)
+        {
+            is_error = true;
+            $(this).addClass('kb_error_field');
+            $(this).after('<span class="kb_error_message">'+weight_from_err+'</span>');
+        } else {
+            var weight_from_err = velovalidation.checkAmount($(this));
+            if (weight_from_err != true)
+            {
+                is_error = true;
+                $(this).addClass('kb_error_field');
+                $(this).after('<span class="kb_error_message">'+weight_from_err+'</span>');
+            }
+        }
+    });
+    
+    if (!is_error) {
+        $('input[name^="weight_from_"]').each(function() {
+            //Compare Weight From and Weight To values
+            var weight_from = $(this).val();
+            var weight_to = $(this).parent().next().children('input[name^="weight_to_"]').val();
+
+            if (parseFloat(weight_from) >= parseFloat(weight_to)) {
+                is_error = true;
+                $(this).parent().next().children('input[name^="weight_to_"]').addClass('kb_error_field');
+                $(this).parent().next().children('input[name^="weight_to_"]').after('<span class="kb_error_message">{{ weight_error }}</span>');
+            }
+        });
+    }
+    
+     
+    if (!is_error) {
+        $('input[name^="weight_from_"]').each(function() {
+            //Compare Weight From and Weight To values
+            var weight_from = $(this).val();
+            var weight_to = $(this).parent().next().children('input[name^="weight_to_"]').val();
+                
+            //Check Weight value in another weight ranges
+            var weight_from_ele = $(this).attr('data-value');
+            var weight_from_name = $(this).attr('name');
+            var weight_to_name = $(this).parent().next().children('input[name^="weight_to_"]').attr('name');
+
+            $(this).parent().parent().parent().find($('input[name^="weight_from_"]')).each(function() {
+                var current_weight_from_ele = $(this).attr('data-value');
+                var current_weight_from = $(this).val();
+                var current_weight_from_name = $(this).attr('name');
+
+                var current_weight_to = $(this).parent().next().children('input[name^="weight_to_"]').val();
+                var current_weight_to_name = $(this).parent().next().children('input[name^="weight_to_"]').attr('name');
+
+                //Condition to ignore self
+                if (weight_from_ele != current_weight_from_ele) {
+                    $(this).removeClass('kb_error_field');
+                    $(this).next('.kb_error_message').remove();
+                    $(this).parent().next().children('input[name^="weight_to_"]').removeClass('kb_error_field');
+                    $(this).parent().next().children('input[name^="weight_to_"]').next('.kb_error_message').remove();
+                    if (parseFloat(weight_from) >= parseFloat(current_weight_from) && parseFloat(weight_from) <= parseFloat(current_weight_to)) {
+                        is_error = true;
+                        $(this).parent().next().children('input[name^="weight_to_"]').addClass('kb_error_field');
+                        $(this).parent().next().children('input[name^="weight_to_"]').after('<span class="kb_error_message">{{ invalid_range_error }}</span>');
+                    }
+
+                    if (parseFloat(weight_to) >= parseFloat(current_weight_from) && parseFloat(weight_to) <= parseFloat(current_weight_to)) {
+                        is_error = true;
+                        $(this).addClass('kb_error_field');
+                        $(this).after('<span class="kb_error_message">{{ invalid_range_error }}</span>');
+                    }
+                }
+            });
+        });
+    }
+    
+    //Weight To Validation
+    $('input[name^="weight_to_"]').each(function() {
+        var weight_to_err = velovalidation.checkMandatory($(this), 15, 1);
+        if (weight_to_err != true)
+        {
+            is_error = true;
+            $(this).addClass('kb_error_field');
+            $(this).after('<span class="kb_error_message">'+weight_to_err+'</span>');
+        } else {
+            var weight_to_err = velovalidation.checkAmount($(this));
+            if (weight_to_err != true)
+            {
+                is_error = true;
+                $(this).addClass('kb_error_field');
+                $(this).after('<span class="kb_error_message">'+weight_to_err+'</span>');
+            }
+        }
+    });  
+    
+    //Price Validation
+    $('input[name^="price_"]').each(function() {
+        var price_err = velovalidation.checkMandatory($(this), 15, 1);
+        if (price_err != true)
+        {
+            is_error = true;
+            $(this).addClass('kb_error_field');
+            $(this).after('<span class="kb_error_message">'+price_err+'</span>');
+        } else {
+            var price_err = velovalidation.checkAmount($(this));
+            if (price_err != true)
+            {
+                is_error = true;
+                $(this).addClass('kb_error_field');
+                $(this).after('<span class="kb_error_message">'+price_err+'</span>');
+            }
+        }
+    });  
+
+    if (is_error) {
+        $("#error").show();
+        return false;
+    } else {
+        $("#form-shipping").submit();
+    }
+}
+
+velovalidation.setErrorLanguage({
+    empty_fname: '{{ empty_fname }}',
+    maxchar_fname: '{{ maxchar_fname }}',
+    minchar_fname: '{{ minchar_fname }}',
+    empty_mname: '{{ empty_mname }}',
+    maxchar_mname: '{{ maxchar_mname }}',
+    minchar_mname: '{{ minchar_mname }}',
+    only_alphabet: '{{ only_alphabet }}',
+    empty_lname: '{{ empty_lname }}',
+    maxchar_lname: '{{ maxchar_lname }}',
+    minchar_lname: '{{ minchar_lname }}',
+    alphanumeric: '{{ alphanumeric }}',
+    empty_pass: '{{ empty_pass }}',
+    maxchar_pass: '{{ maxchar_pass }}',
+    minchar_pass: '{{ minchar_pass }}',
+    specialchar_pass: '{{ specialchar_pass }}',
+    alphabets_pass: '{{ alphabets_pass }}',
+    capital_alphabets_pass: '{{ capital_alphabets_pass }}',
+    small_alphabets_pass: '{{ small_alphabets_pass }}',
+    digit_pass: '{{ digit_pass }}',
+    empty_field: '{{ empty_field }}',
+    number_field: '{{ number_field }}',
+    positive_number: '{{ positive_number }}',
+    maxchar_field: '{{ maxchar_field }}',
+    minchar_field: '{{ minchar_field }}',
+    empty_email: '{{ empty_email }}',
+    validate_email: '{{ validate_email }}',
+    empty_country: '{{ empty_country }}',
+    maxchar_country: '{{ maxchar_country }}',
+    minchar_country: '{{ minchar_country }}',
+    empty_city: '{{ empty_city }}',
+    maxchar_city: '{{ maxchar_city }}',
+    minchar_city: '{{ minchar_city }}',
+    empty_state: '{{ empty_state }}',
+    maxchar_state: '{{ maxchar_state }}',
+    minchar_state: '{{ minchar_state }}',
+    empty_proname: '{{ empty_proname }}',
+    maxchar_proname: '{{ maxchar_proname }}',
+    minchar_proname: '{{ minchar_proname }}',
+    empty_catname: '{{ empty_catname }}',
+    maxchar_catname: '{{ maxchar_catname }}',
+    minchar_catname: '{{ minchar_catname }}',
+    empty_zip: '{{ empty_zip }}',
+    maxchar_zip: '{{ maxchar_zip }}',
+    minchar_zip: '{{ minchar_zip }}',
+    empty_username: '{{ empty_username }}',
+    maxchar_username: '{{ maxchar_username }}',
+    minchar_username: '{{ minchar_username }}',
+    invalid_date: '{{ invalid_date }}',
+    maxchar_sku: '{{ maxchar_sku }}',
+    minchar_sku: '{{ minchar_sku }}',
+    invalid_sku: '{{ invalid_sku }}',
+    empty_sku: '{{ empty_sku }}',
+    validate_range: '{{ validate_range }}',
+    empty_address: '{{ empty_address }}',
+    minchar_address: '{{ minchar_address }}',
+    maxchar_address: '{{ maxchar_address }}',
+    empty_company: '{{ empty_company }}',
+    minchar_company: '{{ minchar_company }}',
+    maxchar_company: '{{ maxchar_company }}',
+    invalid_phone: '{{ invalid_phone }}',
+    empty_phone: '{{ empty_phone }}',
+    minchar_phone: '{{ minchar_phone }}',
+    maxchar_phone: '{{ maxchar_phone }}',
+    empty_brand: '{{ empty_brand }}',
+    maxchar_brand: '{{ maxchar_brand }}',
+    minchar_brand: '{{ minchar_brand }}',
+    empty_shipment: '{{ empty_shipment }}',
+    maxchar_shipment: '{{ maxchar_shipment }}',
+    minchar_shipment: '{{ minchar_shipment }}',
+    invalid_ip: '{{ invalid_ip }}',
+    invalid_url: '{{ invalid_url }}',
+    empty_url: '{{ empty_url }}',
+    valid_amount: '{{ valid_amount }}',
+    valid_decimal: '{{ valid_decimal }}',
+    max_email: '{{ max_email }}',
+    specialchar_zip: '{{ specialchar_zip }}',
+    specialchar_sku: '{{ specialchar_sku }}',
+    max_url: '{{ max_url }}',
+    valid_percentage: '{{ valid_percentage }}',
+    between_percentage: '{{ between_percentage }}',
+    maxchar_size: '{{ maxchar_size }}',
+    specialchar_size: '{{ specialchar_size }}',
+    specialchar_upc: '{{ specialchar_upc }}',
+    maxchar_upc: '{{ maxchar_upc }}',
+    specialchar_ean: '{{ specialchar_ean }}',
+    maxchar_ean: '{{ maxchar_ean }}',
+    specialchar_bar: '{{ specialchar_bar }}',
+    maxchar_bar: '{{ maxchar_bar }}',
+    positive_amount: '{{ positive_amount }}',
+    maxchar_color: '{{ maxchar_color }}',
+    invalid_color: '{{ invalid_color }}',
+    specialchar: '{{ specialchar }}',
+    script: '{{ script }}',
+    style: '{{ style }}',
+    iframe: '{{ iframe }}',
+    not_image: '{{ not_image }}',
+    image_size: '{{ image_size }}',
+    html_tags: '{{ html_tags }}',
+    number_pos: '{{ number_pos }}',
+    invalid_separator:'{{ invalid_separator }}'
+});
+</script>

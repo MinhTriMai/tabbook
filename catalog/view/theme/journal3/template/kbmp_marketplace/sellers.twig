@@ -1,0 +1,82 @@
+{{ header }} 
+<div class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %} 
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %} 
+    </ul>
+    <div class="row">{{ column_left }} 
+        {% if (column_left and column_right) %} 
+        {% set class = 'col-sm-6' %} 
+        {% elseif (column_left or column_right) %} 
+        {% set class = 'col-sm-9' %} 
+        {% else %} 
+        {% set class = 'col-sm-12' %} 
+        {% endif %} 
+        <div id="content" class="{{ class }}">{{ content_top }} 
+            <h2>{{ heading_title }}</h2>
+            {% if (sellers) %} 
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                    <div class="form-group input-group input-group-sm">
+                        <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+                        <select id="input-sort" class="form-control" onchange="location = this.value;">
+                            {% for sorts in sorts %} 
+                                {% if (sorts['value'] == sort ~ '-' ~ order) %} 
+                                <option value="{{ sorts['href'] }}" selected="selected">{{ sorts['text'] }}</option>
+                                {% else %} 
+                                <option value="{{ sorts['href'] }}">{{ sorts['text'] }}</option>
+                                {% endif %} 
+                            {% endfor %} 
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            {% for seller in sellers %} 
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="kbmp-thumb">
+                        <div class="image"><a href="{{ seller['href'] }}"><img src="{{ seller['thumb'] }}" alt="{{ seller['title'] }}" title="{{ seller['title'] }}" class="img-responsive" /></a></div>
+                        <div>
+                            <div class="caption">
+                                <h4><a href="{{ seller['href'] }}">{{ seller['title'] is defined and seller['title'] is not empty ? seller['title'] : text_not_mentioned }}</a></h4>
+                                {% if (seller['rating']) %} 
+                                <div class="rating">
+                                    {% set i = 1 %}{% for i in i..5 %} 
+                                    {% if (seller['rating'] < i) %} 
+                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                    {% else %} 
+                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                    {% endif %} 
+                                    {% endfor %} 
+                                </div>
+                                {% else %} 
+                                <div class="rating">
+                                    {% set i = 1 %}{% for i in i..5 %} 
+                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                    {% endfor %} 
+                                </div>
+                                {% endif %} 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} 
+            </div>
+            <div class="row">
+                <div class="col-sm-6 text-left">{{ pagination }}</div>
+                <div class="col-sm-6 text-right">{{ results }}</div>
+            </div>
+            {% endif %} 
+            {% if (not sellers) %} 
+            <p>{{ text_empty }}</p>
+            <div class="buttons">
+                <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+            </div>
+            {% endif %} 
+            {{ content_bottom }} 
+        </div>
+        {{ column_right }} 
+    </div>
+</div>
+{{ footer }} 

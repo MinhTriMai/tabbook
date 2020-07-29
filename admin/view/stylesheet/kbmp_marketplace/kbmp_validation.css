@@ -1,0 +1,129 @@
+.kb_image_block{
+    display:block;
+    width:100%;
+}
+
+.kb_image_block img{
+    width:100px;
+    height:auto;
+    border:1px solid #eee;
+}
+
+.margin_zero_auto {
+    margin: 0 auto;
+}
+
+.kb_width_80 { width: 80%; }
+.kb_width_40 { width: 40%; }
+
+
+/* Validation CSS Start */
+.kb_error_field {
+    border: 1px solid #F44336 !important;
+}
+
+.kb_warning_message {
+    color: orangered;
+}
+
+.kb_error_message {
+    color: #F44336;
+}
+
+.kb_error_key_field {
+    border: 1px solid #F44336 !important;
+}
+
+.kb_error_key_message {
+    color: #F44336;
+}
+/* Validation CSS End */
+
+.kb_keywords_span {
+    background-color: #F48024;
+    color: #FFF;
+    line-height: 25px;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 3px 5px;
+    /*margin: 0 8px;*/
+}
+
+.kbgc_ordered_status {
+    background-color:#FF8C00;color:#383838;
+}
+
+.kbgc_issued_status {
+    background-color:#8A2BE2;color:white;
+}
+
+.kbgc_sent_status {
+    background-color:#108510;color:white;
+}
+
+.kbgc_used_status {
+    background-color:#ec2e15;color:white;
+}
+
+.kbgc_expired_status {
+    background-color: #607D8B;color: #ffffff;
+}
+
+.previewcontainer {
+    width: 383px;
+    height: 243px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.giftlogo {
+    width: 98%;
+    height: 98%;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    margin-left: auto;
+    background-position: center !important;
+    margin-top: 5px;
+}
+
+.gifttext {
+    font-size: 28px;
+    font-weight: bold; 
+    text-align:center; 
+    margin-top: -60px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+
+#kb_image_preview_block {
+    position: fixed !important;
+    margin-left: 10px;
+}
+
+.image_form_container form#kbgc_image_form {
+    width: 60%;
+    display: inline-block;
+}
+
+.image_form_container div#kb_image_preview_block {
+    display: inline-block;
+}
+
+#kb_image_holder {
+    display: none;
+    padding-bottom: 10px;
+}
+
+.kb_list_action {
+    pointer-events: none;
+}
+
+.custom_radio {
+    top: 3px;
+}
+
+.custom_radio_label {
+    padding: 0px 20px 0px 5px;
+    font-weight: normal;
+}

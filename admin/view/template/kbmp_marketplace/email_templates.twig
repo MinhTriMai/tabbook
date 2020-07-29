@@ -1,0 +1,147 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">          
+          <h1>{{ heading_title }}</h1>
+          <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %} 
+            <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+            {% endfor %} 
+          </ul>
+        </div>
+    </div>
+	<script>
+		$(document).ready(function()
+		{
+			$('#tabs2').scrollTabs();
+		});	
+	</script>
+	
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <ul class="nav nav-tabs scroll_tabs_theme_light" id="tabs2">
+                    <li><a href="index.php?route=extension/module/kbmp_marketplace&user_token={{ token }}">{{ text_settings }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_list&user_token={{ token }}">{{ text_sellers_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_account_approval_list&user_token={{ token }}">{{ text_seller_account_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_approval_list&user_token={{ token }}">{{ text_product_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_list&user_token={{ token }}">{{ text_seller_products }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_order&user_token={{ token }}">{{ text_seller_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}">{{ text_admin_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_review&user_token={{ token }}">{{ text_product_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review_approval_list&user_token={{ token }}">{{ text_reviews_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review&user_token={{ token }}">{{ text_seller_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_category_request&user_token={{ token }}">{{ text_seller_category_request_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_shipping&user_token={{ token }}">{{ text_seller_shippings }}</a></li>
+                   <li ><a href="index.php?route=kbmp_marketplace/seller_category&user_token={{ token }}">{{ text_seller_catgory_commision }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}">{{ text_admin_commissions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_transaction&user_token={{ token }}">{{ text_seller_transactions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/seller_payout_request&user_token={{ token }}">{{ text_seller_payout_request }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/paypal_payout&user_token={{ token }}">{{ text_paypal_payout }}</a></li>
+                    <li class="active"><a href="index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}">{{ text_email_templates }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/support&user_token={{ token }}">{{ text_support }}</a></li>
+                </ul>
+                {% if (error_warning) %} 
+                <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                {% endif %} 
+                {% if (success) %} 
+                <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                {% endif %} 
+                <div class="panel panel-default" id="fieldset_form">			
+		    <div class="panel-heading" style="display: inline-block; width: 100%;"> 
+                        {{ heading_title }} <span class="badge">{{ email_templates_total }}</span>
+                    </div>
+                    <div class="filter-table-responsive">
+                        <table class="table filter">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        {% if (sort == 'email_subject') %} 
+                                        <a href="{{ sort_email_subject }}" class="{{ (order) }}">{{ column_email_subject }}</a>
+                                        {% else %} 
+                                        <a href="{{ sort_email_subject }}">{{ column_email_subject }}</a>
+                                        {% endif %} 
+                                    </th>
+                                    <th>
+                                        {% if (sort == 'email_description') %} 
+                                        <a href="{{ sort_email_description }}" class="{{ (order) }}">{{ column_email_description }}</a>
+                                        {% else %} 
+                                        <a href="{{ sort_email_description }}">{{ column_email_description }}</a>
+                                        {% endif %} 
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                <tr>  
+                                    <th>
+                                        <input type="text" class="form-control" name="filter_email_subject" value="{% if (filter_data['filter_email_subject'] is defined) %} {{ filter_data['filter_email_subject'] }} {% endif %}"/>
+                                    </th>
+                                    <th>--</th>
+                                    <th>
+                                        <button type="button" id="button-reset" name="submitFilter" class="btn btn-warning" onclick="window.location.href='index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}'" style="margin-bottom: 10px;">
+                                            <i class="fa fa-refresh"></i> {{ text_reset }} 
+                                        </button><br>
+                                        <button type="submit" id="button-filter" name="submitFilter" class="btn btn-primary">
+                                            <i class="fa fa-search"></i> {{ text_filter }} 
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 {% if (email_templates is defined and email_templates is not empty) %}
+ {% for email_templates in email_templates %} 
+ 
+                                    <tr>
+                                        <td>{{ email_templates['email_subject'] }}</td>
+                                        <td>{{ email_templates['email_description'] }}</td>
+                                        <td>
+                                            <a href="{{ email_templates['edit'] }}" data-toggle="tooltip" title="{{ text_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                        </td>
+                                    </tr>
+                                         {% endfor %}
+ {% else %} 
+ 
+                                    <tr>
+                                      <td colspan="3">{{ text_no_results }}</td>
+                                    </tr>
+                                 {% endif %}
+ 
+                            </tbody>
+                        </table>
+                    </div>
+		</div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+        
+            var url = 'index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}';    
+            
+            var filter_email_subject = $('input[name=\'filter_email_subject\']').val();
+            
+            if (filter_email_subject) {
+                    url += '&filter_email_subject=' + encodeURIComponent(filter_email_subject);
+            }
+
+	location = url;
+    });
+</script>
+{{ footer }}

@@ -1,0 +1,290 @@
+{{ header }} 
+<style>
+    label{
+        font-weight: 700;
+    }
+</style>
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ heading_title }} 
+                </h2>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" href="#slider_collapse" style="font-size: 18px;font-weight: normal" class="">
+                            {{ text_new_payout_request }}
+                            <i style="color: red;font-size: 15px;display: none" class="fa fa-exclamation-circle"></i>
+                        </a>
+                        <a data-toggle="collapse" href="#slider_collapse" style="font-size: 18px;font-weight: normal" class="pull-right">
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="panel-body collapse" id="slider_collapse">
+                        <form class="form-horizontal" action="{{ action }}" method="post" enctype="multipart/form-data"  id="payout-form">
+                            <input type="hidden" name="seller_id" id="seller_id" class="form-control" value="{{ seller_id }}" />
+                            <div class="form-group required">  
+                                <label class="col-sm-2 control-label" for="input-width">
+                                    {{ text_amount }} 
+                                </label>  
+                                <div class="col-sm-10">
+                                    <input type="text" name="amount" id="amount" class="form-control" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group required">  
+                                <label class="col-sm-2 control-label" for="input-width">
+                                    {{ text_request_reason }} 
+                                </label>  
+                                <div class="col-sm-10">
+                                    <textarea name="reason" id="reason" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group pull-right" style="">  
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">{{ text_submit }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="well">
+                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-return-id">{{ text_amount }}</label>
+                                    <input type="text" name="filter_amount" value="{{ filter_amount }}" placeholder="{{ text_amount }}" id="filter_amount" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-return-status">{{ text_request_reason }}</label>
+                                    <select name="filter_status" id="filter_status" class="form-control">
+                                        <option value=""></option>
+                                        <option value="0" {% if (filter_status == '0') %} {{ 'selected' }}>{{ text_waiting_for_approval }}</option>
+                                        <option value="1" {% if (filter_status == '1') %} {{ 'selected' }}>{{ text_approved }}</option>
+                                        <option value="2" {% if (filter_status == '2') %} {{ 'selected' }}>{{ text_disapproved }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="filter-button" style="margin-top: 24px">
+                                    <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:15px;">
+                                        {{ text_reset }}{% endif %}{% endif %}{% endif %} 
+                                    </a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">
+                                        {{ text_filter }} 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="background-color: white">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-kbmpCustom">
+                            <thead>
+                                <tr>
+                                    <td>{% if (sort == 'id') %} 
+                                        <a style="color: white" href="{{ sort_id }}" class="">{{ text_id }}</a>
+                                        {% else %} 
+                                        <a style="color: white" href="{{ sort_id }}">{{ text_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td>{% if (sort == 'amount') %} 
+                                        <a style="color: white" href="{{ sort_amount }}" class="">{{ text_amount }}</a>
+                                        {% else %} 
+                                        <a style="color: white" href="{{ sort_amount }}">{{ text_amount }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'status') %} 
+                                        <a style="color: white" href="{{ sort_status }}" class="">{{ text_status }}</a>
+                                        {% else %} 
+                                        <a style="color: white" href="{{ sort_status }}">{{ text_status }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-right">{% if (sort == 'date_added') %} 
+                                        <a style="color: white" href="{{ sort_date }}" class="">{{ text_date }}</a>
+                                        {% else %} 
+                                        <a style="color: white" href="{{ sort_date }}">{{ text_date }}</a>
+                                        {% endif %} 
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if (payouts) %} 
+                                {% for payout in payouts %} 
+                                <tr>
+                                    <td class="">
+                                        <a href="javascript:void(0)" data-toggle='modal' data-target='#payout-{{ payout['id'] }}' style="color: #fe5252">#{{ payout['id'] }}</a>
+                                        <div class="modal" id='payout-{{ payout['id'] }}' tabindex="-1" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title"><b>{{ text_payout_details~'(#'~payout['id']~')' }}</b></h4>                                                
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="overlay-wrapper" style="display: none;">
+                                                            <div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+                                                        </div>
+                                                        <div class="modal_data_container" style="">
+                                                            <h5 id="vssmp-payout-date" class="text-light-blue">{{ text_request_on }}: {{ payout['date'] }}</h5>
+                                                            <div class="form-group">
+                                                                <ul class="list-group list-group-unbordered">
+                                                                    <li class="list-group-item">
+                                                                        <dl>
+                                                                            <dt>{{ text_amount }}:</dt>
+                                                                            <dd id="vssmp-payout-amount">{{ payout['amount'] }}</dd>
+                                                                        </dl>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <dl>
+                                                                            <dt>{{ text_status }}:</dt>
+                                                                            <dd id="vssmp-payout-status">{{ payout['status'] }}</dd>
+                                                                        </dl>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <dl>
+                                                                            <dt>{{ text_your_comment }}</dt>
+                                                                            <dd id="vssmp-payout-seller-comment">
+                                                                                {{ payout['comment'] }}
+                                                                            </dd>
+                                                                        </dl>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="">{{ payout['amount'] }}</td>
+                                    <td class="text-left">{{ payout['status'] }}</td>
+                                    <td class="text-right">{{ payout['date_added'] }}</td>
+                                </tr>
+                                {% endfor %} 
+                                {% else %} 
+                                <tr>
+                                  <td class="text-center" colspan="10">{{ text_no_results }}</td>
+                                </tr>
+                                {% endif %} 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 text-left">{{ pagination }}</div>
+                      <div class="col-sm-6 text-right">{{ results }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+	url = 'index.php?route=kbmp_marketplace/payoutRequest';
+	
+	var filter_amount = $('#filter_amount').val();
+	
+	if (filter_amount) {
+		url += '&filter_amount=' + encodeURIComponent(filter_amount);
+	}
+
+        var filter_status = $('#filter_status').val();
+	
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}	
+			
+	location = url;
+});
+//--></script> 
+<script type="text/javascript">
+    var error_empty = '{{ error_empty_field }}';
+    velovalidation.setErrorLanguage({
+        empty_field: '{{ error_empty_field }}',
+        maxchar_field: '{{ error_minchar_field }}',
+        minchar_field: '{{ error_minchar_field }}',
+        positive_number: '{{ error_positive_number }}',
+        number_field: '{{ error_number_field }}',
+        valid_amount: '{{ error_valid_amount }}',
+        valid_decimal: '{{ error_valid_decimal }}',
+        positive_amount: '{{ error_positive_amount }}',
+    });
+</script>
+<script type="text/javascript">
+$('#button-reset').on('click', function() {
+    var url = 'index.php?route=kbmp_marketplace/payoutRequest';
+    location = url;
+});
+$(document).ready(function(){
+        $('#payout-form').submit(function(e){
+            var flag = true;
+            $('.form-group').removeClass("has-error");
+            $('.text-danger').remove();
+            
+            if($('#reason').val() == ''){
+                flag = false;
+                $('#reason').parent().parent().parent().addClass("has_error");
+                $('#reason').after('<div class="text-danger">{{ error_empty_field }}</div>');
+            }
+            
+            var result = velovalidation.checkMandatory($('#amount'))
+            if(result != true){
+                flag = false;
+                $('#amount').parent().parent().parent().addClass("has_error");
+                $('#amount').after('<div class="text-danger">'+ result +'</div>');
+            }else{
+                var result = velovalidation.checkAmount($('#amount'));
+                if(result != true){
+                    flag = false;
+                    $('#amount').parent().parent().parent().addClass("has_error");
+                    $('#amount').after('<div class="text-danger">'+ result +'</div>');
+                }
+            }
+
+            if(flag == false) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+</script></div>
+{{ footer }} 

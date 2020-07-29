@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if (description) %} 
+<meta name="description" content="{{ description }}" />
+{% endif %} 
+{% if (keywords) %} 
+<meta name="keywords" content= "{{ keywords }}" />
+{% endif %} 
+<script src="catalog/view/javascript/marketplace/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+
+<link href="catalog/view/javascript/marketplace/theme.css" rel="stylesheet">
+<link href="catalog/view/javascript/marketplace/skin-light.css" rel="stylesheet">
+<link href="catalog/view/javascript/marketplace/marketplace.css" rel="stylesheet">
+<link href="catalog/view/javascript/marketplace/jquery/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="catalog/view/javascript/marketplace/summernote/summernote.css" rel="stylesheet">
+
+
+<script src="catalog/view/javascript/marketplace/marketplace-custom.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/validation/velovalidation.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/validation/marketplace-validation.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/summernote/summernote.js" type="text/javascript"></script>
+
+<script src="catalog/view/javascript/marketplace/summernote/opencart.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/jquery/datetimepicker/moment/moment.min.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/jquery/flot/jquery.flot.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/jquery/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/marketplace/jquery/flot/jquery.flot.selection.js" type="text/javascript"></script>
+
+<style>
+    .sidebar-menu li a{
+         color: black;
+         font-size: 15px
+    }
+    .navbar-nav li a{
+        color: black;
+        font-size: 15px
+    }
+</style>
+{% for style in styles %} 
+<link href="{{ style['href'] }}" type="text/css" rel="{{ style['rel'] }}" media="{{ style['media'] }}" />
+{% endfor %} 
+<script src="catalog/view/javascript/marketplace/common.js" type="text/javascript"></script>
+{% for link in links %} 
+ 
+<link href="{{ link['href'] }}" rel="{{ link['rel'] }}" />
+{% endfor %} 
+{% for script in scripts %} 
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %} 
+</head>
+<body class="">
+    <div class="vss_marketplace_page skin-black-light sidebar-mini" style="padding: 36px;padding-left: 57px">
+      {% if (error_warning is defined and error_warning is not empty) %} 
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %} 
+    {% if (success is defined and success is not empty) %} 
+    <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %} 
+    <div class="row">
+        <div class="main-sidebar col-lg-3 col-md-3 col-sm-4" style="border: 1px solid #eaeef8;background-color: #f9fafc">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="{{ home_link }}" title="{{ text_back_to_site }}">
+                            <i class="fa fa-angle-double-left"></i> {{ text_back_to_site }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ dashboard_link }}" title="{{ text_dashboard }}">
+                            <i class="fa fa-dashboard"></i> {{ text_dashboard }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ seller_profile_link }}" title="{{ text_seller_profile }}">
+                            <i class="fa fa-pencil"></i> {{ text_seller_profile }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ products_link }}" title="{{ text_seller_products }}">
+                            <i class="fa fa-list"></i> {{ text_seller_products }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ orders_link }}" title="{{ text_seller_orders }}">
+                            <i class="fa fa-shopping-cart"></i> {{ text_seller_orders }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ product_reviews_link }}" title="{{ text_product_reviews }}">
+                            <i class="fa fa-list"></i> {{ text_product_reviews }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ seller_reviews_link }}" title="{{ text_seller_reviews }}">
+                            <i class="fa fa-heart"></i> {{ text_seller_reviews }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ earning_link }}" title="{{ text_seller_earning }}">
+                            <i class="fa fa-money"></i> {{ text_seller_earning }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ transactions_link }}" title="{{ text_seller_transactions }}">
+                            <i class="fa fa-credit-card"></i> {{ text_seller_transactions }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ payout_request_link }}" title="{{ text_payout_request }}">
+                            <i class="fa fa-credit-card"></i> {{ text_payout_request }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ category_request_link }}" title="{{ text_category_request }}">
+                            <i class="fa fa-tags"></i> {{ text_category_request }} 
+                        </a>
+                    </li>
+                    <!--Condition added by Harsh to make option configurable using admin settings on 11-Dec-2018 for CCIC implementation-->
+                    {% if (kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_seller_shipping'] is defined and kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_seller_shipping']) %} 
+                    <li>
+                        <a href="{{ shipping_link }}" title="{{ text_seller_shipping }}">
+                            <i class="fa fa-truck"></i> {{ text_seller_shipping }} 
+                        </a>
+                    </li>
+                    {% endif %} 
+                    <li>
+                        <a href="{{ product_import_link }}" title="{{ text_product_import }}">
+                            <i class="fa fa-file"></i> {{ text_product_import }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ return_link }}" title="{{ text_product_return }}">
+                            <i class="fa fa-reply"></i> {{ text_product_return }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ coupon_link }}" title="{{ text_coupons }}">
+                            <i class="fa fa-money"></i> {{ text_coupons }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ downloads_link }}" title="{{ text_downloads }}">
+                            <i class="fa fa-download"></i> {{ text_downloads }} 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ support_link }}" title="{{ text_support_system }}">
+                            <i class="fa fa-comment"></i> {{ text_support_system }} 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+<script>
+	$(document).ready(function(){
+		$('.toggleMenu').click(function(){
+			$('.main-sidebar').slideToggle();
+		});
+		
+	});
+</script>
+<style>
+    .sidebar-menu li a{
+         color: black;
+         font-size: 15px
+    }
+    .navbar-nav li a{
+        color: black;
+        font-size: 15px
+    }
+    @media only screen and (max-width: 900px) {
+      .main-sidebar {
+        display:none;
+      }
+      .vss_marketplace_page{
+          padding:00px !important;
+          padding-left:0px !important;
+      }
+      #content-wrapper {
+        width: 100% !important;
+      }
+    }
+</style>
+<style>
+.toggleMenu{
+	display:none;
+}
+@media(max-width:1245px){
+	#content-wrapper{
+		width: 70% !important;
+	}
+}
+@media(max-width:1200px){
+	#content-wrapper {
+		width: 100% !important;
+	}
+	.vss_marketplace_page.skin-black-light.sidebar-mini{
+		padding:0 !important;
+	}
+	.main-sidebar{
+		display: none;
+	}
+	.main-header .navbar{
+		margin-left:0;
+	}
+	.toggleMenu .fa {
+		font-size: 22px;
+		color: #38393a;
+		line-height: 50px;
+	}
+	.toggleMenu {
+		display: inline-block;
+		margin-left: 20px;
+	}
+	.main-sidebar {
+		position: absolute;
+		width: 100%;
+		z-index: 999;
+		max-height: 350px;
+		overflow: auto;
+		top: 50px;
+		left: 0;
+		transform: inherit;
+		min-height: auto;
+	}
+	div#content{padding-left:15px !important;padding-right:15px !important;}
+}
+@media(max-width:767px){	
+	
+}
+</style>

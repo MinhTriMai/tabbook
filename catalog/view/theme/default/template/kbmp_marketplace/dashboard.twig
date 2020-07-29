@@ -1,0 +1,546 @@
+{{ header }} 
+    
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (request_approval_deny is defined and request_approval_deny != '') %} 
+            <div class="alert alert-danger">
+                <h4><i class="fa fa-warning"></i> {{ request_approval_deny }}</h4>
+            </div>
+            {% else %} 
+                {% if (seller_details['approved'] is defined and seller_details['approved'] == '2') %} 
+                <div class="alert alert-warning">
+                    <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_request_again }} 
+                    {{ text_click }}<a href="{{ request_link }}">{{ text_here }}</a>{{ text_request_again }}
+                </div>
+                {% endif %}             
+            {% endif %}
+            
+            
+            {% if (request_approval is defined and request_approval != '') %} 
+            <div class="alert alert-success">
+                <h4><i class="fa fa-success"></i> {{ request_approval }}</h4>
+            </div>
+            {% endif %} 
+            {% if (seller_details['approved'] is defined and seller_details['approved'] == '0') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ heading_title }} 
+                </h2>
+                <ul class="dashboard-listGroup">
+                    <li>
+                        <div class="dashboard-info-box">
+                            <h4>{{ text_total_order }}</h4>
+                            <div class="dashboard-info-content">
+                                <i class="fa fa-shopping-cart"></i>
+                                <h5 class="dash-count">{{ total_orders_stat }}</h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dashboard-info-box green">
+                            <h4>{{ text_total_sale }}</h4>
+                            <div class="dashboard-info-content">
+                                <i class="fa fa-credit-card"></i>
+                                <h5 class="dash-count">{{ total_sale_stat }}</h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dashboard-info-box pink">
+                            <h4>{{ text_total_earning }}</h4>
+                            <div class="dashboard-info-content">
+                                <i class="fa fa-usd"></i>
+                                <h5 class="dash-count">{{ total_earning_stat }}</h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dashboard-info-box orange">
+                            <h4>{{ text_total_products_sold }}</h4>
+                            <div class="dashboard-info-content">
+                                <i class="fa fa-truck"></i>
+                                <h5 class="dash-count">{{ total_products_sold_stat }}</h5>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> {{ text_sales_analytics }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="placeholder" style="width: 100%; height: 260px;"></div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> {{ text_sales_comparison }}</h3>
+                    </div>
+                    <div class="panel-body" id="comaprison-panel-body">
+                        <ul class="tbl-list-group">
+                            <div class="row">
+                                <li class="tbl-list col-lg-6 col-md-6 col-sm-12 colxs-12">
+                                    <table class="dh-tbl-smmry">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">{{ text_today }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ text_orders }}</td>
+                                                <td class="kb-tright">{{ today_orders }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (today_orders_improvements is defined and today_orders_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~today_orders_improvements~'%</span>' }}
+ {% elseif (today_orders_improvements is defined and today_orders_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~today_orders_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_today }}: </b>{{ today_orders }}<br>
+                                                            <b>{{ text_yesterday }}: </b>{{ last_day_orders }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_earning }}</td>
+                                                <td class="kb-tright">{{ today_earning }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (today_earning_improvements is defined and today_earning_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~today_earning_improvements~'%</span>' }}
+ {% elseif (today_earning_improvements is defined and today_earning_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~today_earning_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_today }}: </b>{{ today_earning }}<br>
+                                                            <b>{{ text_yesterday }}: </b>{{ last_day_earning }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_product_sold }}</td>
+                                                <td class="kb-tright">{{ today_ordered_products }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (today_ordered_products_improvements is defined and today_ordered_products_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~today_ordered_products_improvements~'%</span>' }}
+ {% elseif (today_ordered_products_improvements is defined and today_ordered_products_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~today_ordered_products_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_today }}: </b>{{ today_ordered_products }}<br>
+                                                            <b>{{ text_yesterday }}: </b>{{ last_day_ordered_products }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="tbl-list col-lg-6 col-md-6 col-sm-12 colxs-12">
+                                    <table class="dh-tbl-smmry">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">{{ text_this_week }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ text_orders }}</td>
+                                                <td class="kb-tright">{{ week_orders }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (week_orders_improvements is defined and week_orders_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~week_orders_improvements~'%</span>' }}
+ {% elseif (week_orders_improvements is defined and week_orders_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~week_orders_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_week }}: </b>{{ week_orders }}<br>
+                                                            <b>{{ text_last_week }}: </b>{{ last_week_orders }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_earning }}</td>
+                                                <td class="kb-tright">{{ week_earning }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (week_earning_improvements is defined and week_earning_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~week_earning_improvements~'%</span>' }}
+ {% elseif (week_earning_improvements is defined and week_earning_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~week_earning_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_week }}: </b>{{ week_earning }}<br>
+                                                            <b>{{ text_last_week }}: </b>{{ last_week_earning }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_product_sold }}</td>
+                                                <td class="kb-tright">{{ week_ordered_products }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (week_ordered_products_improvements is defined and week_ordered_products_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~week_ordered_products_improvements~'%</span>' }}
+ {% elseif (week_ordered_products_improvements is defined and week_ordered_products_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~week_ordered_products_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_week }}: </b>{{ week_ordered_products }}<br>
+                                                            <b>{{ text_last_week }}: </b>{{ last_week_ordered_products }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="tbl-list col-lg-6 col-md-6 col-sm-12 colxs-12">
+                                    <table class="dh-tbl-smmry">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">{{ text_this_month }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ text_orders }}</td>
+                                                <td class="kb-tright">{{ month_orders }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (month_orders_improvements is defined and month_orders_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~month_orders_improvements~'%</span>' }}
+ {% elseif (month_orders_improvements is defined and month_orders_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~month_orders_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_month }}: </b>{{ month_orders }}<br>
+                                                            <b>{{ text_last_month }}: </b>{{ last_month_orders }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_earning }}</td>
+                                                <td class="kb-tright">{{ month_earning }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (month_earning_improvements is defined and month_earning_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~month_earning_improvements~'%</span>' }}
+ {% elseif (month_earning_improvements is defined and month_earning_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~month_earning_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_month }}: </b>{{ month_earning }}<br>
+                                                            <b>{{ text_last_month }}: </b>{{ last_month_earning }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_product_sold }}</td>
+                                                <td class="kb-tright">{{ month_ordered_products }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (month_ordered_products_improvements is defined and month_ordered_products_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~month_ordered_products_improvements~'%</span>' }}
+ {% elseif (month_ordered_products_improvements is defined and month_ordered_products_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~month_ordered_products_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_month }}: </b>{{ month_ordered_products }}<br>
+                                                            <b>{{ text_last_month }}: </b>{{ last_month_ordered_products }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="tbl-list col-lg-6 col-md-6 col-sm-12 colxs-12">
+                                    <table class="dh-tbl-smmry">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">{{ text_this_year }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ text_orders }}</td>
+                                                <td class="kb-tright">{{ year_orders }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (year_orders_improvements is defined and year_orders_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~year_orders_improvements~'%</span>' }}
+ {% elseif (year_orders_improvements is defined and year_orders_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~year_orders_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_year }}: </b>{{ year_orders }}<br>
+                                                            <b>{{ text_last_year }}: </b>{{ last_year_orders }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_earning }}</td>
+                                                <td class="kb-tright">{{ year_earning }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (year_earning_improvements is defined and year_earning_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~year_earning_improvements~'%</span>' }}
+ {% elseif (year_earning_improvements is defined and year_earning_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~year_earning_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_year }}: </b>{{ year_earning }}<br>
+                                                            <b>{{ text_last_year }}: </b>{{ last_year_earning }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ text_product_sold }}</td>
+                                                <td class="kb-tright">{{ year_ordered_products }}</td>
+                                                <td class="kb-tright">
+                                                    <div class="kb-analysis-popper">
+                                                         {% if (year_ordered_products_improvements is defined and year_ordered_products_improvements > 0) %}
+ {{ '<span class="kb-negative-sign">&uarr; '~year_ordered_products_improvements~'%</span>' }}
+ {% elseif (year_ordered_products_improvements is defined and year_ordered_products_improvements < 0) %}
+ {{ '<span class="kb-negative-sign">&darr; '~year_ordered_products_improvements~'%</span>' }}
+ {% else %} 
+ {{ '<span class="kb-negative-sign">0%</span>' }}
+ {% endif %}
+ 
+                                                        <div class="kb-popper-info">
+                                                            <b>{{ text_this_year }}: </b>{{ year_ordered_products }}<br>
+                                                            <b>{{ text_last_year }}: </b>{{ last_year_ordered_products }} 
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> {{ text_last_10_orders }} <span class="pull-right viewAllOrders"><a href="{{ view_all_order }}">{{ text_view_all }}</a></span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-kbmpCustom">
+                                <thead>
+                                    <tr>
+                                        <td class="text-left">{{ text_order_id }}</td>
+                                        <td class="text-left">{{ text_order_date }}</td>
+                                        <td class="text-left">{{ text_customer_name }}</td>
+                                        <td class="text-right">{{ text_customer_email }}</td>
+                                        <td class="text-left">{{ text_qty }}</td>
+                                        <td class="text-right">{{ text_status }}</td>
+                                        <td class="text-right">{{ text_order_total }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% if (seller_orders is defined and seller_orders is not empty) %}
+ {% for seller_order in seller_orders %} 
+ 
+                                            <tr>
+                                                <td class="text-left">
+                                                    <a href="{{ seller_order['view'] }}" title="{{ text_click_to_view }}">{{ seller_order['order_id'] }}</a>
+                                                </td>
+                                                <td class="text-left">{{ seller_order['order_date'] }}</td>
+                                                <td class="text-left">{{ seller_order['customer_name'] }}</td>
+                                                <td class="text-right">{{ seller_order['customer_email'] }}</td>
+                                                <td class="text-left">{{ seller_order['qty'] }}</td>
+                                                <td class="text-right">{{ seller_order['status'] }}</td>
+                                                <td class="text-right">
+                                                    <span class="text-success">{{ seller_order['total'] }}</span>
+                                                </td>
+                                            </tr>
+                                             {% endfor %}
+ {% else %} 
+ 
+                                    <tr>
+                                        <td colspan="7">
+                                            {{ text_empty }} 
+                                        </td>
+                                    </tr>
+                                     {% endif %}
+ 
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+<script>
+    $(function() {
+
+		var d1 = [{{ last_week_earning_list }}] ;
+                var d2 = [{{ last_week_orders_list }}];
+                var d3 = [{{ last_week_ordered_products_list }}];
+		// first correct the timestamps - they are recorded as the daily
+		// midnights in UTC+0100, but Flot always displays dates in UTC
+		// so we have to add one hour to hit the midnights in the plot
+
+		for (var i = 0; i < d1.length; ++i) {
+			d1[i][0] += 60 * 60 * 1000;
+		}
+                for (var i = 0; i < d2.length; ++i) {
+			d2[i][0] += 60 * 60 * 1000;
+		}
+                for (var i = 0; i < d3.length; ++i) {
+			d3[i][0] += 60 * 60 * 1000;
+		}
+
+		var options = {
+                        series: {
+				lines: { show: true },
+				points: { show: true }
+			},
+			xaxis: {
+				mode: "time",
+                                timeformat: "%m/%d/%Y",
+			},
+			selection: {
+				mode: "x"
+			},
+			grid: {
+				hoverable: true
+			},
+		};
+
+		var plot = $.plot("#placeholder", [
+                    { label: "{{ text_your_revenue }}", data: d1 },
+                    { label: "{{ text_total_order }}", data: d2 },
+                    { label: "{{ text_total_products_sold }}", data: d3 }], options);
+
+		//Start Changes to display Tooltip on the Graph points 24-Dec-2018 - Harsh Agarwal
+		$("<div id='tooltip'></div>").css({
+			position: "absolute",
+			display: "none",
+			border: "1px solid #fdd",
+			padding: "2px",
+			"background-color": "#fee",
+			opacity: 0.80
+		}).appendTo("body");
+
+		$("#placeholder").bind("plothover", function (event, pos, item) {
+
+			if (item) {
+				var x = item.datapoint[0],
+					y = item.datapoint[1];
+
+				$("#tooltip").html(item.series.label + " = " + y)
+					.css({top: item.pageY+5, left: item.pageX+5})
+					.fadeIn(200);
+			} else {
+				$("#tooltip").hide();
+			}
+		});
+		//Ends
+
+		// now connect the two
+
+		$("#placeholder").bind("plotselected", function (event, ranges) {
+
+			// do the zooming
+
+			plot = $.plot("#placeholder", [
+                                { label: "{{ text_your_revenue }}", data: d1 },
+                                { label: "{{ text_total_order }}", data: d2 },
+                                { label: "{{ text_total_products_sold }}", data: d3 }], $.extend(true, {}, options, {
+				xaxis: {
+					min: ranges.xaxis.from,
+					max: ranges.xaxis.to
+				}
+			}));
+			
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+</script>
+
+</body></html>

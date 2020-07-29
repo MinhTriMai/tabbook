@@ -1,0 +1,54 @@
+<?php
+// Text
+$_['heading_title']            = 'New Ticket';
+$_['text_new_ticket']            = 'New Ticket';
+$_['text_heading_hint']            = 'Please fill in the form below to open a new ticket.';
+$_['text_email_address']           = 'Email Address';
+$_['text_email']           = 'Email';
+$_['text_first_name']           = 'First Name';
+$_['text_name']           = 'Name';
+$_['text_last_name']           = 'Last Name';
+$_['text_phone_no']           = 'Phone Number';
+$_['text_subject']           = 'Subject';
+$_['text_issue']           = 'Issue';
+$_['text_submit']           = 'Submit';
+$_['text_seller']           = 'Seller';
+$_['text_created_date']           = 'Created Date';
+$_['text_ticket']           = 'Ticket';
+$_['text_contact_this_seller']           = 'Contact This Seller';
+$_['text_heading_hint2']           = 'Check the status of your ticket';
+$_['text_view_ticket']           = 'View Ticket';
+$_['text_check']           = 'Check';
+$_['text_ticket_id']           = 'Ticket Id';
+$_['text_email']           = 'Email';
+$_['text_status']           = 'Status';
+$_['text_post_reply']           = 'Post Reply';
+$_['text_posted_on_seller']           = 'Posted on %s by Seller';
+$_['text_posted_on_you']           = 'Posted on %s by you';
+$_['text_open']               = 'Open';
+$_['text_in_progress']               = 'In Progress';
+$_['text_awaiting_reply']               = 'Awaiting Reply';
+$_['text_replied']               = 'Replied';
+$_['text_on_hold']               = 'On Hold';
+$_['text_closed']               = 'Closed';
+$_['text_low']               = 'Low';
+$_['text_medium']               = 'Medium';
+$_['text_high']               = 'High';
+$_['text_replied_to_the_seller']               = 'Replied to the seller';
+$_['text_all_tickets']               = 'All Tickets';
+$_['text_ticket_no']               = 'Ticket Number';
+$_['text_last_reply']               = 'Last Reply';
+$_['text_check_another_ticket']               = 'Check Another Ticket Status';
+$_['text_search_ticket']               = 'Search Ticket';
+$_['text_check_all_ticket']               = 'Check All Ticket';
+
+
+$_['error_minchar_field']           = 'Field cannot be less than # character(s).';
+$_['error_mmaxchar_field']           = 'Field cannot be greater than # characters.';
+$_['error_empty_field']           = 'Field cannot be empty.';
+$_['error_validate_email']           = 'Please enter a valid Email.';
+$_['error_max_email']           = 'Email cannot be greater than # characters.';
+$_['success_msg_ticket']           = 'We will contact you shortly Ticket Id: #%s';
+$_['error_view_ticket']           = 'You have entered invalid ticket details.';
+$_['error_invalid_phone']           = 'Phone number is invalid.';
+$_['error_maxchar_phone']           = 'Phone number cannot be greater than # characters.';

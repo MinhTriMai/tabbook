@@ -1,0 +1,197 @@
+{{ header }} 
+<script src="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!--<script src="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>-->
+<link href="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" rel="stylesheet">
+<script src="catalog/view/javascript/marketplace/validation/velovalidation.js"></script>
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                            <div class="toggleMenu">
+                                    <i class="fa fa-bars"></i>
+                            </div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_ticket~': #'~ticket_id }} 
+                </h2>
+                <div class="table-responsive">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> {{ text_details }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_ticket_number }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="color: blue;font-size: 13px">
+                                     {{ '#'~ticket_id }}              </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_customer_email }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="color: blue;font-size: 13px">
+                                    {{ email }}                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_phone_no }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="color: blue;font-size: 13px">
+                                    {{ phone }}                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_customer_name }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="font-size: 13px">
+                                    {{ name }}                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_status }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="color: blue;font-size: 13px">
+                                    {{ status }}                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_created_date }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="font-size: 13px">
+                                    {{ date_added }}                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px">{{ text_last_updated }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8" style="font-size: 13px">
+                                    {{ date_updated }}                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> {{ text_issue_details }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group col-lg-12">
+                                <label class="col-sm-2" style="font-weight: 700;font-size: 13px">{{ text_subject }}</label>
+                                <div class=" col-xs-12 col-sm-6 col-lg-8">
+                                    {{ subject }}                
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12" style="border-top: 1px solid">
+                                <table class="table">
+                                    <tr>
+                                        <td class="col-sm-2" style="">
+                                            <label class="col-xs-12 col-sm-6 col-lg-4" style="font-weight: 700;font-size: 13px;padding-top: 10px;">{{ text_issue }}</label>
+                                        </td>
+                                        <td>
+                                            <p>{{ issue }}<br/></p>                
+                                        </td>
+                                    </tr>
+                                </table>
+<!--                                <div class=" col-xs-12 col-sm-6 col-lg-8">
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> {{ text_reply }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <form action="{{ action~'&ticket_id='~ticket_id }}" method="post" id="ticket-form" enctype="multipart/form-data" class="form-horizontal">
+                                <input type="hidden" name="ticket_id" value="{{ ticket_id }}">
+                                <input type="hidden" name="type" value="0">
+                                <div class="form-group col-lg-6">
+                                    <label for="vss_mp_ticket_state" class="col-xs-12 col-sm-6 col-lg-4" style="font-size: 13px;font-weight: 700">{{ text_status }}:</label>
+                                    <div class=" col-xs-12 col-sm-6 col-lg-8" style="font-size: 13px">
+                                        <select id="vss_mp_ticket_state" class="form-control" name="status">
+                                            <option value="1" {% if (status_value == '1') %} {{ 'Selected="selected"' }}>{{ text_open }}{% endif %}</option>
+                                            <option value="2" {% if (status_value == '2') %} {{ 'Selected="selected"' }}>{{ text_in_progress }}{% endif %}</option>
+                                            <option value="3" {% if (status_value == '3') %} {{ 'Selected="selected"' }}>{{ text_awaiting_reply }}{% endif %}</option>
+                                            <option value="4" {% if (status_value == '4') %} {{ 'Selected="selected"' }}>{{ text_replied }}{% endif %}</option>
+                                            <option value="5" {% if (status_value == '5') %} {{ 'Selected="selected"' }}>{{ text_on_hold }}{% endif %}</option>
+                                            <option value="6" {% if (status_value == '6') %} {{ 'Selected="selected"' }}>{{ text_closed }}{% endif %}</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="vss_mp_ticket_priority" class="col-xs-12 col-sm-6 col-lg-4" style="font-size: 13px;font-weight: 700">{{ text_priority }}:</label>
+                                    <div class=" col-xs-12 col-sm-6 col-lg-8" style="font-size: 13px">
+                                        <select id="vss_mp_ticket_priority" class="form-control" name="priority">
+                                            <option value="1" {% if (priority_value == '1') %} {{ 'Selected="selected"' }}>{{ text_low }}{% endif %}</option>
+                                            <option value="2" {% if (priority_value == '2') %} {{ 'Selected="selected"' }}>{{ text_medium }}{% endif %}</option>
+                                            <option value="3" {% if (priority_value == '3') %} {{ 'Selected="selected"' }}>{{ text_high }}{% endif %}</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="vss_mp_ticket_reply" class="col-lg-12" style="font-size: 13px;font-weight: 700">{{ text_enter_your_reply }}:<sup><em style="color: red">*</em></sup></label>
+                                    <div class="col-lg-12">
+                                        <textarea name="reply" id="vss_mp_ticket_reply" class="editor form-control"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="">
+                            <button type="button" onclick="submitTicketReply()" class="btn btn-primary pull-right">{{ text_post_reply }}</button>
+                        </div>
+                    </div>
+                    {% for key,value in conversation %} 
+                        <section class="content" style="min-height: 0px;">
+                            <div class="box">
+                                <div class="box-header with-border" style="background-color: {{ value['color'] }};color: white;">
+                                    {% if (value['type'] == '0') %} 
+                                    <div style="float:right;">
+                                    {% endif %} 
+                                    <h3 class="box-title" style="font-weight: bold;">{{ value['type_name'] }}</h3>
+                                    <h4 class="box-title">{{ value['date_added'] }}</h4>
+                                    {% if (value['type'] == '0') %} 
+                                    </div>
+                                    {% endif %} 
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group col-lg-12">
+                                        <div class=" col-xs-12 col-sm-6 col-lg-8">
+                                            <p>{{ value['text'] }}<br></p>                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#vss_mp_ticket_reply').wysihtml5();
+    });
+    function submitTicketReply(){
+        var flag = true;
+        $('.form-group').removeClass("has-error");
+        $('.text-danger').remove();
+
+        var textContent = $('#vss_mp_ticket_reply').val();
+        if(textContent == ""){                                 
+            flag = false;
+            $(this).parent().parent().parent().addClass("has_error");
+            $(this).after('<div class="text-danger">{{ error_empty_field }}</div>');
+        }
+
+        if(flag == false) {
+            return false;
+        } else {
+            $('form').submit();
+            return true;
+        }
+    }
+</script>
+{{ footer }} 

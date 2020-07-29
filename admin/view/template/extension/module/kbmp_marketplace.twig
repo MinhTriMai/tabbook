@@ -1,0 +1,637 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>          
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#tabs2').scrollTabs();
+        });
+    </script>
+<script type="text/javascript" src="view/javascript/kbmp_marketplace/summernote/summernote.js"></script>
+<script src="view/javascript/kbmp_marketplace/summernote/lang/summernote-ar-AR.js"></script>
+<script type="text/javascript" src="view/javascript/kbmp_marketplace/summernote/opencart.js"></script>
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <ul class="nav nav-tabs scroll_tabs_theme_light" id="tabs2">
+                    <li class="active"><a href="index.php?route=extension/module/kbmp_marketplace&user_token={{ token }}">{{ text_settings }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_list&user_token={{ token }}">{{ text_sellers_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_account_approval_list&user_token={{ token }}">{{ text_seller_account_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_approval_list&user_token={{ token }}">{{ text_product_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_list&user_token={{ token }}">{{ text_seller_products }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_order&user_token={{ token }}">{{ text_seller_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}">{{ text_admin_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_review&user_token={{ token }}">{{ text_product_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review_approval_list&user_token={{ token }}">{{ text_reviews_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review&user_token={{ token }}">{{ text_seller_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_category_request&user_token={{ token }}">{{ text_seller_category_request_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_shipping&user_token={{ token }}">{{ text_seller_shippings }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/seller_category&user_token={{ token }}">{{ text_seller_catgory_commision }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}">{{ text_admin_commissions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_transaction&user_token={{ token }}">{{ text_seller_transactions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/seller_payout_request&user_token={{ token }}">{{ text_seller_payout_request }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/paypal_payout&user_token={{ token }}">{{ text_paypal_payout }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}">{{ text_email_templates }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/support&user_token={{ token }}">{{ text_support }}</a></li>
+                </ul>
+                {% if (error) %} 
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                {% if (success) %} 
+                    <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                <div class="panel panel-default" id="fieldset_form">					
+
+                    <form class="form-horizontal AdminKbMarketPlaceSetting" action="" method="post" enctype="multipart/form-data" novalidate="" id="kb_mp_seller_config_form">
+                        <div class="panel-body">  
+                            <!--Start - Changes added to add Enable/Disable feature in the module - added by Harsh on 15-Jan-2019-->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_module_enable }}">
+                                        {{ label_module_enable }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_module_enable" id="kbmp_module_enable_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_module_enable'] is defined and settings['kbmp_marketplace_setting']['kbmp_module_enable'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_module_enable'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_module_enable_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_module_enable" id="kbmp_module_enable_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_module_enable'] is defined and settings['kbmp_marketplace_setting']['kbmp_module_enable'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_module_enable_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--Ends-->
+                            <div class="form-group required">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_default_commission }}">
+                                        {{ label_default_commission }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-3">
+                                    <div class="input-group fixed-width-small-group">
+                                        <input type="text" name="kbmp_default_commission" id="kbmp_default_commission" value="{{ settings['kbmp_marketplace_setting']['kbmp_default_commission'] is defined ? settings['kbmp_marketplace_setting']['kbmp_default_commission'] : '' }}" class="fixed-width-small form-control">
+                                        <span class="input-group-addon">%</span>										
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_approval_request_limit }}">
+                                        {{ label_approval_request_limit }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">	
+                                    <input type="text" name="kbmp_approval_request_limit" id="kbmp_approval_request_limit" value="{{ settings['kbmp_marketplace_setting']['kbmp_approval_request_limit'] is defined ? settings['kbmp_marketplace_setting']['kbmp_approval_request_limit'] : '' }}" class="fixed-width-small form-control">
+                                    <p class="help-block">								
+                                        {{ help_block_approval_request_limit }} 
+                                    </p>							
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_new_product_limit }}">
+                                        {{ label_new_product_limit }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">	
+                                    <input type="text" name="kbmp_product_limit" id="kbmp_product_limit" value="{{ settings['kbmp_marketplace_setting']['kbmp_product_limit'] is defined ? settings['kbmp_marketplace_setting']['kbmp_product_limit'] : '' }}" class="fixed-width-small form-control" >				
+                                    <p class="help-block">								
+                                        {{ help_block_new_product_limit }} 
+                                    </p>							
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_seller_registration }}">
+                                        {{ label_seller_registration }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_seller_registration" id="kbmp_seller_registration_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_seller_registration'] is defined and settings['kbmp_marketplace_setting']['kbmp_seller_registration'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_seller_registration'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_seller_registration_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_seller_registration" id="kbmp_seller_registration_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_seller_registration'] is defined and settings['kbmp_marketplace_setting']['kbmp_seller_registration'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_seller_registration_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_new_product_approval }}">
+                                        {{ label_new_product_approval }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_new_product_approval_required" id="kbmp_new_product_approval_required_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_new_product_approval_required'] is defined and settings['kbmp_marketplace_setting']['kbmp_new_product_approval_required'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_new_product_approval_required'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_new_product_approval_required_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_new_product_approval_required" id="kbmp_new_product_approval_required_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_new_product_approval_required'] is defined and settings['kbmp_marketplace_setting']['kbmp_new_product_approval_required'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_new_product_approval_required_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_send_email_to_seller }}">
+                                        {{ label_send_email_to_seller }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_new_order" id="kbmp_email_on_new_order_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_email_on_new_order'] is defined and settings['kbmp_marketplace_setting']['kbmp_email_on_new_order'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_email_on_new_order'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_email_on_new_order_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_new_order" id="kbmp_email_on_new_order_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_email_on_new_order'] is defined and settings['kbmp_marketplace_setting']['kbmp_email_on_new_order'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_email_on_new_order_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--code for order cancel cancel followup status start-->
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_send_email_to_seller_cancel }}">
+                                        {{ label_send_email_to_seller_cancel }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_cancel_order" id="kbmp_email_on_cancel_order_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_email_on_cancel_order'] is defined and settings['kbmp_marketplace_setting']['kbmp_email_on_cancel_order'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_email_on_cancel_order'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" >{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_cancel_order" id="kbmp_email_on_cancel_order_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_email_on_cancel_order'] is defined and settings['kbmp_marketplace_setting']['kbmp_email_on_cancel_order'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_email_on_cancel_order_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <!--code for order cancel cancel followup status end-->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_enable_seller_review }}">
+                                        {{ label_enable_seller_review }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_review" id="kbmp_enable_seller_review_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_review_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_review" id="kbmp_enable_seller_review_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_review_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>	
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_seller_approval_required }}">
+                                        {{ label_seller_approval_required }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_seller_review_approval_required" id="kbmp_seller_review_approval_required_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_seller_review_approval_required'] is defined and settings['kbmp_marketplace_setting']['kbmp_seller_review_approval_required'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_seller_review_approval_required'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_seller_review_approval_required_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_seller_review_approval_required" id="kbmp_seller_review_approval_required_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_seller_review_approval_required'] is defined and settings['kbmp_marketplace_setting']['kbmp_seller_review_approval_required'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_seller_review_approval_required_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_display_sellers_front }}">
+                                        {{ label_display_sellers_front }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_show_seller_on_front" id="kbmp_show_seller_on_front_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_show_seller_on_front'] is defined and settings['kbmp_marketplace_setting']['kbmp_show_seller_on_front'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_show_seller_on_front'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_show_seller_on_front_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_show_seller_on_front" id="kbmp_show_seller_on_front_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_show_seller_on_front'] is defined and settings['kbmp_marketplace_setting']['kbmp_show_seller_on_front'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_show_seller_on_front_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_allow_order_handling }}">
+                                        {{ label_allow_order_handling }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_order_handling" id="kbmp_enable_seller_order_handling_on" value="1" checked="checked" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_order_handling_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_order_handling" id="kbmp_enable_seller_order_handling_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_order_handling_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                    <p class="help-block">
+                                        {{ help_block_allow_order_handling }} 
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_include_product_tax }}">
+                                        {{ label_include_product_tax }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_include_product_tax" id="kbmp_enable_include_product_tax_on" value="1" checked="checked" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_include_product_tax'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_include_product_tax'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_enable_include_product_tax'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_include_product_tax" id="kbmp_enable_include_product_tax_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_include_product_tax'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_include_product_tax'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" >{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_seller_on_product_page }}">
+                                        {{ label_seller_on_product_page }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_details" id="kbmp_enable_seller_details_on" value="1" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_details'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_details'] == '1') %}checked{% elseif (settings['kbmp_marketplace_setting']['kbmp_enable_seller_details'] is not defined) %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_details_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_details" id="kbmp_enable_seller_details_off" value="0" {% if (settings['kbmp_marketplace_setting']['kbmp_enable_seller_details'] is defined and settings['kbmp_marketplace_setting']['kbmp_enable_seller_details'] == '0') %}checked{% endif %}>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_details_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                    <p class="help-block">
+                                        {{ help_block_seller_on_product_page }} 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_meta_keywords }}">
+                                        {{ label_meta_keywords }} 
+                                    </span>
+                                </label>
+                                <div class="col-xs-9">
+                                    <input type="text" name="kbmp_seller_listing_meta_keywords" id="kbmp_seller_listing_meta_keywords" value="{{ settings['kbmp_marketplace_setting']['kbmp_seller_listing_meta_keywords'] is defined ? settings['kbmp_marketplace_setting']['kbmp_seller_listing_meta_keywords'] : '' }}" data-role="tagsinput" class="form-control" placeholder="{{ text_add_tag }}"/>
+                                    <p class="help-block">{{ help_block_meta_keywords }}</p>
+                                </div>
+                            </div>                                                        
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_meta_description }}">
+                                        {{ label_meta_description }} 
+                                    </span>
+                                </label>
+                                <div class="col-xs-9">
+                                    <textarea name="kbmp_seller_listing_meta_description" id="kbmp_seller_listing_meta_description" rows="5" class="textarea-autosize form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 99px;">{{ settings['kbmp_marketplace_setting']['kbmp_seller_listing_meta_description'] is defined ? settings['kbmp_marketplace_setting']['kbmp_seller_listing_meta_description'] : '' }}</textarea>
+                                    <p class="help-block">{{ help_block_meta_description }}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_seller_agreement }}">
+                                        {{ label_seller_agreement }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    {% set counter = 1 %}
+                                    {% set lang = languages %}
+                                    {% if (lang is defined and lang is not empty) %}
+                                        {% for lang in lang %} 
+                                            {% set style = '' %}
+                                            {% if (counter > 1) %}
+                                                {% set style = 'style="display:none;"' %}
+                                            {% endif %}
+
+                                            <div class="form-group translatable-field seller_agreement_div_{{ lang['language_id'] }}" {{ style }}>
+                                                <div class="col-lg-9">                                                    
+                                                    <textarea name="seller_agreement_{{ lang['language_id'] }}" placeholder="" id="seller_agreement_{{ lang['language_id'] }}" class="form-control summernote">{% if (settings['kbmp_marketplace_seller_agreement']['seller_agreement_'~lang['language_id']] is defined and settings['kbmp_marketplace_seller_agreement']['seller_agreement_'~lang['language_id']] is not empty) %} {{ settings['kbmp_marketplace_seller_agreement']['seller_agreement_'~lang['language_id']] }} %} {% endif %} </textarea>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" tabindex="-1" data-toggle="dropdown">
+                                                        {{ lang['name'] }} 
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        {% if (languages is defined and languages is not empty) %}
+                                                            {% for language in languages %} 
+
+                                                                <li><a href="javascript:showSellerAgreementDiv('seller_agreement_div_', {{ language['language_id'] }});" tabindex="-1">{{ language['name'] }}</a></li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% set counter = counter + 1 %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <p class="help-block">{{ help_block_seller_agreement }}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_order_email_template }}">
+                                        {{ label_order_email_template }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    {% set counter = 1 %}
+                                    {% set lang = languages %}
+                                    {% if (lang is defined and lang is not empty) %}
+                                        {% for lang in lang %} 
+                                            {% set style = '' %}
+                                            {% if (counter > 1) %}
+                                                {% set style = 'style="display:none;"' %}
+                                            {% endif %}
+
+                                            <div class="form-group translatable-field order_email_content_div_{{ lang['language_id'] }}" {{ style }}">
+                                                <div class="col-lg-9">                                                    
+                                                    <textarea name="order_email_content_{{ lang['language_id'] }}" placeholder="" id="order_email_content_{{ lang['language_id'] }}" class="form-control summernote">{% if (settings['kbmp_marketplace_order_email_template']['order_email_content_'~lang['language_id']] is defined and settings['kbmp_marketplace_order_email_template']['order_email_content_'~lang['language_id']] is not empty) %} {{ settings['kbmp_marketplace_order_email_template']['order_email_content_'~lang['language_id']] }} {% endif %} </textarea>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" tabindex="-1" data-toggle="dropdown">
+                                                        {{ lang['name'] }}
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        {% if (languages is defined and languages is not empty) %}
+                                                            {% for language in languages %} 
+
+                                                                <li><a href="javascript:showEmailTemplateDiv('order_email_content_div_', {{ language['language_id'] }});" tabindex="-1">{{ language['name'] }}</a></li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% set counter = counter + 1 %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <p class="help-block">{{ help_block_order_email_template }}</p>
+                                </div>
+                            </div>	
+
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_order_cancel_email_template }}">
+                                        {{ label_order_cancel_email_template }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    {% set counter = 1 %}
+                                    {% set lang = languages %}
+                                    {% if (lang is defined and lang is not empty) %}
+                                        {% for lang in lang %} 
+                                            {% set style = '' %}
+                                            {% if (counter > 1) %}
+                                                {% set style = 'style="display:none;"' %}
+                                            {% endif %}
+
+                                            <div class="form-group translatable-field order_cancel_email_content_div_{{ lang['language_id'] }}" {{ style }}">
+                                                <div class="col-lg-9">                                                    
+                                                    <textarea name="order_cancel_email_content_{{ lang['language_id'] }}" placeholder="" id="order_cancel_email_content_{{ lang['language_id'] }}" class="form-control summernote">{% if (settings['kbmp_marketplace_order_cancel_email_template']['order_cancel_email_content_'~lang['language_id']] is defined and settings['kbmp_marketplace_order_cancel_email_template']['order_cancel_email_content_'~lang['language_id']] is not empty) %} {{ settings['kbmp_marketplace_order_cancel_email_template']['order_cancel_email_content_'~ lang['language_id']] }} {% endif %} </textarea>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" tabindex="-1" data-toggle="dropdown">
+                                                        {{ lang['name'] }} 
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        {% if (languages is defined and languages is not empty) %}
+                                                            {% for language in languages %} 
+
+                                                                <li><a href="javascript:showEmailTemplateDiv('order_cancel_email_content_div_', {{ language['language_id'] }});" tabindex="-1">{{ language['name'] }}</a></li>
+                                                                {% endfor %}
+                                                            {% endif %}
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% set counter = counter + 1 %}
+                                        {% endfor %}
+                                    {% endif %}
+
+                                </div>
+                            </div>	
+
+                            <div class="form-group" >                                
+                                <label class="control-label col-lg-3">
+                                    <span data-toggle="tooltip" title="{{ help_order_status }}">
+                                        {{ text_order_status }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                <select name="cancel_order_status_value[]" id="order_status_value" class="form-control" multiple>
+                                    {% for order_status_list in cancel_order_status_value %} 
+                                        <option name="{{ order_status_list['name'] }}" value="{{ order_status_list['name'] }}" {% if ( order_status_list['name'] in order_status_selected ) %} {{ "selected" }}{% endif %}  > {{ order_status_list['name'] }} </option>
+                                    {% endfor %} 
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_categories_allowed }}">
+                                        {{ label_categories_allowed }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">	
+                                    <input type="text" name="category" value="" placeholder="{{ text_categories }}" id="input-category" class="form-control" autocomplete="off">
+                                    <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
+                                        {% for product_category in categories %} 
+                                            <div id="product-category{{ product_category['category_id'] }}"><i class="fa fa-minus-circle"></i> {{ product_category['name'] }} 
+                                                <input type="hidden" name="product_category[]" value="{{ product_category['category_id'] }}" />
+                                            </div>
+                                        {% endfor %} 
+                                    </div>
+                                    <p class="help-block">								
+                                        {{ help_block_categories_allowed }} 
+                                    </p>							
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="submit" value="1" id="marketplace_setting" class="marketplace_setting_btn btn btn-default">
+                                <i class="fa fa-save"></i> {{ button_save }} 
+                            </button>
+                        </div>
+                    </form>                           
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+    //Show/Hide Seller Agreement box
+    function showSellerAgreementDiv(div, id)
+    {
+        if (div != '') {
+            $("div[class*=" + div + "]").hide();
+            $("." + div + id).show();
+        }
+    }
+
+    //Show/Hide Email Template Box
+    function showEmailTemplateDiv(div, id)
+    {
+        if (div != '') {
+            $("div[class*=" + div + "]").hide();
+            $("." + div + id).show();
+        }
+    }
+
+    // Category
+    $('input[name=\'category\']').autocomplete({
+        'source': function (request, response) {
+            $.ajax({
+                url: 'index.php?route=catalog/category/autocomplete&user_token={{ token }}&filter_name=' + encodeURIComponent(request),
+                dataType: 'json',
+                success: function (json) {
+                    response($.map(json, function (item) {
+                        return {
+                            label: item['name'],
+                            value: item['category_id']
+                        }
+                    }));
+                }
+            });
+        },
+        'select': function (item) {
+            $('input[name=\'category\']').val('');
+
+            $('#product-category' + item['value']).remove();
+
+            $('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
+        }
+    });
+
+    $('#product-category').delegate('.fa-minus-circle', 'click', function () {
+        $(this).parent().remove();
+    });
+
+    velovalidation.setErrorLanguage({
+        empty_fname: '{{ empty_fname }}',
+        maxchar_fname: '{{ maxchar_fname }}',
+        minchar_fname: '{{ minchar_fname }}',
+        empty_mname: '{{ empty_mname }}',
+        maxchar_mname: '{{ maxchar_mname }}',
+        minchar_mname: '{{ minchar_mname }}',
+        only_alphabet: '{{ only_alphabet }}',
+        empty_lname: '{{ empty_lname }}',
+        maxchar_lname: '{{ maxchar_lname }}',
+        minchar_lname: '{{ minchar_lname }}',
+        alphanumeric: '{{ alphanumeric }}',
+        empty_pass: '{{ empty_pass }}',
+        maxchar_pass: '{{ maxchar_pass }}',
+        minchar_pass: '{{ minchar_pass }}',
+        specialchar_pass: '{{ specialchar_pass }}',
+        alphabets_pass: '{{ alphabets_pass }}',
+        capital_alphabets_pass: '{{ capital_alphabets_pass }}',
+        small_alphabets_pass: '{{ small_alphabets_pass }}',
+        digit_pass: '{{ digit_pass }}',
+        empty_field: '{{ empty_field }}',
+        number_field: '{{ number_field }}',
+        positive_number: '{{ positive_number }}',
+        maxchar_field: '{{ maxchar_field }}',
+        minchar_field: '{{ minchar_field }}',
+        empty_email: '{{ empty_email }}',
+        validate_email: '{{ validate_email }}',
+        empty_country: '{{ empty_country }}',
+        maxchar_country: '{{ maxchar_country }}',
+        minchar_country: '{{ minchar_country }}',
+        empty_city: '{{ empty_city }}',
+        maxchar_city: '{{ maxchar_city }}',
+        minchar_city: '{{ minchar_city }}',
+        empty_state: '{{ empty_state }}',
+        maxchar_state: '{{ maxchar_state }}',
+        minchar_state: '{{ minchar_state }}',
+        empty_proname: '{{ empty_proname }}',
+        maxchar_proname: '{{ maxchar_proname }}',
+        minchar_proname: '{{ minchar_proname }}',
+        empty_catname: '{{ empty_catname }}',
+        maxchar_catname: '{{ maxchar_catname }}',
+        minchar_catname: '{{ minchar_catname }}',
+        empty_zip: '{{ empty_zip }}',
+        maxchar_zip: '{{ maxchar_zip }}',
+        minchar_zip: '{{ minchar_zip }}',
+        empty_username: '{{ empty_username }}',
+        maxchar_username: '{{ maxchar_username }}',
+        minchar_username: '{{ minchar_username }}',
+        invalid_date: '{{ invalid_date }}',
+        maxchar_sku: '{{ maxchar_sku }}',
+        minchar_sku: '{{ minchar_sku }}',
+        invalid_sku: '{{ invalid_sku }}',
+        empty_sku: '{{ empty_sku }}',
+        validate_range: '{{ validate_range }}',
+        empty_address: '{{ empty_address }}',
+        minchar_address: '{{ minchar_address }}',
+        maxchar_address: '{{ maxchar_address }}',
+        empty_company: '{{ empty_company }}',
+        minchar_company: '{{ minchar_company }}',
+        maxchar_company: '{{ maxchar_company }}',
+        invalid_phone: '{{ invalid_phone }}',
+        empty_phone: '{{ empty_phone }}',
+        minchar_phone: '{{ minchar_phone }}',
+        maxchar_phone: '{{ maxchar_phone }}',
+        empty_brand: '{{ empty_brand }}',
+        maxchar_brand: '{{ maxchar_brand }}',
+        minchar_brand: '{{ minchar_brand }}',
+        empty_shipment: '{{ empty_shipment }}',
+        maxchar_shipment: '{{ maxchar_shipment }}',
+        minchar_shipment: '{{ minchar_shipment }}',
+        invalid_ip: '{{ invalid_ip }}',
+        invalid_url: '{{ invalid_url }}',
+        empty_url: '{{ empty_url }}',
+        valid_amount: '{{ valid_amount }}',
+        valid_decimal: '{{ valid_decimal }}',
+        max_email: '{{ max_email }}',
+        specialchar_zip: '{{ specialchar_zip }}',
+        specialchar_sku: '{{ specialchar_sku }}',
+        max_url: '{{ max_url }}',
+        valid_percentage: '{{ valid_percentage }}',
+        between_percentage: '{{ between_percentage }}',
+        maxchar_size: '{{ maxchar_size }}',
+        specialchar_size: '{{ specialchar_size }}',
+        specialchar_upc: '{{ specialchar_upc }}',
+        maxchar_upc: '{{ maxchar_upc }}',
+        specialchar_ean: '{{ specialchar_ean }}',
+        maxchar_ean: '{{ maxchar_ean }}',
+        specialchar_bar: '{{ specialchar_bar }}',
+        maxchar_bar: '{{ maxchar_bar }}',
+        positive_amount: '{{ positive_amount }}',
+        maxchar_color: '{{ maxchar_color }}',
+        invalid_color: '{{ invalid_color }}',
+        specialchar: '{{ specialchar }}',
+        script: '{{ script }}',
+        style: '{{ style }}',
+        iframe: '{{ iframe }}',
+        not_image: '{{ not_image }}',
+        image_size: '{{ image_size }}',
+        html_tags: '{{ html_tags }}',
+        number_pos: '{{ number_pos }}',
+        invalid_separator: '{{ invalid_separator }}'
+    });
+</script>
+{{ footer }} 

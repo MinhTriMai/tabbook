@@ -1,0 +1,268 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">          
+          <h1>{{ heading_title }}</h1>          
+          <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %} 
+            <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+            {% endfor %} 
+          </ul>
+        </div>
+    </div>
+	<script>
+		$(document).ready(function()
+		{
+			$('#tabs2').scrollTabs();
+		});	
+	</script>
+	
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <ul class="nav nav-tabs scroll_tabs_theme_light" id="tabs2">
+                    <li><a href="index.php?route=extension/module/kbmp_marketplace&user_token={{ token }}">{{ text_settings }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_list&user_token={{ token }}">{{ text_sellers_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_account_approval_list&user_token={{ token }}">{{ text_seller_account_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_approval_list&user_token={{ token }}">{{ text_product_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_list&user_token={{ token }}">{{ text_seller_products }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_order&user_token={{ token }}">{{ text_seller_orders }}</a></li>
+                    <li class="active"><a href="index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}">{{ text_admin_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_review&user_token={{ token }}">{{ text_product_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review_approval_list&user_token={{ token }}">{{ text_reviews_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review&user_token={{ token }}">{{ text_seller_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_category_request&user_token={{ token }}">{{ text_seller_category_request_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_shipping&user_token={{ token }}">{{ text_seller_shippings }}</a></li>
+                    <li ><a href="index.php?route=kbmp_marketplace/seller_category&user_token={{ token }}">{{ text_seller_catgory_commision }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}">{{ text_admin_commissions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_transaction&user_token={{ token }}">{{ text_seller_transactions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/seller_payout_request&user_token={{ token }}">{{ text_seller_payout_request }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/paypal_payout&user_token={{ token }}">{{ text_paypal_payout }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}">{{ text_email_templates }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/support&user_token={{ token }}">{{ text_support }}</a></li>
+                </ul>
+                <div class="panel panel-default" id="fieldset_form">			
+		    <div class="panel-heading" style="display: inline-block; width: 100%;"> 
+                        {{ heading_title }} <span class="badge">{{ admin_order_total }}</span>
+                    </div>
+                    <div class="filter-table-responsive">
+                        <table class="table filter">
+                          <thead>
+                            <tr>
+                                <th>
+                                    {% if (sort == 'o.order_id') %} 
+                                    <a href="{{ sort_order_id }}" class="{{ (order) }}">{{ column_order_id }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_order_id }}">{{ column_order_id }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th>
+                                    {% if (sort == 'o.firstname') %} 
+                                    <a href="{{ sort_customer }}" class="{{ (order) }}">{{ column_customer_name }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_customer }}">{{ column_customer_name }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th>
+                                    {% if (sort == 'os.name') %} 
+                                    <a href="{{ sort_status }}" class="{{ (order) }}">{{ column_status }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_status }}">{{ column_status }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th>
+                                    {% if (sort == 'o.total') %} 
+                                    <a href="{{ sort_total }}" class="{{ (order) }}">{{ column_total }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_total }}">{{ column_total }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th>
+                                    {% if (sort == 'o.date_added') %} 
+                                    <a href="{{ sort_date_added }}" class="{{ (order) }}">{{ column_date_added }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_date_added }}">{{ column_date_added }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th>
+                                    {% if (sort == 'o.date_modified') %} 
+                                    <a href="{{ sort_date_updated }}" class="{{ (order) }}">{{ column_date_updated }}</a>
+                                    {% else %} 
+                                    <a href="{{ sort_date_updated }}">{{ column_date_updated }}</a>
+                                    {% endif %} 
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>  
+                                <th>
+                                    <input type="text" class="form-control" name="filter_order" value="{% if (filter_data['filter_order'] is defined) %} {{ filter_data['filter_order'] }} {% endif %}"/>
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" name="filter_customer" value="{% if (filter_data['filter_customer'] is defined) %} {{ filter_data['filter_customer'] }} {% endif %}"/>
+                                </th>
+                                <th>
+                                    <select class="form-control" name="filter_status">
+                                        <option value="" selected="selected"></option>
+                                         {% if (statuses is defined and statuses is not empty) %}
+ {% for status in statuses %} 
+ {% if (filter_data['filter_status'] is defined and filter_data['filter_status'] == status['order_status_id']) %}
+ {{ '<option value='~status['order_status_id']~' selected>'~status['name']~'</option>' }}
+ {% else %} 
+ {{ '<option value='~status['order_status_id']~'>'~status['name']~'</option>' }}
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+ 
+                                    </select>
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" name="filter_total" value="{% if (filter_data['filter_total'] is defined) %} {{ filter_data['filter_total'] }} {% endif %}"/>
+                                </th>                                
+                                <th>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="filter_from_date_added" value="{% if (filter_data['filter_from_date_added'] is defined) %} {{ filter_data['filter_from_date_added'] }} {% endif %}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="input-from-date" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group date">
+                                        <input type="text" name="filter_to_date_added" value="{% if (filter_data['filter_to_date_added'] is defined) %} {{ filter_data['filter_to_date_added'] }} {% endif %}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="input-to-date" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="filter_from_date_updated" value="{% if (filter_data['filter_from_date_updated'] is defined) %} {{ filter_data['filter_from_date_updated'] }} {% endif %}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="input-from-date" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group date">
+                                        <input type="text" name="filter_to_date_updated" value="{% if (filter_data['filter_to_date_updated'] is defined) %} {{ filter_data['filter_to_date_updated'] }} {% endif %}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="input-to-date" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </th>
+                                <th>
+                                    <button type="button" id="button-reset" name="submitFilter" class="btn btn-warning" style="margin-bottom: 10px;" onclick="window.location.href='index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}'">
+                                        <i class="fa fa-refresh"></i> {{ text_reset }} 
+                                    </button>
+                                    <button type="submit" id="button-filter" name="submitFilter" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> {{ text_filter }} 
+                                    </button>
+                                </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                             {% if (admin_order is defined and admin_order is not empty) %}
+ {% for admin_order in admin_order %} 
+ 
+                                <tr>
+                                  <td>{{ admin_order['order_id'] }}</td>
+                                  <td>{{ admin_order['customer_name'] }}</td>
+                                  <td>{{ admin_order['status'] }}</td>
+                                  <td>{{ admin_order['total'] }}</td>
+                                  <td>{{ admin_order['date_added'] }}</td>
+                                  <td>{{ admin_order['date_modified'] }}</td>
+                                  <td>
+                                      <a href="{{ admin_order['view'] }}" data-toggle="tooltip" title="{{ text_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a> 
+                                      <a href="{{ admin_order['edit'] }}" data-toggle="tooltip" title="{{ text_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                  </td>
+                                </tr>
+                                     {% endfor %}
+ {% else %} 
+ 
+                                <tr>
+                                  <td colspan="9">{{ text_no_results }}</td>
+                                </tr>
+                             {% endif %}
+ 
+                          </tbody>
+                        </table>
+                    </div>
+		</div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+    $('.date').datetimepicker({
+	pickTime: false
+    });
+
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}';
+
+	var filter_order = $('input[name=\'filter_order\']').val();
+
+	if (filter_order) {
+		url += '&filter_order=' + encodeURIComponent(filter_order);
+	}
+        
+        var filter_customer = $('input[name=\'filter_customer\']').val();
+
+	if (filter_customer) {
+		url += '&filter_customer=' + encodeURIComponent(filter_customer);
+	}
+        
+        var filter_seller_email = $('input[name=\'filter_seller_email\']').val();
+
+	if (filter_seller_email) {
+		url += '&filter_seller_email=' + encodeURIComponent(filter_seller_email);
+	}
+        
+        var filter_status = $('select[name=\'filter_status\']').val();
+
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+        
+        var filter_total = $('input[name=\'filter_total\']').val();
+
+	if (filter_total) {
+		url += '&filter_total=' + encodeURIComponent(filter_total);
+	}
+        
+        var filter_from_date_added = $('input[name=\'filter_from_date_added\']').val();
+
+	if (filter_from_date_added) {
+		url += '&filter_from_date_added=' + encodeURIComponent(filter_from_date_added);
+	}
+        
+        var filter_to_date_added = $('input[name=\'filter_to_date_added\']').val();
+
+	if (filter_to_date_added) {
+		url += '&filter_to_date_added=' + encodeURIComponent(filter_to_date_added);
+	}
+        
+        var filter_from_date_updated = $('input[name=\'filter_from_date_updated\']').val();
+
+	if (filter_from_date_updated) {
+		url += '&filter_from_date_updated=' + encodeURIComponent(filter_from_date_updated);
+	}
+        
+        var filter_to_date_updated = $('input[name=\'filter_to_date_updated\']').val();
+
+	if (filter_to_date_updated) {
+		url += '&filter_to_date_updated=' + encodeURIComponent(filter_to_date_updated);
+	}
+
+	location = url;
+});
+</script>
+{{ footer }}

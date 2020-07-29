@@ -1,0 +1,173 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_transaction }} 
+                </h2>
+
+                <div class="well">
+                    <div class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_from">{{ text_from_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_from" value="{{ filter_data['filter_from_date'] }}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="date_available_from" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_to">{{ text_to_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_to" value="{{ filter_data['filter_to_date'] }}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="date_available_to" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="transaction_type">{{ text_transaction_type }}</label>
+                                    <select name="transaction_type" class="form-control">
+                                        <option value="">{{ text_select }}</option>
+                                        <option value="0" {% if (filter_data['filter_transaction_type'] == '0') %} {{ 'selected' }} {% endif %}>{{ text_credit }}</option>
+                                        <option value="1" {% if (filter_data['filter_transaction_type'] == '1') %} {{ 'selected' }} {% endif %}>{{ text_debit }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="filter-button" style="margin-top:20px;">
+                                    <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:10px;">{{ button_reset }}</a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">{{ button_filter }}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive" style="background-color: white">
+                    <table class="table table-bordered table-kbmpCustom">
+                        <thead>
+                            <tr>
+                                <td class="text-left">{{ column_date }} </td>
+                                <td class="text-left">{{ column_transaction_id }}</td>
+                                <td class="text-left">{{ column_comment }}</td>
+                                <td class="text-left">{{ column_type }}</td>
+                                <td class="text-right">{{ column_amount }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% if (transactions is defined and transactions is not empty) %}
+ {% for transaction in transactions %} 
+ 
+                            <tr>
+                                <td class="text-left">{{ transaction['date_added'] }}</td>
+                                <td class="text-left">{{ transaction['transaction_number'] }}</td>
+                                <td class="text-left">{{ transaction['comment'] }}</td>
+                                <td class="text-left">{{ transaction['type'] }}</td>
+                                <td class="text-right">{{ transaction['amount'] }}</td>
+                            </tr>
+                                     {% endfor %}
+ {% else %} 
+ 
+                            <tr>
+                                <td colspan="5">{{ text_no_record }}</td>
+                            </tr>
+                             {% endif %}
+ 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+        
+        var is_error = false;
+        $('.kb_error_message').remove();
+        $('input[name="date_available_to"]').removeClass('kb_error_field');
+        
+	var url = 'index.php?route=kbmp_marketplace/transactions';
+
+        var filter_from_date = $('input[name=\'date_available_from\']').val();
+
+	if (filter_from_date) {
+		url += '&filter_from_date=' + encodeURIComponent(filter_from_date);
+	}
+        
+        var filter_to_date = $('input[name=\'date_available_to\']').val();
+
+	if (filter_to_date) {
+		url += '&filter_to_date=' + encodeURIComponent(filter_to_date);
+	}
+        
+	var filter_transaction_type = $('select[name=\'transaction_type\']').val();
+
+	if (filter_transaction_type) {
+		url += '&filter_transaction_type=' + encodeURIComponent(filter_transaction_type);
+	}
+
+	if (filter_from_date != '' && filter_to_date != '') {
+            if(new Date(filter_from_date) >= new Date(filter_to_date)){
+                is_error = true;
+                $('input[name="date_available_to"]').addClass('kb_error_field');
+                $('input[name="date_available_to"]').parent().after('<span class="kb_error_message">{{ text_date_error }}</span>');
+            }
+        }
+
+        if (!is_error) {
+            location = url;
+        }
+    });
+    
+    $('#button-reset').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/transactions';
+        location = url;
+    });
+
+</script>

@@ -1,0 +1,603 @@
+.bootstrap .switch a,
+.bootstrap .switch-light span span {
+    display: none
+}
+.bootstrap .fixed-width-xl {
+    width: 200px !important;
+}
+.bootstrap .form-group{
+    border-bottom: 0;
+    border-top: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.panel_spin_wheel {
+    text-transform: uppercase;
+    border-bottom: solid 1px #eee;
+    padding: 0 0 0 5px;
+    margin: 0px;
+    font-family: "Ubuntu Condensed",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #555;
+    height: 32px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    box-sizing: border-box;
+    display: none;
+}
+.panel_spin_wheel.mrkt-panel {
+    border-bottom: 1px solid #e8e6e6;
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+	height: auto;
+}
+.inline-div {
+    display: inline-block;
+    max-width: 150px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+.table.filter > thead > tr > th {
+        vertical-align: top;
+        border-bottom: 2px solid #ddd;
+    }
+.table.filter > thead th {
+    background: #f2f7f9;
+    font-weight: normal;
+    border-bottom: 0 !important;
+}
+.table.filter .form-control{max-width:170px;}
+.table.filter .form-control.fixed-width-small{max-width:70px;}
+@media only screen {
+    .bootstrap .switch-light {
+        display: block;
+        height: 26px;
+        position: relative;
+        overflow: visible;
+        padding: 0
+    }
+    .bootstrap .switch-light * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box
+    }
+    .bootstrap .switch-light a {
+        display: block;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out
+    }
+    .bootstrap .switch-light label,
+    .bootstrap .switch-light>span {
+        line-height: 26px;
+        vertical-align: middle
+    }
+    .bootstrap .switch-light label {
+        position: relative;
+        z-index: 3;
+        display: block;
+        width: 100%
+    }
+    .bootstrap .switch-light input {
+        position: absolute;
+        opacity: 0;
+        z-index: 5
+    }
+    .bootstrap .switch-light input:checked ~ a {
+        left: 0
+    }
+    .bootstrap .switch-light>span {
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        font-weight: normal;
+        text-align: left;
+        left: 0
+    }
+    .bootstrap .switch-light>span span {
+        position: absolute;
+        top: 0;
+        z-index: 5;
+        display: block;
+        width: 50%;
+        text-align: center;
+        left: 0
+    }
+    .bootstrap .switch-light>span span:last-child {
+        left: 50%
+    }
+    .bootstrap .switch-light a {
+        position: absolute;
+        top: 0;
+        z-index: 4;
+        display: block;
+        width: 50%;
+        height: 100%;
+        padding: 0;
+        left: 50%
+    }
+    .bootstrap .switch {
+        display: block;
+        height: 26px;
+        position: relative
+    }
+    .bootstrap .switch * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box
+    }
+    .bootstrap .switch a {
+        display: block;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out
+    }
+    .bootstrap .switch label,
+    .bootstrap .switch>span {
+        line-height: 26px;
+        vertical-align: middle
+    }
+    .bootstrap .switch input {
+        position: absolute;
+        opacity: 0
+    }
+    .bootstrap .switch label {
+        position: relative;
+        z-index: 2;
+        width: 50%;
+        height: 100%;
+        margin: 0;
+        text-align: center;
+        float: left
+    }
+    .bootstrap .switch a {
+        position: absolute;
+        top: 0;
+        padding: 0;
+        z-index: 1;
+        width: 50%;
+        height: 100%;
+        color: #fff;
+        border: solid 1px #279CBB;
+        background-color: #2eacce;
+        left: 0;
+        -webkit-box-shadow: "#1B7088" 0 -1px 0 inset;
+        box-shadow: "#1B7088" 0 -1px 0 inset
+    }
+    .bootstrap .switch input:last-of-type:checked ~ a {
+        border: solid 1px #CA6F6F;
+        background-color: #E08F95;
+        left: 50%;
+        -webkit-box-shadow: "#5C5C5C" 0 -1px 0 inset;
+        box-shadow: "#5C5C5C" 0 -1px 0 inset
+    }
+    .bootstrap .switch input:disabled ~ a {
+        border: solid 1px #b3b3b3 !important;
+        background-color: #cdcdcd !important;
+        -webkit-box-shadow: #b3b3b3 0 -1px 0 inset !important;
+        box-shadow: #b3b3b3 0 -1px 0 inset !important
+    }
+    .bootstrap .switch.switch-3 label,
+    .bootstrap .switch.switch-3 a {
+        width: 33.33333%
+    }
+    .bootstrap .switch.switch-3 input:checked:nth-of-type(2) ~ a {
+        left: 33.33333%
+    }
+    .bootstrap .switch.switch-3 input:checked:last-of-type ~ a {
+        left: 66.66667%
+    }
+    .bootstrap .switch.switch-4 label,
+    .bootstrap .switch.switch-4 a {
+        width: 25%
+    }
+    .bootstrap .switch.switch-4 input:checked:nth-of-type(2) ~ a {
+        left: 25%
+    }
+    .bootstrap .switch.switch-4 input:checked:nth-of-type(3) ~ a {
+        left: 50%
+    }
+    .bootstrap .switch.switch-4 input:checked:last-of-type ~ a {
+        left: 75%
+    }
+    .bootstrap .switch.switch-5 label,
+    .bootstrap .switch.switch-5 a {
+        width: 20%
+    }
+    .bootstrap .switch.switch-5 input:checked:nth-of-type(2) ~ a {
+        left: 20%
+    }
+    .bootstrap .switch.switch-5 input:checked:nth-of-type(3) ~ a {
+        left: 40%
+    }
+    .bootstrap .switch.switch-5 input:checked:nth-of-type(4) ~ a {
+        left: 60%
+    }
+    .bootstrap .switch.switch-5 input:checked:last-of-type ~ a {
+        left: 80%
+    }
+    .bootstrap .opencart-switch {
+        margin-top: 3px;
+        background-color: #eee;
+        border-radius: 3px;
+        color: #333;
+        text-align: center;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 1px 4px 1px inset;
+        box-shadow: rgba(0, 0, 0, 0.15) 0 1px 4px 1px inset
+    }
+    .bootstrap .opencart-switch * {
+        outline: 0 !important
+    }
+    .bootstrap .opencart-switch label {
+        text-transform: uppercase;
+        color: #bbb;
+        font-weight: 400;
+        cursor: pointer;
+        -webkit-transition: color 0.2s ease-out;
+        -o-transition: color 0.2s ease-out;
+        transition: color 0.2s ease-out
+    }
+    .bootstrap .opencart-switch input:checked+label {
+        color: #fff
+    }
+    .bootstrap .opencart-switch>span {
+        color: #666;
+        text-transform: uppercase;
+        cursor: pointer
+    }
+    .bootstrap .opencart-switch.switch-light input:checked ~ a {
+        border: solid 1px #72C279;
+        background-color: #96d19b;
+        -webkit-box-shadow: #72C279 0 -1px 0 inset;
+        box-shadow: #72C279 0 -1px 0 inset
+    }
+    .bootstrap .opencart-switch.switch-light input:checked ~ span span:first-of-type {
+        color: #fff
+    }
+    .bootstrap .opencart-switch.switch-light input:checked ~ span span:last-of-type {
+        color: #ccc
+    }
+    .bootstrap .opencart-switch.switch-light input ~ a {
+        border: solid 1px #E08F95;
+        background-color: #ebb7bb;
+        -webkit-box-shadow: #E08F95 0 -1px 0 inset;
+        box-shadow: #E08F95 0 -1px 0 inset
+    }
+    .bootstrap .opencart-switch.switch-light input ~ span span:first-of-type {
+        color: #ccc
+    }
+    .bootstrap .opencart-switch.switch-light input ~ span span:last-of-type {
+        color: #fff
+    }
+}
+
+.bootstrap label.control-label {
+    font-size: 13px;
+    font-weight: normal;
+    color: #666
+}
+
+.bootstrap label.control-label span.label-tooltip {
+    text-decoration: none;
+    font-size: 13px;
+    color: #3586AE;
+    background-color: #edf7fb;
+    border: none;
+    border-bottom: solid 1px #D8EDF7;
+    padding: 0 5px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px
+}
+
+.bootstrap label.required:before {
+    content: "*";
+    color: red;
+    font-size: 14px;
+    position: relative;
+    line-height: 12px
+}
+
+.bootstrap .tooltip {
+    font-size: 12px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    white-space: normal
+}
+.bootstrap .tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    visibility: visible;
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.bootstrap .tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+.bootstrap .tooltip.top {
+    margin-top: -3px;
+    padding: 5px 0
+}
+
+.bootstrap .tooltip.right {
+    margin-left: 3px;
+    padding: 0 5px
+}
+
+.bootstrap .tooltip.bottom {
+    margin-top: 3px;
+    padding: 5px 0
+}
+
+.bootstrap .tooltip.left {
+    margin-left: -3px;
+    padding: 0 5px
+}
+
+.bootstrap .tooltip-inner {
+    max-width: 250px;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #555;
+    border-radius: 3px
+}
+
+.bootstrap .tooltip-inner:last-child {
+    margin-bottom: 0
+}
+
+.bootstrap .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid
+}
+
+.bootstrap .tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #555
+}
+
+.bootstrap .tooltip.top-left .tooltip-arrow {
+    bottom: 0;
+    left: 5px;
+    border-width: 5px 5px 0;
+    border-top-color: #555
+}
+
+.bootstrap .tooltip.top-right .tooltip-arrow {
+    bottom: 0;
+    right: 5px;
+    border-width: 5px 5px 0;
+    border-top-color: #555
+}
+
+.bootstrap .tooltip.right .tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #555
+}
+
+.bootstrap .tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #555
+}
+
+.bootstrap .tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #555
+}
+
+.bootstrap .tooltip.bottom-left .tooltip-arrow {
+    top: 0;
+    left: 5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #555
+}
+
+.bootstrap .tooltip.bottom-right .tooltip-arrow {
+    top: 0;
+    right: 5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #555
+}
+.bootstrap .fixed-width-lg {
+    width: 160px !important;
+}
+.bootstrap .help-block {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #959595;
+    font-style: italic;
+        width: 100%;
+}
+.input-group.velsof_exitpopup_days_class {
+    width: 15%;
+}
+.bootstrap label.control-label span:after{display: none;}
+.bootstrap .panel-footer .fa-save{   
+    font-size: 28px;
+    display: block;
+
+}
+.bootstrap .panel-footer .btn{padding: 3px 13px;}
+.bootstrap .navbar-body .nav {
+    border: 1px solid #e8e8e8;
+}
+.navbar-body .nav li {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+.navbar-body .nav li a{
+    margin-right: 0;
+    width:100%;
+}
+.navbar-body .nav li.active a {
+    border: 0;
+    background: #f5f3f3;
+    width: 100%;
+}
+.bootstrap .input-group.velsof_exitpopup_hours_class {
+    width: 15%;
+}
+.bootstrap .fixed-width-xl {
+    width: 200px !important;
+}
+.velsof_exitpopup_discount_value_class, .minimum_amount {
+    width: 23%;
+}
+#image-holder {
+    margin-bottom: 20px;
+}
+#image-holder .default-image {
+    width: 200px;
+}
+.graph-heading {
+    color: grey;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+a.visitors, a.coupons {
+    background: #71c73e;
+    padding: 5px 10px;
+    display: inline-block;
+    color: #fff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+a.returning, a.used {
+    background: #6db7df;
+    padding: 5px 10px;
+    display: inline-block;
+    color: #fff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.bootstrap .no-data,  .no-data-coupons {
+    display: none;
+    width: 806px;
+    height: 350px;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+    color: grey;
+}
+.bootstrap .fixed-width-small{max-width:60px;}
+.bootstrap .fixed-width-small-group{max-width:97px;}
+.graph-container, .graph-container-coupons {
+    border: 1px solid #f3f3f3;
+    margin-bottom: 20px;
+    background: #f7f7f7;
+    padding: 20px;
+}
+.velsof_inner_group {
+    display: inline-block;
+    width: 100%;
+}
+.multiselect-container>li>a>label>input[type=checkbox] {
+    margin-bottom: 5px;
+    vertical-align: top !important;
+}
+.table.filter .form-control {
+    padding: 6px 6px;
+}
+.table.filter select[name="kb_mp_sellerFilter_a!id_country"] {
+    max-width: 150px;
+}
+.table.filter .input-group.date{max-width: 160px;}
+.table.filter select[name="kb_mp_sellerFilter_status"] {
+    width: 56px;
+}
+.filter-table-responsive{overflow: auto; padding-bottom: 12px;}
+table.filter {
+    min-width: 1000px;
+}
+.bootstrap .list-empty .list-empty-msg {
+    text-align: center;
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    color: #999;
+    font-family: "Ubuntu Condensed",Helvetica,Arial,sans-serif;
+    font-size: 1.4em;
+}
+.bootstrap .list-empty .list-empty-icon {
+    color: #dedede;
+    display: block;
+    clear: both;
+    font-size: 84px;
+    text-shadow: #fff 1px 1px 0;
+}
+.bootstrap .badge.badge-success{
+	    background-color: #72C279;
+		    padding: 6px;
+}
+.vss_seller_ratings {
+    position: relative;
+}
+.vss_rating_filled {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    color: #e9ce18;
+    white-space: nowrap;
+    overflow: hidden;
+    background: 0;
+    width: 0px;
+}
+.kbmp-extra-contents{
+	margin-bottom: 15px;
+    margin-top: 20px;
+    background: #f5f5f5;
+    padding: 10px;
+}
+.bootstrap .panel-footer .fa-close {
+    font-size: 28px;
+    display: block;
+}
+.kb-review-label {
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #CFCFCF;
+    font-size: 14px;
+}
+.kb-review-row {
+    width: 100%;
+    display: block;
+    padding-bottom: 10px;
+}
+.kb-review-tym {
+    color: #66B8F8;
+}
+#kb-review-box .vssmp-rating-option-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.vss_mp_display_inline.vssmp-font14, .vss_mp_display_inline {
+    display: inline-block;
+}

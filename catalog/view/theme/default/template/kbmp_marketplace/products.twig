@@ -1,0 +1,265 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_products }} 
+                    <div class="pull-right">
+                        <a href="index.php?route=kbmp_marketplace/products/add" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add }}"><i class="fa fa-plus"></i></a>
+                        <a href="javascript://" onclick="checkForDeletion()" data-toggle="tooltip" class="btn btn-danger" title="" data-original-title="{{ text_delete }}"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </h2>
+                <div class="well">
+                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_name">{{ text_product_name }}</label>
+                                    <input type="text" name="filter_name" value="{{ filter_data['filter_productname'] }}" placeholder="{{ text_product_name }}" id="input-name" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_price">{{ text_price }}</label>
+                                    <input type="text" name="filter_price" value="{{ filter_data['filter_price'] }}" placeholder="{{ text_price }}" id="input-price" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_price">{{ text_model }}</label>
+                                    <input type="text" name="filter_model" value="{{ filter_data['filter_model'] }}" placeholder="{{ text_model }}" id="input-model" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-model">{{ text_category }}</label>
+                                    <select name="id_category_default" class="form-control">
+                                        <option value="">{{ text_select }}</option>
+                                        <option value="3">Home &gt;&gt; Fan</option>
+                                        <option value="4">Home &gt;&gt; Fan &gt;&gt; Vestibulum</option>
+                                        <option value="5">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Lorem ipsum dolor</option>
+                                        <option value="6">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Sit amet conse</option>
+                                        <option value="7">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Ctetur adipisicing elit</option>
+                                        <option value="8">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Sed do eiusmod</option>
+                                        <option value="9">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Tempor incididunt ut</option>
+                                        <option value="10">Home &gt;&gt; Fan &gt;&gt; Vestibulum &gt;&gt; Labore et dolore</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_status">{{ text_status }}</label>
+                                    <select name="filter_status" class="form-control" id="input-status">
+                                        <option value="">{{ text_select }}</option>
+                                        <option value="1" {% if (filter_data['filter_status'] == '1') %}selected{% endif %}>{{ text_enabled }}</option>
+                                        <option value="0" {% if (filter_data['filter_status'] == '0') %}selected{% endif %}>{{ text_disabled }}</option>
+                                    </select>
+                                </div>
+                                <div class="filter-button">
+                                    <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:15px;">
+                                        {{ text_reset }} 
+                                    </a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">
+                                        {{ text_filter }} 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="background-color: white">
+                    <table class="table table-bordered table-kbmpCustom">
+                        <thead>
+                            <tr>
+                                <td width="1" style="text-align: center;"><input type="checkbox" id="check_all"></td>
+                                <td class="text-left">
+                                    {{ text_product_name }} 
+                                </td>
+                                <td class="text-left">
+                                    {{ text_model }} 
+                                </td>
+                                <td class="text-left">
+                                    {{ text_price }} 
+                                </td>
+                                <td class="text-left">
+                                    {{ text_status }} 
+                                </td>
+                                <td class="text-right">
+                                    {{ text_quantity_sold }} 
+                                </td>
+                                <td class="text-right">
+                                    {{ text_earned }} 
+                                </td>
+                                <td class="text-right">
+                                    {{ text_action }} 
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% if (products is defined and products is not empty) %}
+ {% for product in products %} 
+ 
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" name="selected[]" value="{{ product['product_id'] }}">
+                                    </td>
+                                    <td class="text-left">
+                                        <!--Start Changes added to resolve issue of wrong product link - added link below - 24-Dec-2018 - Harsh Agarwal-->
+                                        <img src="{{ product['image'] }}" alt="" style="padding: 1px; border: 1px solid #DDDDDD;" class="img-thumbnail"> &nbsp;
+                                        <a href="{{ product['link'] }}"> {{ product['product_name'] }}</a>
+                                        <!--Ends-->
+                                    </td>
+                                    <td class="text-left">{{ product['model'] }}</td>
+                                    <td class="text-left">
+                                        <span class="text-danger">{% if (product['special']) %} 
+                                            <span style="text-decoration: line-through;">{{ product['price'] }}</span><br/>
+                                            <div class="text-danger">{{ product['special'] }}</div>
+                                            {% else %} 
+                                            {{ product['price'] }} 
+                                            {% endif %} 
+                                        </span>
+                                    </td>
+                                    <td class="text-left">{{ product['status'] is not empty ? text_enabled : text_disabled }}</td>
+                                    <td class="text-right">{{ product['quantity'] }}</td>
+                                    <td class="text-right">
+                                        <span class="text-success">{{ product['earning'] }}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ product['edit'] }}" class="btn btn-info">
+                                            <span data-toggle="tooltip" title="" data-original-title="{{ text_edit }}"><i class="fa fa-pencil"></i></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                 {% endfor %}
+ {% else %} 
+ 
+                            <tr>
+                                <td colspan="8">
+                                    {{ text_no_record }} 
+                                </td>
+                            </tr>
+                         {% endif %}
+ 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/products';
+
+        var filter_productname = $('input[name=\'filter_name\']').val();
+
+	if (filter_productname) {
+		url += '&filter_productname=' + encodeURIComponent(filter_productname);
+	}
+        
+        var filter_model = $('input[name=\'filter_model\']').val();
+
+	if (filter_model) {
+		url += '&filter_model=' + encodeURIComponent(filter_model);
+	}
+        
+	var filter_status = $('select[name=\'filter_status\']').val();
+
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+        
+        var filter_price = $('input[name=\'filter_price\']').val();
+
+	if (filter_price) {
+		url += '&filter_price=' + encodeURIComponent(filter_price);
+	}
+
+	location = url;
+    });
+    
+    $('#button-reset').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/products';
+        location = url;
+    });
+    
+    //Function to send request for product deletion
+    function checkForDeletion() {
+        var product = [];
+        $("input[name^='selected[']").each(function() {
+            if ($(this).is(":checked")) {
+                product.push($(this).val());
+            }
+        });
+        
+        if (product.length > 0) {
+            
+            if (confirm("{{ text_confirm }}")) {
+                product = product.join("-");
+
+                var url = 'index.php?route=kbmp_marketplace/products/delete&products=' + encodeURIComponent(product);
+
+                location = url;
+            }
+        } else {
+            alert("{{ text_selection_error }}")
+        }
+    }
+    
+    //Check All child checkbox if parent selected
+    $("#check_all").click(function() {
+        if ($(this).is(":checked")) {
+            $("input[type=checkbox]").prop("checked", true);
+        } else {
+            $("input[type=checkbox]").prop("checked", false);
+        }
+    });
+    
+    //Check parent checkbox if all child selected
+    $("input[name^='selected[']").click(function() {
+        if ($("input[name^='selected[']").length == $("input[name^='selected[']:checked").length) {
+            $("#check_all").prop("checked", true);
+        } else {
+            $("#check_all").prop("checked", false);
+        }
+    });
+</script>

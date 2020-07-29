@@ -1,0 +1,296 @@
+{{ header }} 
+<div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_order_details }} 
+                    <div class="pull-right">
+                        <a href="{{ back }}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="{{ text_back }}"><i class="fa fa-reply"></i></a>
+                        {% if (kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] is defined and kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling']) %} 
+                        <a href="{{ invoice }}" data-toggle="tooltip" class="btn btn-primary" target="_blank" title="" data-original-title="{{ text_print_invoice }}"><i class="fa fa-print"></i></a>
+                        {% endif %} 
+                    </div>
+                </h2>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4>{{ text_summary }}</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped ">
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_order_id }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    <b class="highlight">{{ order_id }}</b>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_status }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    <i style="color:#4169E1">{{ order_status }}</i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_date_added }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    {{ date_added }} 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_payment_method }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    {{ payment_method }} 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_shipping_method }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    {{ shipping_method }} 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="subtitle">{{ text_email }}</span></td>
+                                            <td>
+                                                <div class="kb-order-value">
+                                                    {{ email }} 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4>{{ text_payment_address }}</h4>
+                        </div>
+                        <div class="panel-body">
+                            {{ payment_address }} 
+                        </div>
+                    </div>
+                    <div class="panel panel-custom">
+                        <div class="panel-heading">
+                            <h4>{{ text_shipping_address }}</h4>
+                        </div>
+                        <div class="panel-body">
+                            {{ shipping_address }} 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                <form action="" method="post" style="background-color: white;padding: 10px">
+                <table class="table table-bordered table-kbmpCustom">
+                    <thead>
+                        <tr>
+                            <td class="text-left"><input type="checkbox" name="all_products" id="all_products" value="1" /></td>
+                            <td class="text-left">{{ column_product_name }}</td>
+                            <td class="text-left">{{ column_model }}</td>
+                            <td class="text-left">{{ column_cancel }}</td>
+                            <td class="text-left">{{ column_status }}</td>
+                            <td class="text-left">{{ column_tracking_number }}</td>
+                            <td class="text-right">{{ column_quantity }}</td>
+                            <td class="text-right">{{ column_unit_price }}</td>
+                            <td class="text-right">{{ column_total }}</td>
+                            <td class="text-center">{{ column_action }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% if (products is defined and products is not empty) %}
+ {% for product in products %} 
+ 
+                                <tr>
+                                    <td class="text-left">{% if (product['is_canceled'] is defined and product['is_canceled'] != '1' and product['status'] is null or (product['status'] is defined and (product['status'] == 'Pending' or product['status'] is empty))) %}<input type="checkbox" name="product[]" id="product" value="{{ product['product_id'] }}" />{% endif %}</td>
+                                    <td class="text-left">{{ product['name'] }}</td>
+                                    <td class="text-left">{{ product['model'] }}</td>
+                                    <td class="text-left" data-toggle="tooltip" data-original-title="{{ product['date_canceled'] }}">{{ product['is_canceled'] is defined and product['is_canceled'] == '1' ? text_yes : text_no }}</td>
+                                    <td class="text-left">{{ product['status'] }}</td>
+                                    <td class="text-left">
+                                        
+ {% if (product['tracking_number'] is defined and product['tracking_number'] is not empty) %} 
+ {{ product['tracking_number'] }} 
+ {% else %} 
+ 
+                                        <div class="input-group btn-block" style="max-width: 150px;">
+                                            <input type="text" name="trackingnumber_{{ product['product_id'] }}" id="trackingnumber_{{ product['product_id'] }}" value="" class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button data-value="{{ product['product_id'] }}" id="trackingnumberbtn_{{ product['product_id'] }}" type="button" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ button_update }}"><i class="fa fa-refresh"></i></button>
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="kb_error_message" id="tracking_number_error_{{ product['product_id'] }}" style="display: none; float: left; text-align: left;">{{ error_tracking_number }}</div>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-right">{{ product['quantity'] }}</td>                        
+                                    <td class="text-right">{{ product['price'] }}</td>
+                                    <td class="text-right">{{ product['total'] }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ product['is_canceled'] is defined and product['is_canceled'] != '1' ? product['cancel'] : 'javascript://' }}" {{ product['is_canceled'] is defined and product['is_canceled'] == '1' ? 'disabled' : '' }} data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-danger" data-original-title="{{ button_cancel }}"><i class="fa fa-minus-circle"></i></a>
+                                    </td>
+                                </tr>
+                                 {% endfor %}
+ {% else %} 
+ 
+                        <tr>
+                            <td colspan="10">{{ text_no_record }}</td>
+                        </tr>
+                         {% endif %}
+ 
+                    </tbody>
+                    <tfoot>
+                         {% if (totals is defined and totals is not empty) %}
+ {% for total in totals %} 
+ 
+                                <tr>
+                                    <td class="text-right" colspan="9"><b>{{ total['title'] }}</b></td>
+                                    <td class="text-right">{{ total['text'] }}</td>
+                                </tr>
+                                 {% endfor %}
+ {% endif %}
+ 
+                    </tfoot>
+                </table>
+                <!--<div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-sm-6 text-center">
+                            <div id="order-status-button" class="order-info-buttons btn-primary">{{ tab_order_status }}</div>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <div id="order-comment-button" class="order-info-buttons btn-primary">{{ tab_add_comment }}</div>
+                        </div>
+                    </div>
+                </div>-->
+                
+                {% if (kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling'] is defined and kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_order_handling']) %} 
+                  {% if (order_change)%}    
+                    
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_comment_info }}</div>
+                        <div class="row form-group">
+                            <label class="col-sm-2 control-label" for="input-order">{{ label_order_status }}:</label>
+                            <div class="col-sm-10" style="margin-bottom: 20px;">
+                              
+                                <select id="order_status_id" name="order_status_id" class="form-control">
+                                     
+ {% if (order_statuses is defined and order_statuses is not empty) %}
+ {% for order_status in order_statuses %} 
+ {% if ( order_status['order_status_id'] in allowed_status  ) %}
+ {% if (order_status['order_status_id'] == order_status_id) %} 
+                                                   <option value="{{ order_status['order_status_id'] }}" selected>{{ order_status['name'] }}</option>;
+                                               {% else %} 
+                                                  <option value="{{ order_status['order_status_id'] }}">{{ order_status['name'] }}</option>;
+                                               {% endif %} 
+                                           {% endif %} 
+                                      {% endfor %} 
+                                   {% endif %} 
+                                </select>
+                            </div>
+
+                            <label class="col-sm-2 control-label" for="input-comment">{{ label_comment }}:</label>
+                            <div class="col-sm-10">
+                                <textarea name="comment" cols="40" rows="8" class="form-control" id="input-comment"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" id="button-history" class="btn btn-primary pull-right" style="margin-top:20px;margin-bottom:20px;">{{ button_submit }}</button>
+                    </div>
+                </div>
+                    
+                {% endif %}   
+                {% endif %} 
+            </form>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="ov-title-heading">{{ text_order_history }}</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-kbmpCustom" id="history">
+                        <thead>
+                            <tr>
+                                <td class="text-left">{{ column_date_added }}</td>
+                                <td class="text-left">{{ column_status }}</td>
+                                <td class="text-left">{{ column_comment }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% if (histories is defined and histories is not empty) %}
+ {% for history in histories %} 
+ 
+                                    <tr>
+                                        <td class="text-left">{{ history['date_added'] }}</td>
+                                        <td class="text-left">{{ history['status'] }}</td>
+                                        <td class="text-left">{{ history['comment'] }}</td>
+                                    </tr>
+                                     {% endfor %}
+ {% endif %}
+          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    $("button[id^='trackingnumberbtn_']").click(function() {
+        $("span[id^='tracking_number_error_'").hide();
+        
+        var serialno = $(this).attr('data-value');
+        var tracking_number = $("#trackingnumber_"+serialno).val();
+        
+        if (tracking_number != '') {
+            var url = 'index.php?route=kbmp_marketplace/order_details/updateTracking';
+            
+            url += '&order_id=' + encodeURIComponent('{{ order_id }}');
+            url += '&product_id=' + encodeURIComponent(serialno);
+            url += '&tracking_number=' + encodeURIComponent(tracking_number);
+            
+            location = url;
+        } else {
+            $("#tracking_number_error_"+serialno).show();
+        }
+    });
+</script>

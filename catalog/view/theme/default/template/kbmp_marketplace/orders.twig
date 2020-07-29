@@ -1,0 +1,219 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_orders }} 
+                </h2>
+                <div class="well">
+                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-name">{{ text_order_id }}</label>
+                                    <input type="text" name="filter_by_id" value="{{ filter_data['filter_order_id'] }}" placeholder="{{ text_order_id }}" id="filter_by_id" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_from">{{ text_from_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_from" value="{{ filter_data['filter_from_date'] }}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="date_available_from" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_to">{{ text_to_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_to" value="{{ filter_data['filter_to_date'] }}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="date_available_to" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_by_customer">{{ text_customer }}</label>
+                                    <input value="{{ filter_data['filter_customer'] }}" type="text" name="filter_by_customer" class="form-control" placeholder="{{ text_customer }}">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="status">{{ text_status }}</label>
+                                    <select name="status" class="form-control ">
+                                        <option value="">{{ text_select }}</option>
+                                         {% if (order_statuses is defined and order_statuses is not empty) %}
+ {% for order_status in order_statuses %} 
+ {% if (order_status['order_status_id'] == filter_data['filter_status']) %}
+ {{ '<option selected value="'~order_status['order_status_id']~'">'~order_status['name']~'</option>' }}
+ {% else %} 
+ {{ '<option value="'~order_status['order_status_id']~'">'~order_status['name']~'</option>' }}
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+ 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="filter-button">
+                                    <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:15px;">{{ button_reset }}</a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">{{ button_filter }}</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="background-color: white">
+                    <table class="table table-bordered table-kbmpCustom">
+                        <thead>
+                            <tr>
+                                <td class="text-left">{{ column_order_id }} </td>
+                                <td class="text-left">{{ column_order_date }}</td>
+                                <td class="text-left">{{ column_customer_name }}</td>
+                                <td class="text-right">{{ column_customer_email }}</td>
+                                <td class="text-left">{{ column_quantity }}</td>
+                                <td class="text-left">{{ column_status }}</td>
+                                <td class="text-right">{{ column_order_total }}</td>
+                                <td class="text-center">{{ column_action }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% if (orders is defined and orders is not empty) %}
+ {% for order in orders %} 
+ 
+                            <tr>
+                                <td class="text-left"><a href="{{ order['view'] }}" title="{{ text_view_order }}">{{ order['order_id'] }}</a></td>
+                                <td class="text-left">{{ order['date_added'] }}</td>
+                                <td class="text-left">{{ order['customer_name'] }}</td>
+                                <td class="text-right">{{ order['customer_email'] }}</td>
+                                <td class="text-left">{{ order['quantity'] }}</td>
+                                <td class="text-left">{{ order['status'] }}</td>
+                                <td class="text-right"><span class="text-success">{{ order['total'] }}</span></td>
+                                <td class="text-center">
+                                        <a href="{{ order['view'] }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-primary" data-original-title="{{ button_view }}"><i class="fa fa-eye"></i></a>
+                                    </td>
+                            </tr>
+                             {% endfor %}
+ {% else %} 
+ 
+                            <tr>
+                                <td colspan="8">{{ text_no_record }}</td>
+                            </tr>
+                             {% endif %}
+ 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+        
+        var is_error = false;
+        $('.kb_error_message').remove();
+        $('input[name="date_available_to"]').removeClass('kb_error_field');
+        
+	var url = 'index.php?route=kbmp_marketplace/orders';
+
+        var filter_order_id = $('input[name=\'filter_by_id\']').val();
+
+	if (filter_order_id) {
+		url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+	}
+        
+        var filter_from_date = $('input[name=\'date_available_from\']').val();
+
+	if (filter_from_date) {
+		url += '&filter_from_date=' + encodeURIComponent(filter_from_date);
+	}
+        
+        var filter_to_date = $('input[name=\'date_available_to\']').val();
+
+	if (filter_to_date) {
+		url += '&filter_to_date=' + encodeURIComponent(filter_to_date);
+	}
+        
+	var filter_status = $('select[name=\'status\']').val();
+
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+        
+        var filter_customer = $('input[name=\'filter_by_customer\']').val();
+
+	if (filter_customer) {
+		url += '&filter_customer=' + encodeURIComponent(filter_customer);
+	}
+        
+        if (filter_from_date != '' && filter_to_date != '') {
+            if(new Date(filter_from_date) >= new Date(filter_to_date)){
+                is_error = true;
+                $('input[name="date_available_to"]').addClass('kb_error_field');
+                $('input[name="date_available_to"]').parent().after('<span class="kb_error_message">{{ text_date_error }}</span>');
+            }
+        }
+
+        if (!is_error) {
+            location = url;
+        }
+    });
+    
+    $('#button-reset').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/orders';
+        location = url;
+    });
+</script>

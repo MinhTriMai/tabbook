@@ -1,0 +1,771 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                    <div class="pull-right">
+                        <a href="{{ seller_view_link }}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_view_profile }}"><i class="fa fa-eye"></i></a>
+                    </div>
+                    <br>
+                <h2 class="marketplaceHeading">
+                    {{ text_seller_profile }} 
+
+                </h2>
+                <ul class="nav nav-tabs kbmp-tabs">
+                    <li class="active"><a id="General_Settings" href="#tab-general" data-toggle="tab" aria-expanded="false">{{ text_general }}</a></li>
+                    <li class=""><a id="meta_Settings" href="#tab-data" data-toggle="tab" aria-expanded="false">{{ text_meta_info }}</a></li>
+                    <li class=""><a id="policy_Settings" href="#tab-policy" data-toggle="tab" aria-expanded="true">{{ text_policy }}</a></li>
+                    <li class=""><a id="payment_Settings" href="#tab-payout" data-toggle="tab" aria-expanded="false">{{ text_payout_info }}</a></li>
+                </ul>
+                <form action="" style="background-color: white" id="sellerProfileForm" method="post" class="" enctype="multipart/form-data">
+                    <div class="tab-content kbmp-tabs-content">
+                        <div class="tab-pane productFields active" id="tab-general">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="tab-pane" id="tab-layout-seller-tittle">                          
+                                    <ul class="nav nav-tabs" id="language">
+                                        {% for language in languages %} 
+                                            <li  class=" {% if (language['language_id'] == '1') %} {{ "active" }}{% endif %}"><a href="#language{{ language['language_id'] }}" data-toggle="tab"><img src="catalog/language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" /> {{ language['name'] }}</a></li>
+                                        {% endfor %} 
+                                    </ul>
+                                    <div class="tab-content">
+                                        {% for language in languages %} 
+                                            <div class="tab-pane {% if (language['language_id'] == '1') %} {{ "active " }}{% endif %}" id="language{{ language['language_id'] }}">
+                                                <div class="form-group required">
+                                                    <label>{{ text_shop_title }}</label>
+                                                    <input type="text" name="seller_title[{{ language['language_id'] }}]" value="{% if (seller_title[language['language_id']] is defined) %} {{seller_title[language['language_id']]}}{% endif %}" placeholder="{{ text_shop_title }}" id="seller-title{{ language['language_id'] }}" class="form-control title" />
+                                                </div>
+                                            </div>
+                                        {% endfor %} 
+                                    </div>        
+                                </div>
+                                 </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_phone_number }}<em>*</em></label>
+                                        <input data-tab="general" type="text" class="form-control" name="seller_phone_number" value="{% if (seller_details['phone_number'] is defined) %} {{seller_details['phone_number']}} {% endif %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_business_email }}</label>
+                                        <input data-tab="general" type="text" class="form-control" name="business_email" value="{% if (seller_details['business_email'] is defined) %} {{ seller_details['business_email'] }} {% endif %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_get_notification }}</label>
+                                        <select data-tab="general" name="seller_notification_type" id="seller_notification_type" class="form-control">
+                                            <option value="0" {% if (seller_details['notification_type'] is defined and seller_details['notification_type'] == '0') %} {{ 'selected' }} {% endif %}>{{ text_business_email_both }}</option>
+                                            <option value="1" {% if (seller_details['notification_type'] is defined and seller_details['notification_type'] == '1') %} {{ 'selected' }} {% endif %}>{{ text_business_email_primary }}</option>
+                                            <option value="2" {% if (seller_details['notification_type'] is defined and seller_details['notification_type'] == '2') %} {{ 'selected' }} {% endif %}>{{ text_business_email_business }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_country }}<em>*</em></label>
+                                        <select data-tab="general" name="seller_country" class="form-control">
+                                            <option value="">{{ text_select_country }}</option>
+                                             {% if (countries is defined and countries is not empty) %}
+ {% for country in countries %} 
+ {% if (seller_details['country_id'] is defined and seller_details['country_id'] == country['country_id']) %}
+ {{ '<option value="'~country['country_id']~'" selected>'~country['name']~'</option>' }}
+ {% else %} 
+ {{ '<option value="'~country['country_id']~'">'~country['name']~'</option>' }}
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+ 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_state }}<em>*</em></label>
+                                        <select data-tab="general" name="seller_state" id="seller_state" class="form-control">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_address }}<em>*</em></label>
+                                        <textarea data-tab="general" name="seller_address" rows="5" class="form-control">{% if (seller_details['address'] is defined) %} {{ seller_details['address'] }} {% endif %}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                                    
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="tab-pane" id="tab-layout-seller-description">                          
+                                    <ul class="nav nav-tabs" id="language_description">
+                                        {% for language in languages %} 
+                                            <li  class=" {% if (language['language_id'] == '1') %} {{ "active" }}{% endif %}"><a href="#language_description{{ language['language_id'] }}" data-toggle="tab"><img src="catalog/language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" /> {{ language['name'] }}</a></li>
+                                        {% endfor %} 
+                                    </ul>
+                                    <div class="tab-content">
+                                        {% for language in languages %} 
+                                            <div class="tab-pane {% if (language['language_id'] == '1') %} {{ "active " }}{% endif %}" id="language_description{{ language['language_id'] }}">
+                                                <div class="form-group required">
+                                                    <label>{{ text_description }}</label>
+                                                    <textarea name="seller_description[{{ language['language_id'] }}]"  placeholder="{{ text_description }}" id="seller-description{{ language['language_id'] }}" class="form-control summernote">{% if (seller_description[language['language_id']] is defined) %} {{ seller_description[language['language_id']] }}{% endif %}</textarea>
+                                                </div>
+                                            </div>
+                                        {% endfor %} 
+                                    </div>        
+                                </div>
+                                 </div> 
+                            </div>
+                                    
+                                    
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_fb_link }}</label>
+                                        <input data-tab="general" type="text" class="form-control" id="seller_fb_link" name="seller_fb_link" value="{% if (seller_details['fb_link'] is defined) %} {{ seller_details['fb_link'] }} {% endif %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_google_link }}</label>
+                                        <input data-tab="general" type="text" class="form-control" id="seller_gplus_link" name="seller_gplus_link" value="{% if (seller_details['gplus_link'] is defined) %} {{ seller_details['gplus_link'] }} {% endif %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_twitter_link }}</label>
+                                        <input data-tab="general" type="text" class="form-control" id="seller_twit_link" name="seller_twit_link" value="{% if (seller_details['twit_link'] is defined) %} {{ seller_details['twit_link'] }} {% endif %}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_logo }}</label>
+                                        <p class="help-block">{{ text_logo_info }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-img-display">
+                                            <img id="seller_logo_placeholder" class="form-logo-display img-responsive" src="{{ seller_logo }}" title="{{ text_logo }}">
+                                        </div>
+                                    </div>
+                                    <div class="logo-action-button">
+                                        <a href="javascript:void(0);" class="btn btn-primary custom-inputFile custom-inputFile-logo">
+                                            <input type="hidden" name="logo_remove" value="0" />
+                                            <input name="logo_file" type="file" class="btn btn-primary"/>{{ button_upload }} 
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-danger btn_logo_remove">{{ button_remove }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="upload-parent">
+                                        <div class="form-group">
+                                            <label>{{ text_shop_banner }}</label>
+                                            <p class="help-block">{{ text_banner_info }}</p>
+                                            <div class="form-img-display full-width-banner">
+                                                <img id="seller_banner_placeholder" class="form-banner-display img-responsive" src="{{ seller_banner }}" title="{{ text_shop_banner }}">
+                                            </div>
+                                        </div>
+                                        <div class="logo-action-button">
+                                            <a href="javascript:void(0);" class="btn btn-primary custom-inputFile custom-inputFile-banner">
+                                                <input type="hidden" name="banner_remove" value="0" />
+                                                <input name="banner_file" type="file" class="btn btn-primary"/>{{ button_upload }} 
+                                            </a>
+                                            <a href="javascript:void(0);" class="btn btn-danger btn_banner_remove">{{ button_remove }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane productFields" id="tab-data">
+                            
+                            
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="tab-pane" id="tab-meta">                          
+                                        <ul class="nav nav-tabs" id="language_meta">
+                                            {% for language in languages %} 
+                                                <li  class=" {% if (language['language_id'] == '1') %} {{ "active" }}{% endif %}"><a href="#meta{{ language['language_id'] }}" data-toggle="tab"><img src="catalog/language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" /> {{ language['name'] }}</a></li>
+                                                    {% endfor %} 
+                                        </ul>
+                                        <div class="tab-content">
+                                            {% for language in languages %} 
+                                                <div class="tab-pane {% if (language['language_id'] == '1') %} {{ "active " }}{% endif %}" id="meta{{ language['language_id'] }}">
+                                                    <div class="form-group required">
+                                                         <label>{{ text_meta_keywords }}<em>*</em></label>
+                                                        <input data-tab="metadata" type="text" class="form-control meta_keyword" name="seller_meta_keywords[{{ language['language_id'] }}]" value="{% if (seller_meta_keywords[language['language_id']] is defined) %} {{ seller_meta_keywords[language['language_id']] }}{% endif %}">
+                                                    </div>
+                                                    <div class="form-group required">
+                                                        <label>{{ text_meta_description }}</label>
+                                                        <textarea data-tab="metadata"  class="form-control " name="seller_meta_description[{{ language['language_id'] }}]" >{% if (seller_meta_description[language['language_id']] is defined) %} {{ seller_meta_description[language['language_id']] }}{% endif %}</textarea>
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %} 
+                                        </div>        
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            
+                          
+                        </div>
+
+                        <div class="tab-pane productFields" id="tab-policy">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="tab-pane" id="tab-meta">                          
+                                        <ul class="nav nav-tabs" id="language_meta">
+                                            {% for language in languages %} 
+                                                <li  class=" {% if (language['language_id'] == '1') %} {{ "active" }}{% endif %}"><a href="#policy{{ language['language_id'] }}" data-toggle="tab"><img src="catalog/language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" /> {{ language['name'] }}</a></li>
+                                                    {% endfor %} 
+                                        </ul>
+                                        <div class="tab-content">
+                                            {% for language in languages %} 
+                                                <div class="tab-pane {% if (language['language_id'] == '1') %} {{ "active " }}{% endif %}" id="policy{{ language['language_id'] }}">
+                                                    <div class="form-group required">
+                                                         <label>{{ text_return_policy }}<em>*</em></label>
+                                                          <textarea name="return_policy[{{ language['language_id'] }}]"  placeholder="{{ text_return_policy }}" id="return_policy{{ language['language_id'] }}" class="form-control policy summernote">{% if (return_policy[language['language_id']] is defined) %} {{ return_policy[language['language_id']] }}{% endif %}</textarea>
+                                                    </div>
+                                                    <div class="form-group required">
+                                                        <label>{{ text_shipping_policy }}<em>*</em></label>
+                                                         <textarea name="shipping_policy[{{ language['language_id'] }}]"  placeholder="{{ text_shipping_policy }}" id="shipping_policy{{ language['language_id'] }}" class="form-control policy summernote">{% if (shipping_policy[language['language_id']] is defined) %} {{ shipping_policy[language['language_id']] }}{% endif %}</textarea>
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %} 
+                                        </div>        
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                        </div>
+
+                        <div class="tab-pane productFields" id="tab-payout">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{ text_select_payout }}<em>*</em></label>
+                                        <select name="seller_payment_option" class="form-control" id="seller_payment_option">
+                                            <option value="">{{ text_select_method }}</option>
+                                            <option value="bankwire" {% if (seller_details['payout_type'] is defined and seller_details['payout_type'] == 'bankwire') %} {{ 'selected' }} {% endif %}>{{ text_bankwire_method }}</option>
+                                            <option value="paypal" {% if (seller_details['payout_type'] is defined and seller_details['payout_type'] == 'paypal') %} {{ 'selected' }} {% endif %}>{{ text_paypal_method }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="bankwire" class="selectpaymentType" {% if (seller_details['payout_type'] is defined and seller_details['payout_type'] == 'bankwire') %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_account_owner }}<em>*</em></label>
+                                            <input data-tab="paymentinfo" type="text" class="form-control" name="payment_owner_info" value="{% if (seller_details['bankwire_account_info'] is defined) %} {{ seller_details['bankwire_account_info'] }} {% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_details }}<em>*</em></label>
+                                            <input data-tab="paymentinfo" type="text" class="form-control" name="payment_owner_details" value="{% if (seller_details['bankwire_bank_details'] is defined) %} {{ seller_details['bankwire_bank_details'] }} {% endif %}">
+                                            <p class="help-block">{{ help_text_bank_details }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_bank_address }}<em>*</em></label>
+                                            <textarea data-tab="paymentinfo" rows="5" class="form-control" name="bank_address">{% if (seller_details['bankwire_bank_address'] is defined) %} {{ seller_details['bankwire_bank_address'] }} {% endif %}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_additional_info }}</label>
+                                            <textarea data-tab="paymentinfo" rows="5" class="form-control" name="bank_additional_info">{% if (seller_details['bankwire_additional_info'] is defined) %} {{ seller_details['bankwire_additional_info'] }} {% endif %}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="paypal" class="selectpaymentType" {% if (seller_details['payout_type'] is defined and seller_details['payout_type'] == 'paypal') %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_paypal_id }}<em>*</em></label>
+                                            <input data-tab="paymentinfo" type="text" class="form-control" name="paypal_id" value="{% if (seller_details['paypal_id'] is defined) %} {{ seller_details['paypal_id'] }} {% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>{{ text_additional_info }}</label>
+                                            <textarea data-tab="paymentinfo" rows="5" class="form-control" name="paypal_additional_info">{% if (seller_details['paypal_additional_info'] is defined) %} {{ seller_details['paypal_additional_info'] }} {% endif %}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-save-tab">
+                            <a id="sellerprofile-update-btn" class="btn btn-success">{{ button_save }}</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    $("#sellerprofile-update-btn").click(function () {
+    
+        var is_error = false;
+        $('.velsof_error_label').hide();
+        $('.kb_error_message').remove();
+        $('#sellerProfileForm input').removeClass('kb_error_field');
+        $('#sellerProfileForm select').removeClass('kb_error_field');
+        $('#sellerProfileForm textarea').removeClass('kb_error_field');
+        
+        $("#General_Settings").parent().removeClass("error");
+        $("#meta_Settings").parent().removeClass("error");
+        $("#policy_Settings").parent().removeClass("error");
+        $("#payment_Settings").parent().removeClass("error");
+
+        //Shop Title Validation
+        
+        $(".title").each(function () {
+            var title = velovalidation.checkMandatory($(this));
+            if (title != true) {
+                 is_error = true;
+                $("#General_Settings").parent().addClass("error");  
+                $(this).addClass('kb_error_field');
+                $(this).after("<span class='kb_error_message'>" + title + "</span>");
+            }
+        });
+        
+
+        //Seller Phone Number Validation
+        var seller_phone_number_err = velovalidation.checkMandatory($('input[name="seller_phone_number"]'));
+        if (seller_phone_number_err != true)
+        {
+            is_error = true;
+            $('input[name="seller_phone_number"]').addClass('kb_error_field');
+            $('input[name="seller_phone_number"]').after('<span class="kb_error_message">' + seller_phone_number_err + '</span>');
+            $("#General_Settings").parent().addClass("error");
+        } else {
+            var seller_phone_number_err = velovalidation.checkPhoneNumber($('input[name="seller_phone_number"]'));
+            if (seller_phone_number_err != true)
+            {
+                is_error = true;
+                $('input[name="seller_phone_number"]').addClass('kb_error_field');
+                $('input[name="seller_phone_number"]').after('<span class="kb_error_message">' + seller_phone_number_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+
+        //Business Mail Validation
+        var get_notification = $('select[name="seller_notification_type"]').val();
+        if (get_notification == 0 || get_notification == 2) {
+            var business_email_err = velovalidation.checkMandatory($('input[name="business_email"]'));
+            if (business_email_err != true)
+            {
+                is_error = true;
+                $('input[name="business_email"]').addClass('kb_error_field');
+                $('input[name="business_email"]').after('<span class="kb_error_message">' + business_email_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            } else {
+                var business_email_err = velovalidation.checkEmail($('input[name="business_email"]'));
+                if (business_email_err != true)
+                {
+                    is_error = true;
+                    $('input[name="business_email"]').addClass('kb_error_field');
+                    $('input[name="business_email"]').after('<span class="kb_error_message">' + business_email_err + '</span>');
+                    $("#General_Settings").parent().addClass("error");
+                }
+            }
+        } else {
+            var business_email = $('input[name="business_email"]').val();
+            if (business_email != '') {
+                var business_email_err = velovalidation.checkEmail($('input[name="business_email"]'));
+                if (business_email_err != true)
+                {
+                    is_error = true;
+                    $('input[name="business_email"]').addClass('kb_error_field');
+                    $('input[name="business_email"]').after('<span class="kb_error_message">' + business_email_err + '</span>');
+                    $("#General_Settings").parent().addClass("error");
+                }
+            }
+        }
+
+        //Country Validation
+        var country_err = velovalidation.checkMandatory($('select[name="seller_country"]'));
+        if (country_err != true)
+        {
+            is_error = true;
+            $('select[name="seller_country"]').addClass('kb_error_field');
+            $('select[name="seller_country"]').after('<span class="kb_error_message">' + country_err + '</span>');
+            $("#General_Settings").parent().addClass("error");
+        }
+
+        //State/City Validation
+        var state_err = velovalidation.checkMandatory($('select[name="seller_state"]'));
+        if (state_err != true)
+        {
+            is_error = true;
+            $('select[name="seller_state"]').addClass('kb_error_field');
+            $('select[name="seller_state"]').after('<span class="kb_error_message">' + state_err + '</span>');
+            $("#General_Settings").parent().addClass("error");
+        }
+
+        //Address Validation
+        var address_err = velovalidation.checkMandatory($('textarea[name="seller_address"]'));
+        if (address_err != true)
+        {
+            is_error = true;
+            $('textarea[name="seller_address"]').addClass('kb_error_field');
+            $('textarea[name="seller_address"]').after('<span class="kb_error_message">' + address_err + '</span>');
+            $("#General_Settings").parent().addClass("error");
+        }
+
+        //FaceBook Url Validation
+        var seller_fb_link = $('input[name="seller_fb_link"]').val();
+        if (seller_fb_link != '') {
+            var seller_fb_link_err = velovalidation.checkUrl($('input[name="seller_fb_link"]'));
+            if (seller_fb_link_err != true)
+            {
+                is_error = true;
+                $('input[name="seller_fb_link"]').addClass('kb_error_field');
+                $('input[name="seller_fb_link"]').after('<span class="kb_error_message">' + seller_fb_link_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+
+        //Google Plus Url Validation
+        var seller_gplus_link = $('input[name="seller_gplus_link"]').val();
+        if (seller_gplus_link != '') {
+            var seller_gplus_link_err = velovalidation.checkUrl($('input[name="seller_gplus_link"]'));
+            if (seller_gplus_link_err != true)
+            {
+                is_error = true;
+                $('input[name="seller_gplus_link"]').addClass('kb_error_field');
+                $('input[name="seller_gplus_link"]').after('<span class="kb_error_message">' + seller_gplus_link_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+
+        //Twitter Url Validation
+        var seller_twit_link = $('input[name="seller_twit_link"]').val();
+        if (seller_twit_link != '') {
+            var seller_twit_link_err = velovalidation.checkUrl($('input[name="seller_twit_link"]'));
+            if (seller_twit_link_err != true)
+            {
+                is_error = true;
+                $('input[name="seller_twit_link"]').addClass('kb_error_field');
+                $('input[name="seller_twit_link"]').after('<span class="kb_error_message">' + seller_twit_link_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+        
+        //Logo Image Validation
+        var seller_logo = $('input[name="logo_file"]').val();
+        if (seller_logo != '') {
+            $("input[name=logo_remove]").val("0"); //Unset image remove
+            var seller_logo_err = velovalidation.checkImage($('input[name="logo_file"]'));
+            if (seller_logo_err != true)
+            {
+                is_error = true;
+                $('input[name="logo_file"]').addClass('kb_error_field');
+                $('input[name="logo_file"]').parent().parent().before('<span class="kb_error_message">' + seller_logo_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+        
+        //Banner Image Validation
+        var seller_banner = $('input[name="banner_file"]').val();
+        if (seller_banner != '') {
+            $("input[name=logo_remove]").val("0"); //Unset image remove
+            var seller_banner_err = velovalidation.checkImage($('input[name="banner_file"]'));
+            if (seller_banner_err != true)
+            {
+                is_error = true;
+                $('input[name="banner_file"]').addClass('kb_error_field');
+                $('input[name="banner_file"]').parent().parent().before('<span class="kb_error_message">' + seller_banner_err + '</span>');
+                $("#General_Settings").parent().addClass("error");
+            }
+        }
+
+        //Meta Keywords Validation
+        $(".meta_keyword").each(function () {
+            var title = velovalidation.checkMandatory($(this));
+            if (title != true) {
+                 is_error = true;
+                $("#meta_Settings").parent().addClass("error");  
+                $(this).addClass('kb_error_field');
+                $(this).after("<span class='kb_error_message'>" + title + "</span>");
+            }
+        });
+        
+        {#var msg_policy = '';#}
+        $(".policy").each(function (i) {
+            $(this).parent().children('.note-editor').removeClass('kb_error_field');
+            var title = $(this).val();
+            var res = title.length;
+            if (res < 50) {
+                 is_error = true;
+                $("#policy_Settings").parent().addClass("error");  
+                $(this).parent().children('.note-editor').addClass('kb_error_field');
+                $(this).parent().children('.note-editor').after("<span class='kb_error_message'>{{ policy_error_message }}</span>");
+            }
+        });   
+        //Payout Option Validation
+        var payout_option_err = velovalidation.checkMandatory($('select[name="seller_payment_option"]'));
+        if (payout_option_err != true)
+        {
+            is_error = true;
+            $('select[name="seller_payment_option"]').addClass('kb_error_field');
+            $('select[name="seller_payment_option"]').after('<span class="kb_error_message">' + payout_option_err + '</span>');
+            $("#payment_Settings").parent().addClass("error");
+        }
+        
+        var payout_option = $('select[name="seller_payment_option"]').val();
+        if (payout_option == 'bankwire') {
+            //BankWire Option validation
+            //Account Owner Validation
+            var payment_owner_info_err = velovalidation.checkMandatory($('input[name="payment_owner_info"]'));
+            if (payment_owner_info_err != true)
+            {
+                is_error = true;
+                $('input[name="payment_owner_info"]').addClass('kb_error_field');
+                $('input[name="payment_owner_info"]').after('<span class="kb_error_message">' + payment_owner_info_err + '</span>');
+                $("#payment_Settings").parent().addClass("error");
+                
+            }
+            //Account Owner Details Validation
+            var payment_owner_details_err = velovalidation.checkMandatory($('input[name="payment_owner_details"]'));
+            if (payment_owner_details_err != true)
+            {
+                is_error = true;
+                $('input[name="payment_owner_details"]').addClass('kb_error_field');
+                $('input[name="payment_owner_details"]').after('<span class="kb_error_message">' + payment_owner_details_err + '</span>');
+                $("#payment_Settings").parent().addClass("error");
+            }
+            //Bank Address Validation
+            var bank_address_err = velovalidation.checkMandatory($('textarea[name="bank_address"]'));
+            if (bank_address_err != true)
+            {
+                is_error = true;
+                $('textarea[name="bank_address"]').addClass('kb_error_field');
+                $('textarea[name="bank_address"]').after('<span class="kb_error_message">' + bank_address_err + '</span>');
+                $("#payment_Settings").parent().addClass("error");
+            }
+        } else if (payout_option == 'paypal') {
+            //PayPal Option validation
+            //PayPal ID Validation
+            var paypal_id_err = velovalidation.checkMandatory($('input[name="paypal_id"]'));
+            if (paypal_id_err != true)
+            {
+                is_error = true;
+                $('input[name="paypal_id"]').addClass('kb_error_field');
+                $('input[name="paypal_id"]').after('<span class="kb_error_message">' + paypal_id_err + '</span>');
+                $("#payment_Settings").parent().addClass("error");
+            }
+        }
+		
+        if (is_error) {
+            return false;
+        }else {
+            $("#sellerProfileForm").submit();
+            
+        }
+
+        
+    });
+    
+    velovalidation.setErrorLanguage({
+        empty_fname: '{{ empty_fname }}',
+        maxchar_fname: '{{ maxchar_fname }}',
+        minchar_fname: '{{ minchar_fname }}',
+        empty_mname: '{{ empty_mname }}',
+        maxchar_mname: '{{ maxchar_mname }}',
+        minchar_mname: '{{ minchar_mname }}',
+        only_alphabet: '{{ only_alphabet }}',
+        empty_lname: '{{ empty_lname }}',
+        maxchar_lname: '{{ maxchar_lname }}',
+        minchar_lname: '{{ minchar_lname }}',
+        alphanumeric: '{{ alphanumeric }}',
+        empty_pass: '{{ empty_pass }}',
+        maxchar_pass: '{{ maxchar_pass }}',
+        minchar_pass: '{{ minchar_pass }}',
+        specialchar_pass: '{{ specialchar_pass }}',
+        alphabets_pass: '{{ alphabets_pass }}',
+        capital_alphabets_pass: '{{ capital_alphabets_pass }}',
+        small_alphabets_pass: '{{ small_alphabets_pass }}',
+        digit_pass: '{{ digit_pass }}',
+        empty_field: '{{ empty_field }}',
+        number_field: '{{ number_field }}',
+        positive_number: '{{ positive_number }}',
+        maxchar_field: '{{ maxchar_field }}',
+        minchar_field: '{{ minchar_field }}',
+        empty_email: '{{ empty_email }}',
+        validate_email: '{{ validate_email }}',
+        empty_country: '{{ empty_country }}',
+        maxchar_country: '{{ maxchar_country }}',
+        minchar_country: '{{ minchar_country }}',
+        empty_city: '{{ empty_city }}',
+        maxchar_city: '{{ maxchar_city }}',
+        minchar_city: '{{ minchar_city }}',
+        empty_state: '{{ empty_state }}',
+        maxchar_state: '{{ maxchar_state }}',
+        minchar_state: '{{ minchar_state }}',
+        empty_proname: '{{ empty_proname }}',
+        maxchar_proname: '{{ maxchar_proname }}',
+        minchar_proname: '{{ minchar_proname }}',
+        empty_catname: '{{ empty_catname }}',
+        maxchar_catname: '{{ maxchar_catname }}',
+        minchar_catname: '{{ minchar_catname }}',
+        empty_zip: '{{ empty_zip }}',
+        maxchar_zip: '{{ maxchar_zip }}',
+        minchar_zip: '{{ minchar_zip }}',
+        empty_username: '{{ empty_username }}',
+        maxchar_username: '{{ maxchar_username }}',
+        minchar_username: '{{ minchar_username }}',
+        invalid_date: '{{ invalid_date }}',
+        maxchar_sku: '{{ maxchar_sku }}',
+        minchar_sku: '{{ minchar_sku }}',
+        invalid_sku: '{{ invalid_sku }}',
+        empty_sku: '{{ empty_sku }}',
+        validate_range: '{{ validate_range }}',
+        empty_address: '{{ empty_address }}',
+        minchar_address: '{{ minchar_address }}',
+        maxchar_address: '{{ maxchar_address }}',
+        empty_company: '{{ empty_company }}',
+        minchar_company: '{{ minchar_company }}',
+        maxchar_company: '{{ maxchar_company }}',
+        invalid_phone: '{{ invalid_phone }}',
+        empty_phone: '{{ empty_phone }}',
+        minchar_phone: '{{ minchar_phone }}',
+        maxchar_phone: '{{ maxchar_phone }}',
+        empty_brand: '{{ empty_brand }}',
+        maxchar_brand: '{{ maxchar_brand }}',
+        minchar_brand: '{{ minchar_brand }}',
+        empty_shipment: '{{ empty_shipment }}',
+        maxchar_shipment: '{{ maxchar_shipment }}',
+        minchar_shipment: '{{ minchar_shipment }}',
+        invalid_ip: '{{ invalid_ip }}',
+        invalid_url: '{{ invalid_url }}',
+        empty_url: '{{ empty_url }}',
+        valid_amount: '{{ valid_amount }}',
+        valid_decimal: '{{ valid_decimal }}',
+        max_email: '{{ max_email }}',
+        specialchar_zip: '{{ specialchar_zip }}',
+        specialchar_sku: '{{ specialchar_sku }}',
+        max_url: '{{ max_url }}',
+        valid_percentage: '{{ valid_percentage }}',
+        between_percentage: '{{ between_percentage }}',
+        maxchar_size: '{{ maxchar_size }}',
+        specialchar_size: '{{ specialchar_size }}',
+        specialchar_upc: '{{ specialchar_upc }}',
+        maxchar_upc: '{{ maxchar_upc }}',
+        specialchar_ean: '{{ specialchar_ean }}',
+        maxchar_ean: '{{ maxchar_ean }}',
+        specialchar_bar: '{{ specialchar_bar }}',
+        maxchar_bar: '{{ maxchar_bar }}',
+        positive_amount: '{{ positive_amount }}',
+        maxchar_color: '{{ maxchar_color }}',
+        invalid_color: '{{ invalid_color }}',
+        specialchar: '{{ specialchar }}',
+        script: '{{ script }}',
+        style: '{{ style }}',
+        iframe: '{{ iframe }}',
+        not_image: '{{ not_image }}',
+        image_size: '{{ image_size }}',
+        html_tags: '{{ html_tags }}',
+        number_pos: '{{ number_pos }}',
+        invalid_separator:'{{ invalid_separator }}'
+    });
+    
+    $('select[name=\'seller_country\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=account/account/country&country_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('select[name=\'seller_country\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+		},
+		complete: function() {
+			$('.fa-spin').remove();
+		},
+		success: function(json) {
+			html = '<option value="">{{ text_select_state }}</option>';
+
+			if (json['zone'] && json['zone'] != '') {
+				for (i = 0; i < json['zone'].length; i++) {
+					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+
+                                        {% if (seller_details['state'] is defined) %} 
+                                        if (json['zone'][i]['zone_id'] == '{{ seller_details['state'] }}') {
+                                            html += ' selected="selected"';
+					}
+                                        {% endif %}					
+
+					html += '>' + json['zone'][i]['name'] + '</option>';
+				}
+			}
+
+			$('select[name=\'seller_state\']').html(html);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+    });
+
+    $('select[name=\'seller_country\']').trigger('change');
+
+    //Set value for Logo Removal
+    $(".btn_logo_remove").click(function(){
+        $("input[name=logo_remove]").val("1");
+        $("#seller_logo_placeholder").attr("src", "");
+        $('input[name="logo_file"]').val('');
+    });
+    
+    //Set value for Banner Removal
+    $(".btn_banner_remove").click(function(){
+        $("input[name=banner_remove]").val("1");
+        $("#seller_banner_placeholder").attr("src", "");
+        $('input[name="banner_file"]').val('');
+    });
+</script>

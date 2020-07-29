@@ -1,0 +1,208 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">
+          <h1>{{ heading_title }}</h1>          
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $('#tabs2').scrollTabs();
+    });	
+    </script>
+	
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <ul class="nav nav-tabs scroll_tabs_theme_light" id="tabs2">
+                    <li><a href="index.php?route=extension/module/kbmp_marketplace&user_token={{ token }}">{{ text_settings }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_list&user_token={{ token }}">{{ text_sellers_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_account_approval_list&user_token={{ token }}">{{ text_seller_account_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_approval_list&user_token={{ token }}">{{ text_product_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_list&user_token={{ token }}">{{ text_seller_products }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_order&user_token={{ token }}">{{ text_seller_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_order&user_token={{ token }}">{{ text_admin_orders }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/products_review&user_token={{ token }}">{{ text_product_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review_approval_list&user_token={{ token }}">{{ text_reviews_approval_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_review&user_token={{ token }}">{{ text_seller_reviews }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_category_request&user_token={{ token }}">{{ text_seller_category_request_list }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_shipping&user_token={{ token }}">{{ text_seller_shippings }}</a></li>
+                    <li ><a href="index.php?route=kbmp_marketplace/seller_category&user_token={{ token }}">{{ text_seller_catgory_commision }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}">{{ text_admin_commissions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/sellers_transaction&user_token={{ token }}">{{ text_seller_transactions }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/seller_payout_request&user_token={{ token }}">{{ text_seller_payout_request }}</a></li>
+                    <li class="active"><a href="index.php?route=kbmp_marketplace/paypal_payout&user_token={{ token }}">{{ text_paypal_payout }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}">{{ text_email_templates }}</a></li>
+                    <li><a href="index.php?route=kbmp_marketplace/support&user_token={{ token }}">{{ text_support }}</a></li>
+                </ul>
+                {% if (error) %} 
+                <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error }} 
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                {% endif %} 
+                {% if (success) %} 
+                <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                {% endif %} 
+                <div class="panel panel-default" id="fieldset_form">					
+					
+                    <form class="form-horizontal AdminKbMarketPlaceSetting" action="" method="post" enctype="multipart/form-data" novalidate="" id="kb_mp_seller_config_form">
+                            <div class="panel-body">  
+                                <!--Start - Changes added to add Enable/Disable feature in the module - added by Harsh on 15-Jan-2019-->
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3">
+                                        <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ text_active_tooltip }}">
+                                           {{ text_active }} 
+                                        </span>
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <span class="switch opencart-switch fixed-width-lg">
+                                            <input class="custom_radio" type="radio" name="kbmp_marketplace_paypal_settings[enable]" id="kbmp_module_enable_on" value="1" {% if (kbmp_marketplace_paypal_settings['enable'] is defined and kbmp_marketplace_paypal_settings['enable'] == '1') %}checked{% elseif (kbmp_marketplace_paypal_settings['enable'] is not defined) %}checked{% endif %}>
+                                            <label class="custom_radio_label" for="kbmp_module_enable_on">{{ text_yes }}</label>
+                                            <input class="custom_radio" type="radio" name="kbmp_marketplace_paypal_settings[enable]" id="kbmp_module_enable_off" value="0" {% if (kbmp_marketplace_paypal_settings['enable'] is defined and kbmp_marketplace_paypal_settings['enable'] == '0') %}checked{% endif %}>
+                                            <label class="custom_radio_label" for="kbmp_module_enable_off">{{ text_no }}</label>
+                                            <a class="slide-button btn"></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--Ends-->
+                                <div class="form-group required">
+                                    <label class="control-label col-lg-3">
+                                        {{ text_client_id }} 
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input type="text" name="kbmp_marketplace_paypal_settings[client_id]" id="client_id" value="{{ kbmp_marketplace_paypal_settings['client_id'] is defined ? kbmp_marketplace_paypal_settings['client_id'] : '' }}" class="fixed-width-small form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label class="control-label col-lg-3">
+                                        {{ text_client_secret }} 
+                                    </label>
+                                    <div class="col-lg-9">	
+                                        <input type="text" name="kbmp_marketplace_paypal_settings[client_secret]" id="client_secret" value="{{ kbmp_marketplace_paypal_settings['client_secret'] is defined ? kbmp_marketplace_paypal_settings['client_secret'] : '' }}" class="fixed-width-small form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label class="control-label col-lg-3">
+                                        {{ text_paypal_email_subject }} 
+                                    </label>
+                                    <div class="col-lg-9">	
+                                        <input type="text" name="kbmp_marketplace_paypal_settings[subject]" id="subject" value="{{ kbmp_marketplace_paypal_settings['subject'] is defined ? kbmp_marketplace_paypal_settings['subject'] : '' }}" class="fixed-width-small form-control" >				
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3">
+                                        <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ text_paypal_currency_tooltip }}">
+                                            {{ text_paypal_currency }} 
+                                        </span>
+                                    </label>
+                                    <div class="col-lg-9">	
+                                        <select name="kbmp_marketplace_paypal_settings[currency]" id="kbmp_product_limit" value="{{ settings['kbmp_marketplace_setting']['kbmp_paypal_mode'] is defined ? settings['kbmp_marketplace_setting']['kbmp_paypal_mode'] : '' }}" class="fixed-width-small form-control" >				
+                                            {% for key,value in currencies %} 
+                                            <option value="{{ key }}" {{ kbmp_marketplace_paypal_settings['currency'] is defined and kbmp_marketplace_paypal_settings['currency'] == key ? 'selected' : '' }}>{{ value['title'] }}</option>
+                                            {% endfor %} 
+                                        </select>	
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="panel-footer">
+                            <button type="submit" value="1" id="marketplace_setting" class="marketplace_setting_btn btn btn-default">
+                                <i class="fa fa-save"></i> {{ button_save }} 
+                            </button>
+                        </div>
+                    </form>                           
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+    //Show/Hide Seller Agreement box
+    function showSellerAgreementDiv(div, id)
+    {
+        if (div != '') {
+            $("div[class*="+div+"]").hide();
+            $("."+div+id).show();
+        }
+    }
+
+    //Show/Hide Email Template Box
+    function showEmailTemplateDiv(div, id)
+    {
+        if (div != '') {
+            $("div[class*="+div+"]").hide();
+            $("."+div+id).show();
+        }
+    }
+
+    // Category
+    $('input[name=\'category\']').autocomplete({
+            'source': function(request, response) {
+                    $.ajax({
+                            url: 'index.php?route=catalog/category/autocomplete&user_token={{ token }}&filter_name=' +  encodeURIComponent(request),
+                            dataType: 'json',
+                            success: function(json) {
+                                    response($.map(json, function(item) {
+                                            return {
+                                                    label: item['name'],
+                                                    value: item['category_id']
+                                            }
+                                    }));
+                            }
+                    });
+            },
+            'select': function(item) {
+                    $('input[name=\'category\']').val('');
+
+                    $('#product-category' + item['value']).remove();
+
+                    $('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
+            }
+    });
+
+    $('#product-category').delegate('.fa-minus-circle', 'click', function() {
+        $(this).parent().remove();
+    });
+    
+    velovalidation.setErrorLanguage({
+        maxchar_field: '{{ error_maxchar_field }}',
+        minchar_field: '{{ error_minchar_field }}',
+        empty_field: '{{ error_empty_field }}'
+    });
+    $('form').submit(function(e){
+        
+        var flag = true;
+        $('.form-group').removeClass("has-error");
+        $('.text-danger').remove();
+
+        var result = velovalidation.checkMandatory($('#client_id'));
+        if(result != true){
+            flag = false;
+            $('#client_id').parent().parent().parent().addClass("has_error");
+            $('#client_id').after('<div class="text-danger">'+ result +'</div>');
+        }
+        
+        var result = velovalidation.checkMandatory($('#client_secret'));
+        if(result != true){
+            flag = false;
+            $('#client_secret').parent().parent().parent().addClass("has_error");
+            $('#client_secret').after('<div class="text-danger">'+ result +'</div>');
+        }
+        var result = velovalidation.checkMandatory($('#subject'));
+        if(result != true){
+            flag = false;
+            $('#subject').parent().parent().parent().addClass("has_error");
+            $('#subject').after('<div class="text-danger">'+ result +'</div>');
+        }
+
+        if(flag == false) {
+            e.preventDefault();
+            return false;
+        } else {
+            return true;
+        }
+    });
+</script>
+{{ footer }} 

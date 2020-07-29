@@ -1,0 +1,166 @@
+{{ header }} 
+<script src="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!--<script src="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>-->
+<link href="catalog/view/javascript/marketplace/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" rel="stylesheet">
+<script src="catalog/view/javascript/marketplace/validation/velovalidation.js"></script>
+<script type="text/javascript">
+    var error_empty = '{{ error_empty_field }}';
+    velovalidation.setErrorLanguage({
+        empty_field: '{{ error_empty_field }}',
+        maxchar_field: '{{ error_minchar_field }}',
+        minchar_field: '{{ error_minchar_field }}',
+        max_email: '{{ error_max_email }}',
+        validate_email: '{{ error_validate_email }}',
+        invalid_phone: '{{ error_invalid_phone }}',
+        maxchar_phone: '{{ error_maxchar_phone }}',
+    });
+</script>
+<div class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %} 
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %} 
+    </ul>
+    {% if (success is defined) %} 
+    <div class="alert alert-success">
+        <i class="fa fa-check-circle"></i> {{ success }}
+        <button type="button" class="close" data-dismiss="alert">×</button>
+    </div>
+    {% endif %} 
+    <div class="row">{{ column_left }} 
+        {% if (column_left and column_right) %} 
+        {% set class = 'col-sm-6' %} 
+        {% elseif (column_left or column_right) %} 
+        {% set class = 'col-sm-9' %} 
+        {% else %} 
+        {% set class = 'col-sm-12' %} 
+        {% endif %} 
+        <div id="content" class="{{ class }}"> {{ content_top }} 
+            <h1>{{ text_new_ticket }}</h1>
+            <form action="{{ action }}" method="post" id="ticket-form" enctype="multipart/form-data" class="form-horizontal">
+            <fieldset>
+                <legend>{{ text_heading_hint }}</legend>
+                <input type="hidden" name="customer_id" value="{{ customer_id }}" />
+                <input type="hidden" name="seller_id" value="{{ seller_id }}" />
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-name">{{ text_email_address }}</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="email" value="{{ email }}" id="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-email">{{ text_first_name }}</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="firstname" value="{{ firstname }}" id="firstname" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-email">{{ text_last_name }}</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="lastname" value="{{ lastname }}" id="lastname" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-email">{{ text_phone_no }}</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="phone" value="{{ phone }}" id="phone" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-email">{{ text_subject }}</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="subject" value="{{ subject }}" id="subject" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label">{{ text_issue }}</label>
+                    <div class="col-sm-10">
+                        <textarea name="issue" id="feedback" rows="10" class="form-control summernote">{{ issue }}</textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="buttons">
+              <div class="pull-right">
+                  <input class="btn btn-primary" type="submit" id="submit" value="{{ text_submit }}" />
+              </div>
+            </div>
+          </form>
+          {{ content_bottom }} 
+        </div>
+        {{ column_right }} 
+    </div>
+</div>
+<script>
+    $('.summernote').wysihtml5();
+    $(document).ready(function(){
+        $('#ticket-form').submit(function(e){
+            var flag = true;
+            $('.form-group').removeClass("has-error");
+            $('.text-danger').remove();
+            
+            var result = velovalidation.checkMandatory($('#firstname'));
+            if(result != true) {
+                flag = false;
+                $('#name').after("<div class='text-danger'>" + result + "</div>")
+                $('#name').parent().parent().addClass("has-error");
+            }
+            var result = velovalidation.checkMandatory($('#lastname'));
+            if(result != true) {
+                flag = false;
+                $('#lastname').after("<div class='text-danger'>" + result + "</div>")
+                $('#lastname').parent().parent().addClass("has-error");
+            }
+            var result = velovalidation.checkMandatory($('#email'));
+            if(result != true) {
+                flag = false;
+                $('#email').after("<div class='text-danger'>" + result + "</div>")
+                $('#email').parent().parent().addClass("has-error");
+            }else{
+                var result = velovalidation.checkEmail($('#email'));
+                if(result != true) {
+                    flag = false;
+                    $('#email').after("<div class='text-danger'>" + result + "</div>")
+                    $('#email').parent().parent().addClass("has-error");
+                }
+            }
+
+            var result = velovalidation.checkMandatory($('#phone'));
+            if(result != true) {
+                flag = false;
+                $('#phone').after("<div class='text-danger'>" + result + "</div>")
+                $('#phone').parent().parent().addClass("has-error");
+            }else{
+                var result = velovalidation.checkPhoneNumber($('#phone'));
+                if(result != true) {
+                    flag = false;
+                    $('#phone').after("<div class='text-danger'>" + result + "</div>")
+                    $('#phone').parent().parent().addClass("has-error");
+                }
+            }
+
+            var result = velovalidation.checkMandatory($('#subject'));
+            if(result != true) {
+                flag = false;
+                $('#subject').after("<div class='text-danger'>" + result + "</div>")
+                $('#subject').parent().parent().addClass("has-error");
+            }
+
+            $(".summernote").each(function() {
+                var textContent = $(".summernote").val();
+                if(textContent == ""){                                 
+                    flag = false;
+                    $(this).parent().parent().parent().addClass("has_error");
+                    $(this).parent().append('<div class="text-danger">'+ error_empty +'</div>');
+                }
+            });
+
+            if(flag == false) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+</script>
+{{ footer }} 

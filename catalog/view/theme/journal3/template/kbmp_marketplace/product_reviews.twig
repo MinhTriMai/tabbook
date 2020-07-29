@@ -1,0 +1,226 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_product_reviews }} 
+                </h2>
+                <div class="well">
+                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                        {{ text_filter_search }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                    <div id="seller_product_filter">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_from">{{ text_from_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_from" value="{{ filter_data['filter_from_date'] }}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="date_available_from" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_to">{{ text_to_date }}</label>
+                                    <div class="input-group date" style="margin-bottom:10px;">
+                                        <input type="text" name="date_available_to" value="{{ filter_data['filter_to_date'] }}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="date_available_to" class="datepicker hasDatepicker form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_status">{{ text_status }}</label>
+                                    <select name="filter_status" class="form-control" id="filter_status">
+                                        <option value="">{{ text_select }}</option>
+                                        <option value="1" {% if (filter_data['filter_status'] == '1') %} {{ 'selected' }} {% endif %}>{{ text_enabled }}</option>
+                                        <option value="0" {% if (filter_data['filter_status'] == '0') %} {{ 'selected' }} {% endif %}>{{ text_disabled }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter_rating">{{ text_rating }}</label>
+                                    <select name="filter_rating" class="form-control">
+                                        <option value="">{{ text_select }}</option>
+                                        <option value="0" {% if (filter_data['filter_rating'] == '0') %} {{ 'selected' }} {% endif %}>0</option>
+                                        <option value="1" {% if (filter_data['filter_rating'] == '1') %} {{ 'selected' }} {% endif %}>1</option>
+                                        <option value="2" {% if (filter_data['filter_rating'] == '2') %} {{ 'selected' }} {% endif %}>2</option>
+                                        <option value="3" {% if (filter_data['filter_rating'] == '3') %} {{ 'selected' }} {% endif %}>3</option>
+                                        <option value="4" {% if (filter_data['filter_rating'] == '4') %} {{ 'selected' }} {% endif %}>4</option>
+                                        <option value="5" {% if (filter_data['filter_rating'] == '5') %} {{ 'selected' }} {% endif %}>5</option>
+                                    </select>
+                                </div>
+                                <div class="filter-button">
+                                    <a  id="button-reset" class="btn btn-warning pull-right" style="margin-left:10px;">{{ button_reset }}</a>
+                                    <a id="button-filter" class="btn btn-primary pull-right">{{ button_filter }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive" style="background-color: white">
+                    <table class="table table-bordered table-kbmpCustom">
+                        <thead>
+                            <tr>
+                                <td class="text-left">{{ column_id }}</td>
+                                <td class="text-left">{{ column_posted_on }}</td>
+                                <td class="text-left">{{ column_product }}</td>
+                                <td class="text-right">{{ column_status }}</td>
+                                <td class="text-left">{{ column_comment }}</td>
+                                <td class="text-right">{{ column_rating }}</td>
+                                <td class="text-right">{{ column_action }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% set modalPopupHtml = '' %}
+ {% if (reviews is defined and reviews is not empty) %}
+ {% set counter = 1 %}
+ {% for review in reviews %} 
+ 
+                                <tr>
+                                    <td class="text-left">{{ counter }}</td>
+                                    <td class="text-left">{{ review['date_added'] }}</td>
+                                    <td class="text-left"><a href="{{ review['link'] }}">{{ review['product'] }}</a></td>
+                                    <td class="text-right">{{ review['status'] }}</td>
+                                    <td class="text-left">
+                                        {{ review['comment'] }} <a href="#commentPopup_{{ review['review_id'] }}" data-target="#commentPopup_{{ review['review_id'] }}" data-toggle="modal">{{ text_read_more }}</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="vss_seller_ratings">
+                                            <div class="vss_rating_unfilled">★★★★★</div>
+                                            <div class="vss_rating_filled" style="width:{{ review['rating_value'] }}%">★★★★★</div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="javascript://" onclick="product_review_delete('{{ review['delete'] }}')" class="btn btn-info">
+                                            <span data-toggle="tooltip" title="" data-original-title="{{ text_delete }}"><i class="fa fa-trash"></i></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                 {% set counter = counter + 1 %}
+ {# Prepare Modal Popup HTML #}
+ {% set modalPopupHtml = modalPopupHtml ~ '<div id="commentPopup_'~review['review_id']~'" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">'~review['product']~'</h4></div><div class="modal-body"><div class="review-popup-time">'~column_posted_on~': <span id="review-time" class="btxt">'~review['date_added']~'</span></div><div class="kb-row"><div class="in-display right-offset15 btxt">'~column_rating~':</div><div class="in-display"><div class="vss_seller_ratings"><div class="vss_rating_unfilled">★★★★★</div><div id="rating_percent_display" class="vss_rating_filled" style="width: '~review['rating_value']~'%;">★★★★★</div></div></div></div><div class="kb-row"><div class="in-display right-offset15 btxt">'~column_author~':</div>'~review['author']~'</div><div class="kb-row"><div class="in-display right-offset15 btxt">'~column_comment~':</div><p>'~review['comment']~'</p></div></div></div></div></div>' %}
+ {% endfor %}
+ {% else %} 
+ 
+                            <tr>
+                                <td colspan="7">{{ text_no_record }}</td>
+                            </tr>
+                             {% endif %}
+ 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if (modalPopupHtml is defined and modalPopupHtml is not empty) %}
+ {{ modalPopupHtml }}
+{% endif %}
+
+{{ footer }} 
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+        
+        var is_error = false;
+        $('.kb_error_message').remove();
+        $('input[name="date_available_to"]').removeClass('kb_error_field');
+        
+	var url = 'index.php?route=kbmp_marketplace/product_reviews';
+
+        var filter_rating = $('select[name=\'filter_rating\']').val();
+
+	if (filter_rating) {
+		url += '&filter_rating=' + encodeURIComponent(filter_rating);
+	}
+        
+        var filter_from_date = $('input[name=\'date_available_from\']').val();
+
+	if (filter_from_date) {
+		url += '&filter_from_date=' + encodeURIComponent(filter_from_date);
+	}
+        
+        var filter_to_date = $('input[name=\'date_available_to\']').val();
+
+	if (filter_to_date) {
+		url += '&filter_to_date=' + encodeURIComponent(filter_to_date);
+	}
+        
+	var filter_status = $('select[name=\'filter_status\']').val();
+
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+
+	if (filter_from_date != '' && filter_to_date != '') {
+            if(new Date(filter_from_date) >= new Date(filter_to_date)){
+                is_error = true;
+                $('input[name="date_available_to"]').addClass('kb_error_field');
+                $('input[name="date_available_to"]').parent().after('<span class="kb_error_message">{{ text_date_error }}</span>');
+            }
+        }
+
+        if (!is_error) {
+            location = url;
+        }
+    });
+    
+    $('#button-reset').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/product_reviews';
+        location = url;
+    });
+    
+    //Function to send delete request
+    function product_review_delete(url) {
+        if (confirm('{{ text_confirm }}')) {
+            location = url;
+        }
+    }
+</script>

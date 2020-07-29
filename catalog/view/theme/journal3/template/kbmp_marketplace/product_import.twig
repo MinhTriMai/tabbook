@@ -1,0 +1,145 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ heading_title }} 
+                </h2>
+                <div class="box">
+                    <div class="box-header with-border" data-widget="collapse">
+                        <h3 class="box-title">{{ text_import }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <form class="form-horizontal" action="{{ action }}" method="post" enctype="multipart/form-data" id="">
+                            <div id="" class="vssmp_tab_content">
+                                <h3>{{ text_download_template }}</h3>
+                                <div id="download_template_row" class="form-group" style="border-bottom:none;">
+                                    <div class="col-sm-2">
+                                        <div class="lbl-wrap">
+                                            <span class="field-lbl">&nbsp;</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button id="download_template" type="button" onclick="downloadTemplateFile('{{ downloadTemplate_link }}')" title="Download Template File" class="btn">
+                                            {{ text_download_template_file }}
+                                        </button><br/>
+                                        <span class="">
+                                            {{ hint_download_temp_file }}                
+                                        </span>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <h3>{{ text_import_products }}</h3>
+                                <div class="form-group required">
+                                    <label class="col-sm-2 control-label" style="font-size: 14px;font-weight: 700">
+                                        {{ text_upload_file }} :<br/>
+                                        <span class="" style="font-size: 12px;font-weight: 400">
+                                            {{ hint_upload_file }}
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-10" style="padding-top: 20px;">
+                                        <input id="import_file" type="file" name="file" class="form-group" value="" style="display:none !important;" onchange="handleImportFileSelected(this)">
+                                        <button id="import_file_custom_uploader" onclick="document.getElementById('import_file').click(); return false;" type="button" title="Browse File" class="btn">{{ text_browse_file }}</button>
+                                        <span id="import_uploaded_file_name"></span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="">
+                                        <button type="submit" title="{{ text_validate_file }}" class="btn btn-primary">
+                                            <span><span>{{ text_validate_file }}</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function handleImportFileSelected(elem){
+        $('.kb_error_message').remove();
+        $('.text-danger').remove();
+        import_file_is_valid_file = false;
+        jQuery('#import_uploaded_file_name').html('');
+        if (elem.files && elem.files[0]) {
+            jQuery('#import_uploaded_file_name').html(elem.files[0].name);
+            var reader = new FileReader();
+    //        reader.onload = validateImportFile;
+            reader.readAsDataURL(elem.files[0]);
+        }
+    }
+    {% if (error_log is defined and error_log) %} 
+        $('body').append('<a href="{{ errorLog_url}}" style="display: none"><button type="button" id="error-log-download" class="btn btn-info pull-left" name=""><i class="fa fa-download"></i></button></a>')
+        $('#error-log-download').trigger('click');
+    {% endif %} 
+    function downloadTemplateFile(url){
+        location.href = url;
+        $.ajax({
+            url: 'url',
+            method: 'GET',
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(data);
+                a.href = url;
+                a.download = 'myfile.pdf';
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            }
+        });
+    }
+    $(document).ready(function(){
+        $('form').submit(function(e){
+            var is_error = false;
+
+            $('.kb_error_message').remove();
+            $('.text-danger').remove();
+
+            var result = velovalidation.checkMandatory($('#import_file'));
+            if (result != true){
+                is_error = true;
+                $('#import_file').addClass('kb_error_field');
+                $('#import_file').parent().after('<span class="kb_error_message" style="padding-left: 14px">{{ error_upload_file }}</span>');
+                $('#import_file').parent().addClass("error");
+            }
+            if (is_error) {
+                return false;
+            }else{
+                return true;
+            }
+        });
+    });
+</script>
+</body></html>

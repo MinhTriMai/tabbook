@@ -1,0 +1,68 @@
+{{ header }} 
+<div class="container">
+    <style>
+        .table .grey-bg{
+            background: rgb(244, 244, 244) !important
+        }
+        .table .left{
+            font-size: 13px
+        }
+    </style>
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %} 
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %} 
+    </ul>
+    <div class="row">{{ column_left }} 
+        {% if (column_left and column_right) %} 
+        {% set class = 'col-sm-6' %} 
+        {% elseif (column_left or column_right) %} 
+        {% set class = 'col-sm-9' %} 
+        {% else %} 
+        {% set class = 'col-sm-12' %} 
+        {% endif %} 
+        <div id="content" class="{{ class }}"> {{ content_top }} 
+            <h1>{{ text_all_tickets }}</h1>
+            
+            <div class="" style="padding-bottom: 17px">
+                <a class="btn btn-default" style="color: white;background-image: linear-gradient(to bottom, #43b754, #43b754)" href="{{ another_ticket_link }}">{{ text_check_another_ticket }}</a>
+            </div>
+            {% for key,value in tickets %} 
+                
+            <fieldset>
+                <table class="table-bordered table">
+                    <tbody>
+                        <tr>
+                            <td class="left grey-bg">{{ text_ticket_no }}-</td>
+                            <td class="left" style="background-color:white;"><a href="{{ value['checkTicket_url'] }}" style="color: rgb(215,73,53) !important">#{{ value['ticket_id'] }}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="left grey-bg">{{ text_subject }}-</td>
+                            <td class="left" style="background-color:white;">{{ value['subject'] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-bg  left">{{ text_created_date }} -</td>
+                            <td class="left" style="background-color:white;">{{ value['date_added'] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="left grey-bg">{{ text_status }} -</td>
+                            <td class="left" style="background-color:white;">{{ value['status'] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="left grey-bg">{{ text_seller }} -</td>
+                            <td class="left" style="background-color:white;">{{ value['seller'] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="left grey-bg">{{ text_last_reply }} -</td>
+                            <td class="left" style="background-color:white;">{{ value['date_updated'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            {% endfor %}
+          {{ content_bottom }} 
+        </div>
+        {{ column_right }} 
+    </div>
+</div>
+{{ footer }} 

@@ -1,0 +1,331 @@
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+<div class="toggleMenu">
+        <i class="fa fa-bars"></i>
+</div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_earning }} 
+                </h2>
+                <ul class="nav nav-tabs kbmp-tabs">
+                    <li class="{% if (filter_data['tab'] == '' and filter_data_2['tab'] == '') %} {{ 'active' }} {% endif %}"><a href="#tab-earning" data-toggle="tab" aria-expanded="false">{{ text_tab_history }}</a></li>
+                    <li class="{% if (filter_data['tab'] != '' or filter_data_2['tab'] != '') %} {{ 'active' }} {% endif %}"><a href="#tab-order-earning" data-toggle="tab" aria-expanded="false">{{ text_tab_order }}</a></li>
+                </ul>
+                <div class="tab-content kbmp-tabs-content">
+                    <div class="tab-pane productFields {% if (filter_data['tab'] == '' and filter_data_2['tab'] == '') %} {{ 'active' }} {% endif %}" id="tab-earning">
+                        <div class="well">
+                            <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                                {{ text_filter_search }} 
+                                <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                            </div>
+                            <div id="seller_product_filter">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="date_available_from">{{ text_from_date }}</label>
+                                            <div class="input-group date" style="margin-bottom:10px;">
+                                                <input type="text" name="date_available_from" value="{{ filter_data['filter_from_date'] }}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="date_available_from" class="datepicker hasDatepicker form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="date_available_to">{{ text_to_date }}</label>
+                                            <div class="input-group date" style="margin-bottom:10px;">
+                                                <input type="text" name="date_available_to" value="{{ filter_data['filter_to_date'] }}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="date_available_to" class="datepicker hasDatepicker form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="report_format">{{ text_report_format }}</label>
+                                            <select name="report_format" class="form-control">
+                                                <option value="1" {% if (filter_data['filter_report_format'] == '1') %} {{ 'selected' }} {% endif %}>{{ text_daily }}</option>
+                                                <option value="2" {% if (filter_data['filter_report_format'] == '2') %} {{ 'selected' }} {% endif %}>{{ text_weekly }}</option>
+                                                <option value="3" {% if (filter_data['filter_report_format'] == '3') %} {{ 'selected' }} {% endif %}>{{ text_monthly }}</option>
+                                                <option value="4" {% if (filter_data['filter_report_format'] == '4') %} {{ 'selected' }} {% endif %}>{{ text_yearly }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="filter-button" style="margin-top:20px;">
+                                            <a id="button-reset" class="btn btn-warning pull-right" style="margin-left:10px;">{{ button_reset }}</a>
+                                            <a id="button-filter" class="btn btn-primary pull-right">{{ button_filter }}</a></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-responsive" style="background-color: white">
+                            <table class="table table-bordered table-kbmpCustom">
+                                <thead>
+                                    <tr>
+                                        <td class="text-left">{{ column_interval }}</td>
+                                        <td class="text-left">{{ column_orders }}</td>
+                                        <td class="text-left">{{ column_product_sold }}</td>
+                                        <td class="text-right">{{ column_order_total }}</td>
+                                        <td class="text-right">{{ column_your_earning }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% if (earning is defined and earning is not empty) %}
+ {% for earning in earning %} 
+ 
+                                    <tr>
+                                        <td class="text-left">{{ earning['date'] }}</td>
+                                        <td class="text-left">{{ earning['total_order'] }}</td>
+                                        <td class="text-left">{{ earning['products_sold'] }}</td>
+                                        <td class="text-right">{{ earning['order_total'] }}</td>
+                                        <td class="text-right">{{ earning['seller_earning'] }}</td>
+                                    </tr>
+                                             {% endfor %}
+ {% else %} 
+ 
+                                    <tr>
+                                        <td colspan="5">{{ text_no_record }}</td>
+                                    </tr>
+                                     {% endif %}
+ 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-left">{{ pagination }}</div>
+                            <div class="col-sm-6 text-right">{{ results }}</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane productFields {% if (filter_data['tab'] != '' or filter_data_2['tab'] != '') %} {{ 'active' }} {% endif %}" id="tab-order-earning">
+                        <div class="well">
+                            <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                                {{ text_filter_search }} 
+                                <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                            </div>
+                            <div id="seller_product_filter">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="date_available_from_2">{{ text_from_date }}</label>
+                                            <div class="input-group date" style="margin-bottom:10px;">
+                                                <input type="text" name="date_available_from_2" value="{{ filter_data_2['filter_from_date_2'] }}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="date_available_from" class="datepicker hasDatepicker form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="date_available_to_2">{{ text_to_date }}</label>
+                                            <div class="input-group date" style="margin-bottom:10px;">
+                                                <input type="text" name="date_available_to_2" value="{{ filter_data_2['filter_to_date_2'] }}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="date_available_to" class="datepicker hasDatepicker form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="status">{{ text_status }}</label>
+                                            <select name="status" class="form-control">
+                                                <option value="">{{ text_select }}</option>
+                                                 {% if (order_statuses is defined and order_statuses is not empty) %}
+ {% for order_status in order_statuses %} 
+ {% if (filter_data_2['filter_status'] == order_status['order_status_id']) %}
+ {{ '<option selected value="'~order_status['order_status_id']~'">'~order_status['name']~'</option>' }}
+ {% else %} 
+ {{ '<option value="'~order_status['order_status_id']~'">'~order_status['name']~'</option>' }}
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+ 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="filter-button" style="margin-top:20px;">
+                                            <a id="button-reset2" class="btn btn-warning pull-right" style="margin-left:10px;">{{ button_reset }}</a>
+                                            <a id="button-filter2" class="btn btn-primary pull-right">{{ button_filter }}</a></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-kbmpCustom">
+                                <thead>
+                                    <tr>
+                                        <td class="text-left">{{ column_order_id }}</td>
+                                        <td class="text-left">{{ column_order_date }}</td>
+                                        <td class="text-left">{{ column_quantity }}</td>
+                                        <td class="text-right">{{ column_order_total }}</td>
+                                        <td class="text-center">{{ column_status }}</td>
+                                        <td class="text-right">{{ column_your_earning }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% if (earning_order_wise is defined and earning_order_wise is not empty) %}
+ {% for earning_order_wise in earning_order_wise %} 
+ 
+                                    <tr>
+                                        <td class="text-left">{{ earning_order_wise['order_id'] }}</td>
+                                        <td class="text-left">{{ earning_order_wise['date'] }}</td>
+                                        <td class="text-left">{{ earning_order_wise['quantity'] }}</td>
+                                        <td class="text-right">{{ earning_order_wise['order_total'] }}</td>
+                                        <td class="text-right">{{ earning_order_wise['status'] }}</td>
+                                        <td class="text-right">{{ earning_order_wise['seller_earning'] }}</td>
+                                    </tr>
+                                             {% endfor %}
+ {% else %} 
+ 
+                                    <tr>
+                                        <td colspan="5">{{ text_no_record }}</td>
+                                    </tr>
+                                     {% endif %}
+ 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-left">{{ pagination_2 }}</div>
+                            <div class="col-sm-6 text-right">{{ results_2 }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }} 
+<script type="text/javascript">
+    
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+    
+    $('#button-filter').on('click', function() {
+        
+        var is_error = false;
+        $('.kb_error_message').remove();
+        $('input[name="date_available_to"]').removeClass('kb_error_field');
+        
+	var url = 'index.php?route=kbmp_marketplace/earning';
+
+        var filter_from_date = $('input[name=\'date_available_from\']').val();
+
+	if (filter_from_date) {
+		url += '&filter_from_date=' + encodeURIComponent(filter_from_date);
+	}
+        
+        var filter_to_date = $('input[name=\'date_available_to\']').val();
+
+	if (filter_to_date) {
+		url += '&filter_to_date=' + encodeURIComponent(filter_to_date);
+	}
+        
+	var filter_report_format = $('select[name=\'report_format\']').val();
+
+	if (filter_report_format) {
+		url += '&filter_report_format=' + encodeURIComponent(filter_report_format);
+	}
+
+	if (filter_from_date != '' && filter_to_date != '') {
+            if(new Date(filter_from_date) >= new Date(filter_to_date)){
+                is_error = true;
+                $('input[name="date_available_to"]').addClass('kb_error_field');
+                $('input[name="date_available_to"]').parent().after('<span class="kb_error_message">{{ text_date_error }}</span>');
+            }
+        }
+
+        if (!is_error) {
+            location = url;
+        }
+    });
+    
+    $('#button-filter2').on('click', function() {
+        
+        var is_error = false;
+        $('.kb_error_message').remove();
+        $('input[name="date_available_to"]').removeClass('kb_error_field');
+        
+	var url = 'index.php?route=kbmp_marketplace/earning&tab=1';
+
+        var filter_from_date_2 = $('input[name=\'date_available_from_2\']').val();
+
+	if (filter_from_date_2) {
+		url += '&filter_from_date_2=' + encodeURIComponent(filter_from_date_2);
+	}
+        
+        var filter_to_date_2 = $('input[name=\'date_available_to_2\']').val();
+
+	if (filter_to_date_2) {
+		url += '&filter_to_date_2=' + encodeURIComponent(filter_to_date_2);
+	}
+        
+	var filter_status = $('select[name=\'status\']').val();
+
+	if (filter_status) {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+
+	if (filter_from_date_2 != '' && filter_to_date_2 != '') {
+            if(new Date(filter_from_date_2) >= new Date(filter_to_date_2)){
+                is_error = true;
+                $('input[name="date_available_to_2"]').addClass('kb_error_field');
+                $('input[name="date_available_to_2"]').parent().after('<span class="kb_error_message">{{ text_date_error }}</span>');
+            }
+        }
+
+        if (!is_error) {
+            location = url;
+        }
+    });
+    
+    $('#button-reset').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/earning';
+        location = url;
+    });
+    
+    $('#button-reset2').on('click', function() {
+	var url = 'index.php?route=kbmp_marketplace/earning&tab=1';
+        location = url;
+    });
+
+</script>

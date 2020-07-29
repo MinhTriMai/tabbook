@@ -1,0 +1,185 @@
+{{ header }} 
+<script src="catalog/view/javascript/summernote/summernote.min.js"></script>
+<script src="catalog/view/javascript/summernote/summernote.js"></script>
+<link href="catalog/view/javascript/summernote/summernote.css" rel="stylesheet">
+<script src="catalog/view/javascript/marketplace/validation/velovalidation.js"></script>
+<script type="text/javascript">
+    var error_empty = '{{ error_empty_field }}';
+    velovalidation.setErrorLanguage({
+        empty_field: '{{ error_empty_field }}',
+        maxchar_field: '{{ error_minchar_field }}',
+        minchar_field: '{{ error_minchar_field }}',
+        max_email: '{{ error_max_email }}',
+        validate_email: '{{ error_validate_email }}',
+    });
+</script>
+<style>
+    .table .grey-bg{
+        background: rgb(244, 244, 244) !important
+    }
+    .kbmpss-customer-reply-box{
+        border-left: 3px solid rgb(215, 73, 53);
+        margin-top: 15px
+    }
+    .kbmpss-table-list td {
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 8px;
+    border-right-style: solid;
+    border-top-style: solid;
+    vertical-align: middle;
+}
+
+.kbmpss-table-list tbody td{
+    color: rgb(51, 55, 69);
+}
+
+td.grey-bg.left {
+    background: rgb(244, 244, 244) !important;
+}
+
+.kbmpss-table-list tbody td a{
+    color: rgb(215,73,53);
+}
+
+.kbmpss-customer-reply-box{
+    border-left: 3px solid rgb(215, 73, 53);
+}
+
+.kbmpss-support-reply-box{
+    border-left: 3px solid #18B924
+}
+
+.kbmpss-table-list button{
+    float:none;
+}
+#kbmpss-container button, .kbmpss-table-list button{
+    float: right;
+}
+
+</style>
+<div class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %} 
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %} 
+    </ul>
+    <div class="row">{{ column_left }} 
+        {% if (column_left and column_right) %} 
+        {% set class = 'col-sm-6' %} 
+        {% elseif (column_left or column_right) %} 
+        {% set class = 'col-sm-9' %} 
+        {% else %} 
+        {% set class = 'col-sm-12' %} 
+        {% endif %} 
+        <div id="content" class="{{ class }}"> {{ content_top }} 
+            <h1>{{ text_ticket~'#'~ticket_id }}</h1>
+            
+            <div class="" style="padding-bottom: 17px">
+                <a class="btn btn-default" style="color: white;background-image: linear-gradient(to bottom, #43b754, #43b754)" href="{{ another_ticket_link }}">{{ text_check_another_ticket }}</a>
+                <a class="btn btn-default" style="color: white;background-image: linear-gradient(to bottom, #43b754, #43b754)" href="{{ all_ticket_link }}">{{ text_check_all_ticket }}</a>
+            </div>
+            <fieldset>
+                
+                <table class="table-bordered table">
+                    <tbody>
+                        <tr>
+                            <td class="left grey-bg">{{ text_status }} -</td>
+                            <td class="left" style="background-color:white;">{{ status }}</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-bg  left">{{ text_name }} -</td>
+                            <td class="left" style="background-color:white;">{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-bg  left">{{ text_email }} -</td>
+                            <td class="left" style="background-color:white;">{{ email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-bg  left">{{ text_phone_no }} -</td>
+                            <td class="left" style="background-color:white;">{{ phone }}</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-bg  left">{{ text_created_date }} -</td>
+                            <td class="left" style="background-color:white;">{{ date_added }}</td>
+                        </tr>
+                        <tr>
+                            <td class="left grey-bg">{{ text_subject }}-</td>
+                            <td class="left" style="background-color:white;">{{ subject }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <h3>{{ text_post_reply }}</h3>
+            <form action="{{ action }}" method="post" id="ticket-form" enctype="multipart/form-data" class="form-horizontal">
+                <input type="hidden" name="email" value="{{ email }}" />
+                <input type="hidden" name="ticket_id" value="{{ ticket_id }}" />
+                <input type="hidden" name="ticketId" value="{{ ticket_id }}" />
+                <input type="hidden" name="type" value="1" />
+                <input type="hidden" name="status" value="{{ status_value }}" />
+                <input type="hidden" name="priority" value="{{ priority_value }}" />
+                <table class="kbmpss-table-list table-bordered" style="background-color: rgb(250, 250, 250);width: 100%">
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <textarea name="reply" id="feedback" rows="10" class="form-control summernote"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <button type="submit" name="postReplySubmit" id="post_reply_button" style="color:white;background: #1979c3">{{ text_post_reply }}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </form>
+            {% for key,value in conversation %} 
+                <table class="kbmpss-table-list kbmpss-customer-reply-box table-bordered" style="width: 100%;border-left: 3px solid {{ value['color'] }}">
+                    <tbody>
+                        <tr>
+                            <td class="left" style="background-color: #F5F5F5;">
+                                <strong>{{ value['date_added'] }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:white;" class="left"><p>{{ value['text'] }}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            {% endfor %} 
+          {{ content_bottom }} 
+        </div>
+        {{ column_right }} 
+    </div>
+</div>
+<script>
+    $('.summernote').summernote({
+        height: 300
+    });
+    $(document).ready(function(){
+        $('#ticket-form').submit(function(e){
+            var flag = true;
+            $('.form-group').removeClass("has-error");
+            $('.text-danger').remove();
+            
+            $(".summernote").each(function() {
+                var textContent = $("<div />").html($(this).summernote('code')).text();
+                if(textContent == ""){                                 
+                    flag = false;
+                    $(this).parent().parent().parent().addClass("has_error");
+                    $(this).after('<div class="text-danger">{{ error_empty_field }}</div>');
+                }
+            });
+
+            if(flag == false) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+    
+</script>
+{{ footer }} 
