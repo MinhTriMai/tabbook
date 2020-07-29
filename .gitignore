@@ -1,4 +1,6 @@
 .DS_Store
 system/storage/*
-config.php
+/admin/config.php
+/config.php
 install/*
+image/cache/
