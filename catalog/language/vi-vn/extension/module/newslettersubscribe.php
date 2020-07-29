@@ -6,7 +6,7 @@ $_['heading_title3'] 	 = 'Ưu đãi đặc biệt cho người đăng ký';
 $_['text_colose'] 	 = 'Đóng';
 
 $_['newletter_des'] 	 = 'Theo dõi bản tin của chúng tôi ngay bây giờ và cập nhật các quyển sách mới, tin tức mới nhất và cung cấp độc quyền bởi Tabbook.';
-$_['newletter_des2'] 	 = 'You can be always up to date with our company new!';
+$_['newletter_des2'] 	 = 'Bạn luôn được cập nhật những tin tức mới nhất của Tabbook!';
 
 //Fields
 $_['entry_email'] 		 = 'Nhập địa chỉ email của bạn ...';

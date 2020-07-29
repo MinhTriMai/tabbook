@@ -26,8 +26,8 @@
 	z-index: 1000000;
 	display: none;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
-	width: 700px;
-	height: 350px;
+	width: 1000px;
+	height: 700px;
 	overflow: auto !important;
 }
 

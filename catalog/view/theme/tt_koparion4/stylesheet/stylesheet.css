@@ -925,7 +925,8 @@ a:hover,.banner-3 a:hover::before,
 .box-cart .links {
 	display: inline-block;
 	vertical-align: top;
-	margin-right: 45px;
+	margin-right: 35px;
+	margin-left: 10px;
 }
 .box-cart .links a {
 	font-size: 14px;
@@ -4049,5 +4050,5 @@ label[for='input-quantity']{
 	.four_items:nth-child(4n+1),
 	.three_items:nth-child(3n+1),
 	.two_items:nth-child(2n+1)
-	{  clear: left;} 
+	{  clear: left;}
 }

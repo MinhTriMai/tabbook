@@ -3,4 +3,4 @@ system/storage/*
 /admin/config.php
 /config.php
 install/*
-image/cache/
+image/cache/*
