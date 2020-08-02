@@ -942,7 +942,7 @@ a:hover,.banner-3 a:hover::before,
     font-family: 'FontAwesome';
     display: inline-block;
     vertical-align: top;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #a1a1a1;
 }
 .box-cart .links .compare a:before {
