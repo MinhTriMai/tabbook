@@ -672,6 +672,9 @@ a:hover,.banner-3 a:hover::before,
 #logo{
 	padding: 44px 0;
 }
+#logo img{
+	width: 170px;
+}
 #logo a{
 	display: inline-block;
 }
@@ -690,7 +693,7 @@ a:hover,.banner-3 a:hover::before,
 .top-search {
 	position: absolute;
 	top: 50%;
-	right: 370px;
+	right: 400px;
 	-moz-transform:  translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
