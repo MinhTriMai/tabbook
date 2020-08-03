@@ -1,38 +1,38 @@
 <?php
 // Heading
-$_['heading_title']                     = 'Marketplace';
-$_['text_my_account']                   = 'My Orders';
-$_['text_current_title']                = 'My Orders';
+$_['title_title'] = 'Marketplace';
+$_['text_my_account'] = 'Đơn hàng của tôi';
+$_['text_civerse_title'] = 'Đơn hàng của tôi';
 
 // Text
-$_['text_filter_search']                = 'Filter Your Search';
-$_['text_order_id']                     = 'Order ID';
-$_['text_from_date']                    = 'From Date';
-$_['text_to_date']                      = 'To Date';
-$_['text_customer']                     = 'Customer';
-$_['text_status']                       = 'Status';
-$_['text_select']                       = 'Select';
-$_['text_view_order']                   = 'Click to View Order';
-$_['text_back_to_site']             = 'Back to site';
-$_['text_logout']                   = 'Logout';
-$_['text_my_account1']              = 'My Account';
+$_['text_filter_search'] = 'Lọc tìm kiếm của bạn';
+$_['text_order_id'] = 'ID đơn hàng';
+$_['text_from_date'] = 'Từ ngày';
+$_['text_to_date'] = 'Đến ngày';
+$_['text_customer'] = 'Khách hàng';
+$_['text_status'] = 'Trạng thái';
+$_['text_select'] = 'Chọn';
+$_['text_view_order'] = 'Nhấp để xem đơn hàng';
+$_['text_back_to_site'] = 'Quay lại trang web';
+$_['text_logout'] = 'Thoát';
+$_['text_my_account1'] = 'Tài khoản của tôi';
 
-//Button
-$_['button_filter']                     = 'Filter';
-$_['button_reset']                      = 'Reset';
-$_['button_view']                       = 'View';
+// Button
+$_['button_filter'] = 'Bộ lọc';
+$_['button_reset'] = 'Đặt lại';
+$_['button_view'] = 'Xem';
 
-//Column Text
-$_['column_order_id']                   = 'Order ID';
-$_['column_order_date']                 = 'Order Date';
-$_['column_customer_name']              = 'Customer Name';
-$_['column_customer_email']             = 'Customer Email';
-$_['column_quantity']                   = 'Qty';
-$_['column_status']                     = 'Status';
-$_['column_order_total']                = 'Order Total';
-$_['column_action']                     = 'Action';
+// Text column
+$_['column_order_id'] = 'ID đơn hàng';
+$_['column_order_date'] = 'Ngày đặt hàng';
+$_['column_customer_name'] = 'Tên khách hàng';
+$_['column_customer_email'] = 'Email khách hàng';
+$_['column_quantity'] = 'Số lượng';
+$_['column_status'] = 'Trạng thái';
+$_['column_order_total'] = 'Tổng số đơn hàng';
+$_['column_action'] = 'Hành động';
 
-$_['text_no_record']                    = 'No Record Found.';
+$_['text_no_record'] = 'Không tìm thấy bản ghi.';
 
 // Error
-$_['text_date_error']                   = 'To date cannot be lower than or equal to from date.';
+$_['text_date_error'] = 'Đến ngày không thể thấp hơn hoặc bằng từ ngày.';

@@ -1,20 +1,20 @@
 <?php
 //Heading
-$_['heading_title']                 = 'Seller Review';
+$_['heading_title']                 = 'Đánh giá người bán';
 
 // Text
-$_['text_sellers']                  = 'Seller Review';
-$_['text_your_name']                = 'Your Name';
-$_['text_your_review']              = 'Your Review';
-$_['text_note']                     = 'Note';
-$_['text_note_description']         = 'HTML is not translated!';
-$_['text_rating']                   = 'Rating';
-$_['text_bad']                      = 'Bad';
-$_['text_good']                     = 'Good.';
-$_['text_empty_reviews']            = 'There are no reviews to list.';
+$_['text_sellers']                  = 'Đánh giá người bán';
+$_['text_your_name']                = 'Tên của bạn';
+$_['text_your_review']              = 'Đánh giá của bạn';
+$_['text_note']                     = 'Lưu ý';
+$_['text_note_description']         = 'HTML không được phiên dịch!';
+$_['text_rating']                   = 'Đánh giá';
+$_['text_bad']                      = 'Tệ';
+$_['text_good']                     = 'Tốt.';
+$_['text_empty_reviews']            = 'Danh sách đánh giá trống.';
 
 // Button
-$_['button_save']                   = 'Save';
+$_['button_save']                   = 'Lưu';
 
 // Success
-$_['text_success']                  = 'Your review comment has been successfully submitted and will be displayed after approval.';
+$_['text_success']                  = 'Đánh giá của bạn đã được ghi nhận thành công và sẽ được hiển thị sau khi xét duyệt.';

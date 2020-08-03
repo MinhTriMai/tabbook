@@ -1,34 +1,34 @@
 <?php
 // Heading
-$_['heading_title']                     = 'Marketplace';
-$_['text_my_account']                   = 'Transaction History';
-$_['text_current_title']                = 'Transaction History';
+$_['heading_title']                     = 'Nơi trao đổi';
+$_['text_my_account']                   = 'Lịch sử giao dịch';
+$_['text_current_title']                = 'Lịch sử giao dịch';
 
 // Text
-$_['text_filter_search']                = 'Filter Your Search';
-$_['text_from_date']                    = 'From Date';
-$_['text_to_date']                      = 'To Date';
-$_['text_transaction_type']             = 'Transaction Type';
-$_['text_select']                       = 'Select';
-$_['text_transaction_detail']           = 'Transaction Detail';
-$_['text_credit']                       = 'Credit';
-$_['text_debit']                        = 'Debit';
-$_['text_no_record']                    = 'No Record Found';
+$_['text_filter_search']                = 'Bộ lọc tìm kiếm';
+$_['text_from_date']                    = 'Từ ngày';
+$_['text_to_date']                      = 'Đến ngày';
+$_['text_transaction_type']             = 'Loại giao dịch';
+$_['text_select']                       = 'Lựa chọn';
+$_['text_transaction_detail']           = 'Chi tiết giao dịch';
+$_['text_credit']                       = 'Thẻ tín dụng';
+$_['text_debit']                        = 'Thẻ ghi nợ';
+$_['text_no_record']                    = 'Thông tin không tìm thấy';
 
-$_['text_back_to_site']             = 'Back to site';
-$_['text_logout']                   = 'Logout';
-$_['text_my_account1']              = 'My Account';
+$_['text_back_to_site']             = 'Trở về trang chủ';
+$_['text_logout']                   = 'Đăng xuất';
+$_['text_my_account1']              = 'Tài khoản của tôi';
 
 //Button
-$_['button_filter']                     = 'Filter';
-$_['button_reset']                      = 'Reset';
+$_['button_filter']                     = 'Lọc';
+$_['button_reset']                      = 'Đặt lại';
 
 //Column Text
-$_['column_date']                       = 'Date';
-$_['column_transaction_id']             = 'Transaction ID';
-$_['column_comment']                    = 'Comment';
-$_['column_type']                       = 'Type';
-$_['column_amount']                     = 'Amount';
+$_['column_date']                       = 'Ngày';
+$_['column_transaction_id']             = 'Mã giao dịch';
+$_['column_comment']                    = 'Bình luận';
+$_['column_type']                       = 'Loại';
+$_['column_amount']                     = 'Khối lượng';
 
 // Error
-$_['text_date_error']                   = 'To date cannot be lower than or equal to from date.';
+$_['text_date_error']                   = '"Đến ngày" không thể nhỏ hơn "Từ ngày".';

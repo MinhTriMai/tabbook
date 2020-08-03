@@ -1,42 +1,42 @@
 <?php
 // Heading
 $_['heading_title']                 = 'Marketplace';
-$_['text_my_account']               = 'New Category Request';
-$_['text_current_title']            = 'Category Request';
-$_['text_status_title']             = 'Requested Category Statuses';
+$_['text_my_account']               = 'Yêu cầu danh mục mới';
+$_['text_current_title']            = 'Yêu cầu danh mục';
+$_['text_status_title']             = 'Trạng thái danh mục được yêu cầu';
 
 // Text
-$_['text_filter_search']            = 'Filter Your Search';
-$_['text_category']                 = 'Category';
-$_['text_status']                   = 'Status';
-$_['text_select']                   = 'Select';
-$_['text_approved']                 = 'Approved';
-$_['text_disapproved']              = 'Disapproved';
-$_['text_waiting_for_approval']     = 'Waiting for Approval';
-$_['text_requested_on']             = 'Requested On';
-$_['text_request_comment']          = 'Your Comment for Request';
-$_['text_admin_comment']            = 'Admin Comment';
-$_['text_no_record']                = 'No Record Found';
+$_['text_filter_search']            = 'Lọc tìm kiếm của bạn';
+$_['text_category']                 = 'Danh mục';
+$_['text_status']                   = 'Trạng thái';
+$_['text_select']                   = 'Chọn';
+$_['text_approved']                 = 'Chấp thuận';
+$_['text_disapproved']              = 'Không chấp thuận';
+$_['text_waiting_for_approval']     = 'Đang chờ duyệt';
+$_['text_requested_on']             = 'Yêu cầu vào';
+$_['text_request_comment']          = 'Nội dung của bạn cho yêu cầu';
+$_['text_admin_comment']            = 'Quản trị viên phản hồi';
+$_['text_no_record']                = 'Không tìm thấy kết quả';
 
-$_['text_back_to_site']             = 'Back to site';
-$_['text_logout']                   = 'Logout';
-$_['text_my_account1']              = 'My Account';
+$_['text_back_to_site']             = 'Trở lại trang';
+$_['text_logout']                   = 'Đăng xuất';
+$_['text_my_account1']              = 'Tài khoản của tôi';
 
-$_['text_available_categories']     = 'Available Categories';
-$_['text_request_reason']           = 'Request Reason';
+$_['text_available_categories']     = 'Danh mục sẵn có';
+$_['text_request_reason']           = 'Lí do yêu cầu';
 
 //Button
-$_['button_filter']                 = 'Filter';
-$_['button_reset']                  = 'Reset';
-$_['button_save']                   = 'Save';
+$_['button_filter']                 = 'Lọc';
+$_['button_reset']                  = 'Cài lại';
+$_['button_save']                   = 'Lưu';
 
 //Column
-$_['column_date']                   = 'Date';
-$_['column_category']               = 'Category';
-$_['column_status']                 = 'Status';
+$_['column_date']                   = 'Ngày';
+$_['column_category']               = 'Danh mục';
+$_['column_status']                 = 'Trạng thái';
 
 //Error
-$_['text_error_msg']                = 'Sorry! No unassigned category available for you.';
+$_['text_error_msg']                = 'Lấy làm tiếc! Không có danh mục có sẵn cho bạn.';
 
 //Success
-$_['text_success_msg']              = 'Your request has been submitted successfully.';
+$_['text_success_msg']              = 'Yêu cầu của bạn đã được gửi thành công.';

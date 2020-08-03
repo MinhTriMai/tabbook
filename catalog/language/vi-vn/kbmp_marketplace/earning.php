@@ -1,42 +1,42 @@
 <?php
 // Heading
 $_['heading_title']                     = 'Marketplace';
-$_['text_my_account']                   = 'My Earnings';
-$_['text_current_title']                = 'My Earnings';
+$_['text_my_account']                   = 'Thu nhập của tôi';
+$_['text_current_title']                = 'Thu nhập của tôi';
 
 // Text
-$_['text_tab_history']                  = 'Earning History';
-$_['text_tab_order']                    = 'Order Wise Earning';
-$_['text_filter_search']                = 'Filter Your Search';
-$_['text_from_date']                    = 'From Date';
-$_['text_to_date']                      = 'To Date';
-$_['text_report_format']                = 'Report Format';
-$_['text_status']                       = 'Status';
-$_['text_select']                       = 'Select';
-$_['text_daily']                        = 'Daily';
-$_['text_weekly']                       = 'Weekly';
-$_['text_monthly']                      = 'Monthly';
-$_['text_yearly']                       = 'Yearly';
-$_['text_no_record']                    = 'No Record Found';
+$_['text_tab_history'] = 'Lịch sử thu nhập';
+$_['text_tab_order'] = 'Đặt hàng kiếm tiền khôn ngoan';
+$_['text_filter_search'] = 'Lọc tìm kiếm của bạn';
+$_['text_from_date'] = 'Từ ngày';
+$_['text_to_date'] = 'Đến ngày';
+$_['text_Vport_format'] = 'Định dạng báo cáo';
+$_['text_status'] = 'Trạng thái';
+$_['text_select'] = 'Chọn';
+$_['text_d Daily'] = 'Hàng ngày';
+$_['text_weekly'] = 'Hàng tuần';
+$_['text_monthly'] = 'Hàng tháng';
+$_['text_yearly'] = 'Hàng năm';
+$_['text_no_record'] = 'Không tìm thấy bản ghi';
 
-$_['text_back_to_site']             = 'Back to site';
-$_['text_logout']                   = 'Logout';
-$_['text_my_account1']              = 'My Account';
+$_['text_back_to_site'] = 'Quay lại trang web';
+$_['text_logout'] = 'Thoát';
+$_['text_my_account1'] = 'Tài khoản của tôi';
 
 //Button
-$_['button_filter']                     = 'Filter';
-$_['button_reset']                      = 'Reset';
+$_['button_filter'] = 'Bộ lọc';
+$_['button_reset'] = 'Đặt lại';
 
-//Column Text
-$_['column_interval']                   = 'Interval';
-$_['column_orders']                     = 'Orders';
-$_['column_product_sold']               = 'Products Sold';
-$_['column_order_total']                = 'Order Total';
-$_['column_your_earning']               = 'Your Earning';
-$_['column_order_id']                   = 'Order ID';
-$_['column_order_date']                 = 'Order Date';
-$_['column_quantity']                   = 'Quantity';
-$_['column_status']                     = 'Status';
+// Column Text
+$_['column_interval'] = 'Khoảng';
+$_['column_nings'] = 'Đơn hàng';
+$_['column_product_sold'] = 'Sản phẩm được bán';
+$_['column_order_total'] = 'Tổng số đơn hàng';
+$_['column_your_earning'] = 'Thu nhập của bạn';
+$_['column_order_id'] = 'ID đơn hàng';
+$_['column_order_date'] = 'Ngày đặt hàng';
+$_['column_quantity'] = 'Số lượng';
+$_['column_status'] = 'Trạng thái';
 
 // Error
-$_['text_date_error']                   = 'To date cannot be lower than or equal to from date.';
+$_['text_date_error'] = 'Đến ngày không thể thấp hơn hoặc bằng từ ngày.';
