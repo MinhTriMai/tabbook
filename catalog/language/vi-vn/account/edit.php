@@ -11,6 +11,8 @@ $_['text_success']      = 'Thành công: Tài khoản của bạn đã được 
 // Entry
 $_['entry_firstname']  = 'Tên:';
 $_['entry_lastname']   = 'Họ và tên lót:';
+$_['entry_school']            = 'Trường';
+$_['entry_school_placeholder']            = 'VD: Trường Đại Học Kinh Tế HCM';
 $_['entry_email']      = 'E-Mail:';
 $_['entry_telephone']  = 'Điện thoại:';
 

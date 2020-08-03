@@ -29,6 +29,10 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         $data['entry_customer_group'] = $this->language->get('entry_customer_group');
         $data['entry_firstname'] = $this->language->get('entry_firstname');
         $data['entry_lastname'] = $this->language->get('entry_lastname');
+        $data['entry_school'] = $this->language->get('entry_school');
+        $data['entry_firstname_placeholder'] = $this->language->get('entry_firstname_placeholder');
+        $data['entry_lastname_placeholder'] = $this->language->get('entry_lastname_placeholder');
+        $data['entry_lastname_school'] = $this->language->get('entry_lastname_school');
         $data['entry_email'] = $this->language->get('entry_email');
         $data['entry_telephone'] = $this->language->get('entry_telephone');
         $data['entry_fax'] = $this->language->get('entry_fax');
@@ -79,6 +83,14 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         } else {
             $data['lastname'] = '';
         }
+
+        //start volyminhnhan@gmail.com modifications
+        if (isset($this->request->post['school'])) {
+            $data['school'] = $this->request->post['school'];
+        } else {
+            $data['school'] = '';
+        }
+        //end volyminhnhan@gmail.com modifications
 
         if (isset($this->request->post['email'])) {
             $data['email'] = $this->request->post['email'];
@@ -204,6 +216,14 @@ class ControllerExtensionModuleAjaxregister extends Controller {
                     $json['error_lastname'] = '';
                 }
 
+                //start volyminhnhan@gmail.com modifications
+                if (isset($this->error['school'])) {
+                    $json['error_school'] = $this->error['school'];
+                } else {
+                    $json['error_school'] = '';
+                }
+                //end volyminhnhan@gmail.com modifications
+
                 if (isset($this->error['email'])) {
                     $json['error_email'] = $this->error['email'];
                 } else {
@@ -253,6 +273,12 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
             $this->error['lastname'] = $this->language->get('error_lastname');
         }
+
+        //start volyminhnhan@gmail.com modifications
+        if ((utf8_strlen(trim($this->request->post['school'])) < 1) || (utf8_strlen(trim($this->request->post['school'])) > 255)) {
+            $this->error['school'] = $this->language->get('error_school');
+        }
+        //end volyminhnhan@gmail.com modifications
 
         if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
             $this->error['email'] = $this->language->get('error_email');
