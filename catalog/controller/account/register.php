@@ -19,7 +19,24 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
+			//start volyminhnhan@gmail.com modifications
+            //setup address array data for insert as default, for Phase 1 - address will be NONE
+            $address = array();
+            $address['firstname'] = $this->request->post['firstname'];
+            $address['lastname'] = $this->request->post['lastname'];
+            $address['company'] = 'NOT PROVIDED';
+            $address['address_1'] = 'NOT PROVIDED';
+            $address['address_2'] = 'NOT PROVIDED';
+            $address['city'] = 'NOT PROVIDED';
+            $address['postcode'] = 'NOT PROVIDED';
+            $address['country_id'] = 230;
+            $address['zone_id'] = 3780;//all are HCMC in Phase 1
+            $address['default'] = true;//default address
+
+            $post_data = $this->request->post;
+            $post_data['address'][] = $address;
+            $customer_id = $this->model_account_customer->addCustomer($post_data);
+            //end volyminhnhan@gmail.com modifications
 
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
