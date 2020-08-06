@@ -31,6 +31,11 @@
 	overflow: auto !important;
 }
 
+@media(min-height:720px) and (max-height:900px), (orientation: portrait) {
+  .ajax-body-login{
+    height: 700px!important;
+  }
+}
 
 .ajax-body-login > div{
 	background: #fff;
