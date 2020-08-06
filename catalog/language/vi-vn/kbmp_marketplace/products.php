@@ -19,6 +19,7 @@ $_['text_price'] = 'Giá';
 $_['text_model'] = 'Model';
 $_['text_carget'] = 'Danh mục';
 $_['text_status'] = 'Trạng thái';
+$_['text_approval_status'] = 'Đã duyệt?';
 $_['text_enables'] = 'Đã duyệt';
 $_['text_disables'] = 'Chưa duyệt';
 $_['text_filter'] = 'Bộ lọc';
@@ -147,5 +148,5 @@ $_['validate_error_name'] = 'Tên sản phẩm phải lớn hơn 3 và dưới 2
 $_['validate_error_meta_title'] = 'Tiêu đề meta phải lớn hơn 3 và dưới 255 ký tự! Vui lòng kiểm tra tất cả các ngôn ngữ. ';
 
 //Sự thành công
-$_['text_success'] = 'Thành công: Bạn đã sửa đổi sản phẩm!';
+$_['text_success'] = 'Bạn đã đăng/sửa sản phẩm thành công! Tuy nhiên quản trị viên cần duyệt lại sản phẩm của bạn trước khi đăng bán. Vui lòng kiểm tra trạng thái duyệt sản phẩm ở danh sách sản phẩm.';
 

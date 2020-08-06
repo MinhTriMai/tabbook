@@ -166,6 +166,8 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 		//Start Added changes to resolve issue of wrong product link 24-Dec-2018 - Harsh Agarwal
                 'link' => $this->url->link('product/product', 'product_id=' . $result['product_id'], true),
 		//Ends
+
+                'approval_status' => $result['approved']
             );
         }
 
@@ -181,6 +183,15 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $data['text_model'] = $this->language->get('text_model');
         $data['text_category'] = $this->language->get('text_category');
         $data['text_status'] = $this->language->get('text_status');
+
+        //start volyminhnhan@gmail modifications
+        $data['text_approval_status'] = $this->language->get('text_approval_status');
+        $data['text_waiting_approval'] = $this->language->get('text_waiting_approval');
+        $data['text_approve'] = $this->language->get('text_approve');
+        $data['text_disapprove'] = $this->language->get('text_disapprove');
+        $data['text_disapproved'] = $this->language->get('text_disapproved');
+        //end volyminhnhan@gmail modifications
+
         $data['text_enabled'] = $this->language->get('text_enabled');
         $data['text_disabled'] = $this->language->get('text_disabled');
         $data['text_filter'] = $this->language->get('text_filter');
@@ -370,6 +381,11 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             if (isset($this->request->get['product_id']) && !empty($this->request->get['product_id'])) {
                 //Edit Product and its details
                 $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+
+                //start volyminhnhan@gmail modifications
+                //reset approval status in this case
+                $this->model_kbmp_marketplace_kbmp_marketplace->updateProductApprovalStatus($product_id, 0);
+                //end volyminhnhan@gmail modifications
             } else {                    
                 //Get Seller Products Count
                 $seller_data = array('seller_id' => $seller['seller_id']);
