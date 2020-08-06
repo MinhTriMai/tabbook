@@ -384,7 +384,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 
                 //start volyminhnhan@gmail modifications
                 //reset approval status in this case
-                $this->model_kbmp_marketplace_kbmp_marketplace->updateProductApprovalStatus($product_id, 0);
+                $this->model_kbmp_marketplace_kbmp_marketplace->updateProductApprovalStatus($this->request->get['product_id'], 0);
                 //end volyminhnhan@gmail modifications
             } else {                    
                 //Get Seller Products Count

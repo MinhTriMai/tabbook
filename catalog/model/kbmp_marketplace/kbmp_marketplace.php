@@ -2174,7 +2174,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
      */
 
     public function updateProductApprovalStatus($product_id, $status) {
-        $sql = "UPDATE " . DB_PREFIX . "kb_mp_seller_product SET status = '" . $status . "' WHERE product_id = '" . (int) $product_id . "'";
+        $sql = "UPDATE " . DB_PREFIX . "kb_mp_seller_product SET approved = '" . $status . "' WHERE product_id = '" . (int) $product_id . "'";
 
         if ($this->db->query($sql)) {
             return true;

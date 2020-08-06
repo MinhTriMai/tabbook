@@ -149,10 +149,11 @@
                                         </span>
                                     </td>
                                     <td class="text-left">{{ product['status'] is not empty ? text_enabled : text_disabled }}</td>
-                                    <td class="text-left">
-                                {% if (products_approval['approval_status'] is defined and products_approval['approval_status'] is not empty) %}
-                                <i class="fa fa-ban text-danger" title="{{ text_disapproved }}"></i> {% else %} 
-                                 {{ text_waiting_approval }}
+                                    <td class="text-center">
+                                {% if (product['approval_status'] is defined and product['approval_status'] == 1) %}
+                                <i class="fa fa-check text-success" title="{{ text_approve }}"></i>
+                                 {% else %} 
+                                 <i class="fa fa-ban text-danger" title="{{ text_disapproved }}"></i>
                                  {% endif %}
                                 </td>
                                 <td class="text-right">{{ product['quantity'] }}</td>

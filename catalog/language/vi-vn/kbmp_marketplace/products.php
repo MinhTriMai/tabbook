@@ -33,6 +33,12 @@ $_['text_none'] = 'Không';
 $_['text_yes'] = 'Có';
 $_['text_no'] = 'Không';
 
+$_['text_approval_status'] 					= "Trạng thái duyệt";
+$_['text_waiting_approval']                 = 'Đang đợi duyệt';
+$_['text_approve']                          = 'Duyệt';
+$_['text_disapprove']                       = 'Từ chối';
+$_['text_disapproved']                      = 'Đã từ chối';
+
 $_['text_no_record'] = 'Không tìm thấy bản ghi.';
 $_['text_delete_success'] = 'Sản phẩm đã bị xóa thành công.';
 $_['text_delete_error'] = 'Không thể xóa thành công sản phẩm.';
@@ -147,5 +153,5 @@ $_['validate_error_name'] = 'Tên sản phẩm phải lớn hơn 3 và dưới 2
 $_['validate_error_meta_title'] = 'Tiêu đề meta phải lớn hơn 3 và dưới 255 ký tự! Vui lòng kiểm tra tất cả các ngôn ngữ. ';
 
 //Sự thành công
-$_['text_success'] = 'Thành công: Bạn đã sửa đổi sản phẩm!';
+$_['text_success'] = 'Bạn đã đăng/sửa sản phẩm thành công! Tuy nhiên quản trị viên cần duyệt lại sản phẩm của bạn trước khi đăng bán. Vui lòng kiểm tra trạng thái duyệt sản phẩm ở danh sách sản phẩm.';
 
