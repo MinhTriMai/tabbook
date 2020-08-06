@@ -132,7 +132,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 //        var_dump($results);die;
         $this->load->model('tool/image');
         
-        $this->load->adminmodel('catalog/product');
+        $this->load->model('catalog/product');
 
         foreach ($results as $result) {
 
@@ -142,7 +142,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 $image = $this->model_tool_image->resize('no_image.png', 40, 40);
             }
             
-            $product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
+            $product_specials = $this->model_catalog_product->getProductSpecialsByProductId($result['product_id']);
 
             $special = '';
             foreach ($product_specials  as $product_special) {
@@ -357,7 +357,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $this->load->model('kbmp_marketplace/kbmp_marketplace');
         $this->load->model('setting/kbmp_marketplace');
         
-        $this->load->adminmodel('catalog/product');
+        $this->load->model('catalog/product');
         
         //Get Seller Information
         $seller = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId();
@@ -1265,7 +1265,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         if (isset($this->request->post['product_special'])) {
             $product_specials = $this->request->post['product_special'];
         } elseif (isset($this->request->get['product_id'])) {
-            $product_specials = $this->model_catalog_product->getProductSpecials($this->request->get['product_id']);
+            $product_specials = $this->model_catalog_product->getProductSpecialsByProductId($this->request->get['product_id']);
         } else {
             $product_specials = array();
         }
@@ -1411,7 +1411,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/manufacturer');
+            $this->load->model('catalog/manufacturer');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1568,7 +1568,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/filter');
+            $this->load->model('catalog/filter');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1605,7 +1605,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/download');
+            $this->load->model('catalog/download');
             $this->load->model('kbmp_marketplace/kbmp_marketplace');
             
             $seller_data = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId();
@@ -1647,8 +1647,8 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 //        $json = array();
 //
 //        if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_model'])) {
-//            $this->load->adminmodel('catalog/product');
-//            $this->load->adminmodel('catalog/option');
+//            $this->load->model('catalog/product');
+//            $this->load->model('catalog/option');
 //
 //            if (isset($this->request->get['filter_name'])) {
 //                $filter_name = $this->request->get['filter_name'];
@@ -1820,7 +1820,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/attribute');
+            $this->load->model('catalog/attribute');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1861,7 +1861,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             $this->load->language('catalog/option');
             $this->load->language('kbmp_marketplace/products');
 
-            $this->load->adminmodel('catalog/option');
+            $this->load->model('catalog/option');
 
             $this->load->model('tool/image');
 
