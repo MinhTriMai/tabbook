@@ -273,30 +273,6 @@ class ControllerMailOrder extends Controller {
 		$mail->setSubject(html_entity_decode(sprintf($language->get('text_subject'), $order_info['store_name'], $order_info['order_id']), ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml($this->load->view('mail/order_add', $data));
 		$mail->send();
-
-		//send email to Seller when Order is added - volyminhnhan@gmail.com
-		$this->load->model('catalog/product');
-		$this->load->model('customer/customer');
-		foreach ($order_products as $order_product) {
-			$product = $this->model_catalog_product->getProduct($order_info['product_id']);
-			$customer = $this->model_customer_customer->getCustomer($product['seller_id']);
-
-			
-			$mail = new Mail($this->config->get('config_mail_engine'));
-			$mail->parameter = $this->config->get('config_mail_parameter');
-			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-
-			$mail->setTo($customer['email']);
-			$mail->setFrom($from);
-			$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(html_entity_decode(sprintf($language->get('text_subject'), $order_info['store_name'], $order_info['order_id']), ENT_QUOTES, 'UTF-8'));
-			$mail->setHtml($this->load->view('mail/order_add_seller', $data));
-			$mail->send();
-		}
 	}
 	
 	public function edit($order_info, $order_status_id, $comment) {
