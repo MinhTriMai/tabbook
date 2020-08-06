@@ -117,19 +117,19 @@
                                             {% endif %} 
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display:none;">
                                         <label class="col-sm-2 control-label" for="input-meta-description{{ language['language_id'] }}">{{ entry_meta_description }}</label>
                                         <div class="col-sm-10">
                                             <textarea name="product_description[{{ language['language_id'] }}][meta_description]" rows="5" placeholder="{{ entry_meta_description }}" id="input-meta-description{{ language['language_id'] }}" class="form-control">{{ product_description[language['language_id']] is defined ? product_description[language['language_id']]['meta_description'] : '' }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display:none;">
                                         <label class="col-sm-2 control-label" for="input-meta-keyword{{ language['language_id'] }}">{{ entry_meta_keyword }}</label>
                                         <div class="col-sm-10">
                                             <textarea name="product_description[{{ language['language_id'] }}][meta_keyword]" rows="5" placeholder="{{ entry_meta_keyword }}" id="input-meta-keyword{{ language['language_id'] }}" class="form-control">{{ product_description[language['language_id']] is defined ? product_description[language['language_id']]['meta_keyword'] : '' }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display:none;">
                                         <label class="col-sm-2 control-label" for="input-tag{{ language['language_id'] }}"><span data-toggle="tooltip" title="{{ help_tag }}">{{ entry_tag }}</span></label>
                                         <div class="col-sm-10">
                                             <input type="text" name="product_description[{{ language['language_id'] }}][tag]" value="{{ product_description[language['language_id']] is defined ? product_description[language['language_id']]['tag'] : '' }}" placeholder="{{ entry_tag }}"
@@ -152,37 +152,37 @@
                                     {% endif %} 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="{{ help_sku }}">{{ entry_sku }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="sku" value="{{ sku }}" placeholder="{{ entry_sku }}" id="input-sku" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-upc"><span data-toggle="tooltip" title="{{ help_upc }}">{{ entry_upc }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="upc" value="{{ upc }}" placeholder="{{ entry_upc }}" id="input-upc" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-ean"><span data-toggle="tooltip" title="{{ help_ean }}">{{ entry_ean }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="ean" value="{{ ean }}" placeholder="{{ entry_ean }}" id="input-ean" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-jan"><span data-toggle="tooltip" title="{{ help_jan }}">{{ entry_jan }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="jan" value="{{ jan }}" placeholder="{{ entry_jan }}" id="input-jan" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-isbn"><span data-toggle="tooltip" title="{{ help_isbn }}">{{ entry_isbn }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="isbn" value="{{ isbn }}" placeholder="{{ entry_isbn }}" id="input-isbn" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-mpn"><span data-toggle="tooltip" title="{{ help_mpn }}">{{ entry_mpn }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="mpn" value="{{ mpn }}" placeholder="{{ entry_mpn }}" id="input-mpn" class="form-control" />
@@ -200,7 +200,7 @@
                                     <input type="text" name="price" value="{{ price }}" placeholder="{{ entry_price }}" id="input-price" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-tax-class">{{ entry_tax_class }}</label>
                                 <div class="col-sm-10">
                                     <select name="tax_class_id" id="input-tax-class" class="form-control">
@@ -221,13 +221,13 @@
                                     <input type="text" name="quantity" value="{{ quantity }}" placeholder="{{ entry_quantity }}" id="input-quantity1" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group required">
+                            <div class="form-group required" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-minimum"><span data-toggle="tooltip" title="{{ help_minimum }}">{{ entry_minimum }}</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="minimum" value="{{ minimum }}" placeholder="{{ entry_minimum }}" id="input-minimum" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-subtract">{{ entry_subtract }}</label>
                                 <div class="col-sm-10">
                                     <select name="subtract" id="input-subtract" class="form-control">
@@ -241,7 +241,7 @@
                       </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-stock-status"><span data-toggle="tooltip" title="{{ help_stock_status }}">{{ entry_stock_status }}</span></label>
                                 <div class="col-sm-10">
                                     <select name="stock_status_id" id="input-stock-status" class="form-control">
@@ -255,7 +255,7 @@
                       </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label">{{ entry_shipping }}</label>
                                 <div class="col-sm-10">
                                     <label class="radio-inline">
@@ -299,7 +299,7 @@
                         </span></div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-length">{{ entry_dimension }}</label>
                                 <div class="col-sm-10">
                                     <div class="row">
@@ -315,7 +315,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-length-class">{{ entry_length_class }}</label>
                                 <div class="col-sm-10">
                                     <select name="length_class_id" id="input-length-class" class="form-control">
@@ -329,13 +329,13 @@
                       </select>
                                 </div>
                             </div>
-                            <div class="form-group required">
+                            <div class="form-group required" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-weight">{{ entry_weight }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="weight" value="{{ weight }}" placeholder="{{ entry_weight }}" id="input-weight" class="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;">
                                 <label class="col-sm-2 control-label" for="input-weight-class">{{ entry_weight_class }}</label>
                                 <div class="col-sm-10">
                                     <select name="weight_class_id" id="input-weight-class" class="form-control">

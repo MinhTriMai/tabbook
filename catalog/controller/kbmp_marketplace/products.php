@@ -1017,7 +1017,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         } elseif (!empty($product_info)) {
             $data['weight'] = $product_info['weight'];
         } else {
-            $data['weight'] = '';
+            $data['weight'] = 1;
         }
 
         $this->load->adminmodel('localisation/weight_class');
