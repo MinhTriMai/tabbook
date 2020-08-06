@@ -27,6 +27,7 @@ body {
     overflow-y: auto;
 }
 
+/*start volyminhnhan@gmail.com modifications*/
 .breadcrumbs {
     padding: 0px!important;
     margin-bottom: 0px!important;
@@ -37,6 +38,10 @@ body {
 .dashboard-info-box h4 {
     color: #fff!important;
 }
+.dash-count{
+    color: #fff!important;
+}
+/*end volyminhnhan@gmail.com modifications*/
 
 /* Layout */
 .wrapper {
