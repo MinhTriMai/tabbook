@@ -384,8 +384,10 @@ class ControllerKbmpMarketplaceTicket extends Controller {
         $data['column_right'] = $this->load->controller('common/column_right');
         $data['content_top'] = $this->load->controller('common/content_top');
         $data['content_bottom'] = $this->load->controller('common/content_bottom');
-        $data['footer'] = $this->load->controller('common/footer');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
         $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('kbmp_marketplace/checkAllTicket', $data));
     }
@@ -449,8 +451,10 @@ class ControllerKbmpMarketplaceTicket extends Controller {
         $data['column_right'] = $this->load->controller('common/column_right');
         $data['content_top'] = $this->load->controller('common/content_top');
         $data['content_bottom'] = $this->load->controller('common/content_bottom');
-        $data['footer'] = $this->load->controller('common/footer');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
         $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('kbmp_marketplace/viewTicket', $data));
     }

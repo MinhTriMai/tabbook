@@ -529,6 +529,14 @@ a:hover,.banner-3 a:hover::before,
 	border-bottom: 1px solid #ededed;
 	font-family: 'Open Sans', sans-serif;
 }
+#top .box{
+	border-radius: 0px!important;
+    background: none!important;
+    border-top: 0px solid #d2d6de!important;
+    margin-bottom: 0px!important;
+    width: auto!important;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1)!important;
+}
 #top .box-left {
 	float:left;
 	margin: 0;

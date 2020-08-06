@@ -87,8 +87,12 @@ class ControllerKbmpMarketplaceSupport extends Controller {
         $data['text_filter'] = $this->language->get('text_filter');
         $data['text_reset'] = $this->language->get('text_reset');
         
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
 
         $data['home_link'] = $this->url->link('common/home');
         $data['account_link'] = $this->url->link('account/account', '', true);
@@ -464,8 +468,10 @@ class ControllerKbmpMarketplaceSupport extends Controller {
         $data['text_phone_no'] = $this->language->get('text_phone_no');
         $data['error_empty_field'] = $this->language->get('error_empty_field');
         
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
 
         $data['home_link'] = $this->url->link('common/home');
         $data['account_link'] = $this->url->link('account/account', '', true);

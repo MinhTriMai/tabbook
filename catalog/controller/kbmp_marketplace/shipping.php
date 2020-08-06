@@ -37,8 +37,10 @@ class ControllerKbmpMarketplaceShipping extends Controller {
         $data['text_account_warning'] = $this->language->get('text_account_warning');
         
         $data['title'] = $this->document->getTitle();
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['text_back_to_site'] = $this->language->get('text_back_to_site');
         $data['text_my_account1'] = $this->language->get('text_my_account1');
         $data['text_shipping'] = $this->language->get('text_shipping');

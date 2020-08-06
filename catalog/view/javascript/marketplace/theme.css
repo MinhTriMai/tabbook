@@ -26,6 +26,18 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+.breadcrumbs {
+    padding: 0px!important;
+    margin-bottom: 0px!important;
+}
+.navbar .nav > li {
+    padding: 0px!important;
+}
+.dashboard-info-box h4 {
+    color: #fff!important;
+}
+
 /* Layout */
 .wrapper {
     min-height: 100%;
@@ -421,7 +433,7 @@ a:focus {
     top: 0;
     left: 0;
     min-height: 100%;
-    width: 230px;
+    width: 220px;
     z-index: 9;
     float:left;
     -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;

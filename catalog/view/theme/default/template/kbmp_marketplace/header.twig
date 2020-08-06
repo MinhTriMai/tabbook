@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html dir="{{ direction }}" lang="{{ lang }}">
-<!--<![endif]-->
-<head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,8 +57,7 @@
 {% for script in scripts %} 
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %} 
-</head>
-<body class="">
+
     <div class="vss_marketplace_page skin-black-light sidebar-mini" style="padding: 36px;padding-left: 57px">
       {% if (error_warning is defined and error_warning is not empty) %} 
     <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
@@ -202,7 +198,7 @@
 .toggleMenu{
 	display:none;
 }
-@media(max-width:1245px){
+/*@media(max-width:1245px){
 	#content-wrapper{
 		width: 70% !important;
 	}
@@ -244,5 +240,5 @@
 }
 @media(max-width:767px){	
 	
-}
+}*/
 </style>

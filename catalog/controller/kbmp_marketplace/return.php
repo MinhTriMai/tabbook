@@ -82,8 +82,10 @@ class ControllerKbmpMarketplaceReturn extends Controller {
         $this->load->language('kbmp_marketplace/return');
         $data= array();
         
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['error_account_warning'] = $this->language->get('error_account_warning');
         $data['text_account_warning'] = $this->language->get('text_account_warning');
         
@@ -222,8 +224,10 @@ class ControllerKbmpMarketplaceReturn extends Controller {
         $this->load->language('kbmp_marketplace/return');
         $data= array();
         
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['error_account_warning'] = $this->language->get('error_account_warning');
         $data['text_account_warning'] = $this->language->get('text_account_warning');
         
@@ -580,8 +584,10 @@ class ControllerKbmpMarketplaceReturn extends Controller {
         $this->load->language('kbmp_marketplace/return');
         $data= array();
         
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['error_account_warning'] = $this->language->get('error_account_warning');
         $data['text_account_warning'] = $this->language->get('text_account_warning');
         

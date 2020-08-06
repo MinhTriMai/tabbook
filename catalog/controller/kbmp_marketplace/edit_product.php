@@ -41,8 +41,10 @@ class ControllerKbmpMarketplaceEditProduct extends Controller {
             'href' => $this->url->link('common/home')
         );
 
-        $data['footer'] = $this->load->controller('common/footer');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
         $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('kbmp_marketplace/edit_product', $data));
     }
