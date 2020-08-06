@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                 = 'Marketplace';
+$_['heading_title']                 = 'Yêu cầu danh mục mới';
 $_['text_my_account']               = 'Yêu cầu danh mục mới';
 $_['text_current_title']            = 'Yêu cầu danh mục';
 $_['text_status_title']             = 'Trạng thái danh mục được yêu cầu';

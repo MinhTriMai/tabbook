@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                     = 'Nơi trao đổi';
+$_['heading_title']                     = 'Vận chuyển';
 $_['text_my_account']                   = 'Vận chuyển';
 $_['text_current_title']                = 'Vận chuyển';
 

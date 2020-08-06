@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                 = 'Nơi trao đổi';
+$_['heading_title']                 = 'Hồ sơ người bán';
 $_['text_my_account']               = 'Hồ sơ người bán';
 $_['text_current_title']            = 'Hồ sơ người bán';
 

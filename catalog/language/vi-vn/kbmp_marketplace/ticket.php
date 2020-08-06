@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['heading_title']            = 'Ticket mới';
+$_['heading_title']            = 'Ticket';
 $_['text_new_ticket']            = 'Ticket mới';
 $_['text_heading_hint'] = 'Vui lòng điền vào biểu mẫu bên dưới để mở một vé mới.';
 $_['text_email_address'] = 'Địa chỉ email';

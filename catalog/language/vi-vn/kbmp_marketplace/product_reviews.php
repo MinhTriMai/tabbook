@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['title_title'] = 'Marketplace';
+$_['title_title'] = 'Nhận xét sản phẩm';
 $_['text_my_account'] = 'Nhận xét sản phẩm';
 $_['text_civerse_title'] = 'Nhận xét sản phẩm';
 

@@ -1,8 +1,8 @@
 <?php
 // Heading
-$_['heading_title']         = 'Marketplace';
-$_['text_my_account'] = 'Lịch sử đặt hàng';
-$_['text_civerse_title'] = 'Lịch sử đặt hàng';
+$_['heading_title']         = 'Lịch sử đơn hàng';
+$_['text_my_account'] = 'Lịch sử đơn hàng';
+$_['text_civerse_title'] = 'Lịch sử đơn hàng';
 
 // Text
 $_['text_register'] = 'Đăng ký';
@@ -14,7 +14,7 @@ $_['text_edit'] = 'Chỉnh sửa tài khoản';
 $_['text_password'] = 'Mật khẩu';
 $_['text_address'] = 'Sổ địa chỉ';
 $_['text_wishlist'] = 'Danh sách mong muốn';
-$_['text_order'] = 'Lịch sử đặt hàng';
+$_['text_order'] = 'Lịch sử đơn hàng';
 $_['text_doad'] = 'Tải xuống';
 $_['text_Vward'] = 'Điểm thưởng';
 $_['text_return'] = 'Trả về';

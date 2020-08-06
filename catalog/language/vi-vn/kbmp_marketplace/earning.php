@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']                     = 'Marketplace';
+$_['heading_title']                     = 'Thu nhập của tôi';
 $_['text_my_account']                   = 'Thu nhập của tôi';
 $_['text_current_title']                = 'Thu nhập của tôi';
 
