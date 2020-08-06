@@ -91,7 +91,7 @@
                                 <label class="col-sm-2 control-label" for="input-name{{ language['language_id'] }}">{{ entry_name }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="product_description[{{ language['language_id'] }}][name]" value="{{ product_description[language['language_id']] is defined ? product_description[language['language_id']]['name'] : '' }}" placeholder="{{ entry_name }}"
-                                    id="input-name{{ language['language_id'] }}" class="form-control" />
+                                    id="input-name{{ language['language_id'] }}" class="form-control" onkeypress="updateSEOUrl(this.value,{{ language['language_id'] }});"/>
                                     {% if (error_name[language['language_id']] is defined) %}
                                         <div class="text-danger">
                                             {{ error_name[language['language_id']] }}
@@ -903,6 +903,15 @@
     {{ footer }}
     <script type="text/javascript">
     <!--
+    //update SEO URL
+    function updateSEOUrl(val, language_id) {
+        //console.log(language_id);
+        var str = val;
+        str = str.replace(/[^a-zA-Z ]/g, "");
+        str = str.replace(/ /g, "-");
+
+        $("#input-keyword").val(str);
+    }
     // Manufacturer
     $('input[name=\'manufacturer\']').autocomplete({
         'source': function(request, response) {

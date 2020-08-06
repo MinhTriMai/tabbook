@@ -1944,7 +1944,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         if (utf8_strlen($this->request->post['keyword']) > 0) {
             $this->load->adminmodel('design/seo_url');
 
-            $url_alias_info = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+            $url_alias_info = $this->model_design_seo_url->getSeoUrlsByKeyword($this->request->post['keyword']);
             
             if ($url_alias_info && isset($this->request->get['product_id']) && $url_alias_info['query'] != 'product_id=' . $this->request->get['product_id']) {
                 $this->error['keyword'] = sprintf($this->language->get('error_keyword'));
