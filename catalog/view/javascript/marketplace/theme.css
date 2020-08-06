@@ -41,6 +41,10 @@ body {
 .dash-count{
     color: #fff!important;
 }
+#content-wrapper {
+    width: 78%!important;
+    margin-left: 1%!important;
+}
 /*end volyminhnhan@gmail.com modifications*/
 
 /* Layout */
