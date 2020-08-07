@@ -89,6 +89,11 @@ var ocajaxlogin = {
                         $('.error-lastname').addClass('text-danger').html(json['error_lastname']).show();
                     }
 
+                    // School
+                    if(json['error_school'] != '') {
+                        $('.error-school').addClass('text-danger').html(json['error_school']).show();
+                    }
+
                     // Email
                     if(json['error_email'] != '') {
                         $('.error-email').addClass('text-danger').html(json['error_email']).show();

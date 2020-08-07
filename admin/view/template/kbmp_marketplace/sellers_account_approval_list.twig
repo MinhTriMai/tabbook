@@ -208,7 +208,8 @@
                                       <td>
                                           <a href="{{ pending_approval['edit'] }}" data-toggle="tooltip" title="{{ text_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                                           <a href="javascript://" onclick="approve_seller('{{ pending_approval['seller_id'] }}')" data-toggle="tooltip" title="{{ text_approve }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                                          <a href="javascript://" title="{{ text_disapprove }}" class="btn btn-danger" {% if (pending_approval['approval_status'] is defined and pending_approval['approval_status'] is not empty) %} {{ "disabled" }} {% else %}data-toggle="modal" data-target="#disapproveModal" onclick="disapprove_seller('{{ pending_approval['seller_id'] }}')"{% endif %}><i class="fa fa-ban"></i></a>
+                                          <!-- <a href="javascript://" title="{{ text_disapprove }}" class="btn btn-danger" {% if (pending_approval['approval_status'] is defined and pending_approval['approval_status'] is not empty) %} {{ "disabled" }} {% else %}data-toggle="modal" data-target="#disapproveModal" onclick="disapprove_seller('{{ pending_approval['seller_id'] }}')"{% endif %}><i class="fa fa-ban"></i></a> -->
+                                          <a href="javascript://" title="{{ text_disapprove }}" class="btn btn-danger" data-toggle="modal" data-target="#disapproveModal" onclick="disapprove_seller('{{ pending_approval['seller_id'] }}')"><i class="fa fa-ban"></i></a>
                                       </td>
                                     </tr>
                                          {% endfor %}
