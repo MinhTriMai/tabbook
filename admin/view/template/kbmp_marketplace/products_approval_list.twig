@@ -185,11 +185,12 @@
                                   <td>
                                     <a href="{{ products_approval['view'] }}" data-toggle="tooltip" title="{{ text_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                     <a href="javascript://" onclick="approve_product('{{ products_approval['product_id'] }}')" data-toggle="tooltip" title="{{ text_approve }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                                    {% if (products_approval['approval_status'] is defined and products_approval['approval_status'] is not empty) %} 
+                                    <!-- {% if (products_approval['approval_status'] is defined and products_approval['approval_status'] is not empty) %} 
                                     <a href="javascript://" data-toggle="tooltip" title="{{ text_disapprove }}" class="btn btn-danger" disabled="true"><i class="fa fa-ban"></i></a>
                                     {% else %} 
                                     <a href="javascript://" data-toggle="modal" data-target="#disapproveModal" onclick="disapprove_product('{{ products_approval['product_id'] }}')" title="{{ text_disapprove }}" class="btn btn-danger"><i class="fa fa-ban"></i></a>
-                                    {% endif %} 
+                                    {% endif %}  -->
+                                     <a href="javascript://" data-toggle="modal" data-target="#disapproveModal" onclick="disapprove_product('{{ products_approval['product_id'] }}')" title="{{ text_disapprove }}" class="btn btn-danger"><i class="fa fa-ban"></i></a>
                                   </td>
                                 </tr>
                                      {% endfor %}
