@@ -108,11 +108,22 @@ $(document).ready(function() {
 			placement: 'right',
 			trigger: 'manual',
 			content: function() {
-				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+				return '<button type="button" id="button-image-download" class="btn btn-primary"><i class="fa fa-download"></i></button> <button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
 			}
 		});
 
 		$element.popover('show');
+
+		$('#button-image-download').on('click', function() {
+			var input = $element.parent().find('input');
+
+			var link = document.createElement('a');
+			link.href = "https://tabbook.vn/image/" + input.val();
+			link.download = 'ImageDownload.jpg';
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		});
 
 		$('#button-image').on('click', function() {
 			var $button = $(this);
