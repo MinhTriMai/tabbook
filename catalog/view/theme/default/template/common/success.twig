@@ -2,16 +2,16 @@
 <div id="common-success" class="container">
   <ul class="breadcrumb">
     {% for breadcrumb in breadcrumbs %}
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+      <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
     {% endfor %}
   </ul>
   <div class="row">{{ column_left }}
     {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
+      {% set class = 'col-sm-6' %}
     {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
+      {% set class = 'col-sm-9' %}
     {% else %}
-    {% set class = 'col-sm-12' %}
+      {% set class = 'col-sm-12' %}
     {% endif %}
     <div id="content" class="{{ class }}">{{ content_top }}
       <h1>{{ heading_title }}</h1>
@@ -19,7 +19,46 @@
       <div class="buttons">
         <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
       </div>
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
+    {{ content_bottom }}</div>
+  {{ column_right }}</div>
 </div>
+
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/tt_koparion4/stylesheet/opentheme/ocajaxlogin/css/ocajaxlogin.css">
+
+<div id="ajax-login-block" style="display: block;"></div>
+<div class="ajax-body-login" style="display: block;">
+  <div class="account-register" style="display: block;">
+    <div class="page-title">
+      <h1>{{ text_survey_title }}</h1>
+      <a href="javascript:void(0);" class="a-close-frm" onclick="ocajaxlogin.closeForm();"><span>{{ text_survey_close }}</span></a>
+    </div>
+    <div class="ajax-content">
+      <div class="ajax-container">
+        <div class="register-form-content">
+          <!-- <p>{{ text_survey_short_desc }}</p> -->
+          {{ google_survey_link|convert_encoding('UTF-8', 'HTML-ENTITIES') | raw  }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script ><!--
+// A $( document ).ready() block.
+$( document ).ready(function() {
+  {% if showSurveyForm is not null%}
+      showSurveyForm();
+  {% else %}
+      hideSurveyForm();
+  {% endif %}
+});
+function hideSurveyForm() {
+    $('.ajax-body-login').hide();
+    $('#ajax-login-block').hide();
+}
+function showSurveyForm() {
+    $('.ajax-body-login').show();
+    $('#ajax-login-block').show();
+}
+//-->
+</script>
 {{ footer }}

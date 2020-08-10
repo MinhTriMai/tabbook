@@ -18,9 +18,23 @@ class ControllerCheckoutSuccess extends Controller {
 			unset($this->session->data['voucher']);
 			unset($this->session->data['vouchers']);
 			unset($this->session->data['totals']);
-		}
+		} 
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		//start volyminhnhan@gmail.com modifications
+		if($this->request->get['route'] == 'checkout/success') {
+			$data['showSurveyForm'] = true;
+		}
+		else {
+			$data['showSurveyForm'] = false;
+		}
+		$data['text_survey_title'] = $this->language->get('text_survey_title');
+		$data['text_survey_short_desc'] = $this->language->get('text_survey_short_desc');
+		$data['text_survey_close'] = $this->language->get('text_survey_close');
+		$data['google_survey_link'] = $this->config->get('config_google_survey');
+		//end volyminhnhan@gmail.com modifications
+
 
 		$data['breadcrumbs'] = array();
 

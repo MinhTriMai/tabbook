@@ -168,6 +168,14 @@ class ControllerSettingSetting extends Controller {
 			$data['config_meta_title'] = $this->config->get('config_meta_title');
 		}
 
+		//start volyminhnhan@gmail.com modifications
+		if (isset($this->request->post['config_google_survey'])) {
+			$data['config_google_survey'] = $this->request->post['config_google_survey'];
+		} else {
+			$data['config_google_survey'] = $this->config->get('config_google_survey');
+		}
+		//end volyminhnhan@gmail.com modifications
+
 		if (isset($this->request->post['config_meta_description'])) {
 			$data['config_meta_description'] = $this->request->post['config_meta_description'];
 		} else {
