@@ -17,7 +17,6 @@
                     </div>
 				
 					{{ _menu }} 
-				
 			</div>
 			</div>
 		
@@ -26,6 +25,13 @@
 		<div id="pt_custommenu" class="pt_custommenu">
 			<!-- <div class="container"> -->
 				{{ hozmegamenu }}
+				{% if (customer['isLogged']  and customer['isSeller'] is same as(0)) %}
+					<div id="pt_menu_link9999" class="pt_menu pt_menu_link">
+						<div class="parentMenu">
+							<a href="index.php?route=account/seller"><span>{{ txt_become_seller }}</span></a>
+						</div>
+					</div>
+                {% endif %}
 			<!-- </div> -->
 		</div>
 	</div>
