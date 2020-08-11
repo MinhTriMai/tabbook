@@ -192,6 +192,9 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $data['text_approve'] = $this->language->get('text_approve');
         $data['text_disapprove'] = $this->language->get('text_disapprove');
         $data['text_disapproved'] = $this->language->get('text_disapproved');
+        $data['entry_date_available'] = $this->language->get('entry_date_available');
+        $data['entry_category'] = $this->language->get('entry_category');
+        $data['entry_additional_image'] = $this->language->get('entry_additional_image');
         //end volyminhnhan@gmail modifications
 
         $data['text_enabled'] = $this->language->get('text_enabled');

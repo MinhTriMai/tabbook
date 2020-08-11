@@ -65,12 +65,12 @@
                 </a>
             </li>
             <li>
-                <a href="#tab-discount" data-toggle="tab">
+                <a href="#tab-discount" data-toggle="tab" style="display:none;">
                     {{ tab_discount }}
                 </a>
             </li>
             <li>
-                <a href="#tab-special" data-toggle="tab">
+                <a href="#tab-special" data-toggle="tab" style="display:none;">
                     {{ tab_special }}
                 </a>
             </li>
@@ -94,7 +94,7 @@
                                 <label class="col-sm-2 control-label" for="input-name{{ language['language_id'] }}">{{ entry_name }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="product_description[{{ language['language_id'] }}][name]" value="{{ product_description[language['language_id']] is defined ? product_description[language['language_id']]['name'] : '' }}" placeholder="{{ entry_name }}"
-                                    id="input-name{{ language['language_id'] }}" class="form-control" onkeypress="updateSEOUrl(this.value,{{ language['language_id'] }});"/>
+                                    id="input-name{{ language['language_id'] }}" class="form-control" onkeypress="updateRelatedFields(this.value,{{ language['language_id'] }});"/>
                                     {% if (error_name[language['language_id']] is defined) %}
                                         <div class="text-danger">
                                             {{ error_name[language['language_id']] }}
@@ -367,7 +367,7 @@
                     <input name="points" type="hidden" value="0" />
                     <!--Hidden field for Store - default value 0-->
                     <input name="product_store[]" type="hidden" value="0" />
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
                         <div class="col-sm-10">
                             <input type="text" name="sort_order" value="{{ sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
@@ -707,7 +707,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="tab-discount">
+                <div class="tab-pane" id="tab-discount" style="display:none;">
                     <div class="table-responsive">
                         <table id="discount" class="table table-striped table-bordered table-hover">
                             <thead>
@@ -777,7 +777,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab-special">
+                        <div class="tab-pane" id="tab-special" style="display:none;">
                             <div class="table-responsive">
                                 <table id="special" class="table table-striped table-bordered table-hover">
                                     <thead>
@@ -906,15 +906,20 @@
     {{ footer }}
     <script type="text/javascript">
     <!--
-    //update SEO URL
-    function updateSEOUrl(val, language_id) {
-        //console.log(language_id);
+    //start volyminhnhan@gmail.com modifications
+    function updateRelatedFields(val, language_id) {
+        //update SEO URL
         var str = val;
         str = str.replace(/[^a-zA-Z ]/g, "");
         str = str.replace(/ /g, "-");
 
         $("#input-keyword").val(str);
+
+        //update meta Title
+         $("#input-meta-title" + language_id).val(val);
     }
+    //end volyminhnhan@gmail.com modifications
+
     // Manufacturer
     $('input[name=\'manufacturer\']').autocomplete({
         'source': function(request, response) {

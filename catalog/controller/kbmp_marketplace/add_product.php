@@ -122,6 +122,7 @@ class ControllerKbmpMarketplaceAddProduct extends Controller {
         $data['help_text_minimum_quantity'] = $this->language->get('help_text_minimum_quantity');
         $data['help_text_out_of_stock'] = $this->language->get('help_text_out_of_stock');
         $data['help_text_seo_keyword'] = $this->language->get('help_text_seo_keyword');
+        $data['text_date_available'] = $this->language->get('text_date_available');
         $data['help_text_autocomplete'] = $this->language->get('help_text_autocomplete');
         $data['error_account_warning'] = $this->language->get('error_account_warning');
         $data['text_account_warning'] = $this->language->get('text_account_warning');

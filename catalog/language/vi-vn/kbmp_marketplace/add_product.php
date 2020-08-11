@@ -85,6 +85,7 @@ $_['help_text_isbn']                    = 'Số sách tiêu chuẩn quốc tế'
 $_['help_text_mpn']                     = 'Manufacturer Part Number';
 $_['help_text_minimum_quantity']        = 'Bắt buộc số lượng đặt hàng tối thiểu';
 $_['help_text_out_of_stock']            = 'Tình trạng hiển thị khi hết sản phẩm';
+$_['text_date_available']               = 'Ngày bắt đầu bán';
 $_['help_text_seo_keyword']             = 'Không sử dụng dấu cách thay thế dấu cách bằng - và đảm bảo từ khóa là duy nhất trên tất cả';
 $_['help_text_autocomplete']            = 'Tự động hoàn tất';
 
