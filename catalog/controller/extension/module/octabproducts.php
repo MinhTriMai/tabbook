@@ -35,6 +35,9 @@ class ControllerExtensionModuleOcTabProducts extends Controller {
 					
 					if($octab['productfrom']==1){
 						$data1 = array(
+								//start volyminhnhan@gmail.com modifications
+								'filter_quantity_greater_than_zero' => 1,
+								//end volyminhnhan@gmail.com modifications
 								'filter_category_id' => $octab['cate_id'],
 								'sort'  => 'p.date_added',
 								'order' => 'DESC',

@@ -24,6 +24,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 		} else if ($setting['option']==1){
 			if($setting['productfrom']==1){
 				$data['filter_category_id'] = $setting['cate_id'];
+				//start volyminhnhan@gmail.com modifications
+				$data['filter_quantity_greater_than_zero'] = 1;
+				//end volyminhnhan@gmail.com modifications
 				$results = $this->model_catalog_product->getProducts($data);
 			} else if($setting['productfrom']==0) {
 				if (!empty($setting['productcate'])) {

@@ -448,6 +448,12 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+		//start volyminhnhan@gmail.com modifications
+		if (!empty($data['filter_quantity_greater_than_zero'])) {
+			$sql .= " AND p.quantity > 0";
+		}
+		//end volyminhnhan@gmail.com modifications
+
 		$sql .= " GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -810,6 +816,12 @@ class ModelCatalogProduct extends Model {
 		if (!empty($data['filter_manufacturer_id'])) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
+
+		//start volyminhnhan@gmail.com modifications
+		if (!empty($data['filter_quantity_greater_than_zero'])) {
+			$sql .= " AND p.quantity > 0";
+		}
+		//end volyminhnhan@gmail.com modifications
 
 		$query = $this->db->query($sql);
 

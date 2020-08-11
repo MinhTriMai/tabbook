@@ -131,6 +131,9 @@ class ControllerExtensionModuleOcsearchcategory extends Controller {
         $data['products'] = array();
 
         $filter_data = array(
+            //start volyminhnhan@gmail.com modifications
+            'filter_quantity_greater_than_zero' => 1,
+            //end volyminhnhan@gmail.com modifications
             'filter_name'         => $search,
             'filter_category_id'  => $category_id
         );
