@@ -90,11 +90,13 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
             $filter_status = null;
         }
         
-        if (isset($this->request->get['filter_approval_status'])) {
+        //start volyminhnhan@gmail.com modifications
+        if (isset($this->request->get['filter_approval_status']) && $this->request->get['filter_approval_status'] != "-1") {
             $filter_approval_status = $this->request->get['filter_approval_status'];
         } else {
-            $filter_approval_status = null;
+            $filter_approval_status = '';
         }
+        //end volyminhnhan@gmail.com modifications
         
         if (isset($this->request->get['filter_from_date'])) {
             $filter_from_date = $this->request->get['filter_from_date'];
@@ -152,9 +154,11 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
             $url .= '&filter_status=' . urlencode(html_entity_decode($this->request->get['filter_status'], ENT_QUOTES, 'UTF-8'));
         }
         
-        if (isset($this->request->get['filter_approval_status'])) {
+        //start volyminhnhan@gmail.com modifications
+        if (isset($this->request->get['filter_approval_status'])&& $this->request->get['filter_approval_status'] != "-1") {
             $url .= '&filter_approval_status=' . urlencode(html_entity_decode($this->request->get['filter_approval_status'], ENT_QUOTES, 'UTF-8'));
         }
+        //end volyminhnhan@gmail.com modifications
         
         if (isset($this->request->get['filter_from_date'])) {
             $url .= '&filter_from_date=' . urlencode(html_entity_decode($this->request->get['filter_from_date'], ENT_QUOTES, 'UTF-8'));
@@ -284,6 +288,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
         $data['text_no_results'] = $this->language->get('text_no_results');
         $data['text_edit'] = $this->language->get('text_edit');
         $data['text_waiting_approval'] = $this->language->get('text_waiting_approval');
+        $data['text_all'] = $this->language->get('text_all');
         $data['text_approve'] = $this->language->get('text_approve');
         $data['text_disapprove'] = $this->language->get('text_disapprove');
         $data['text_disapproved'] = $this->language->get('text_disapproved');

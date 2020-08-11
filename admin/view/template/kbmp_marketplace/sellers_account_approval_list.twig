@@ -151,11 +151,13 @@
                                     </select> 
                                 </th>
                                 <th>
+                                    <!--start volyminhnhan@gmail.com modifications-->
                                     <select class="form-control" name="filter_approval_status">
-                                        <option value="" selected="selected"></option>
+                                        <option value="-1" {% if (filter_data['filter_approval_status'] is defined and filter_data['filter_approval_status'] == '-1') %}selected{% endif %}>{{ text_all }}</option>
                                         <option value="0" {% if (filter_data['filter_approval_status'] is defined and filter_data['filter_approval_status'] == '0') %}selected{% endif %}>{{ text_waiting_approval }}</option>
                                         <option value="2" {% if (filter_data['filter_approval_status'] is defined and filter_data['filter_approval_status'] == '2') %}selected{% endif %}>{{ text_disapproved }}</option>
                                     </select> 
+                                    <!--end volyminhnhan@gmail.com modifications-->
                                 </th>
                                 <th>
                                     <div class="input-group date" style="margin-bottom:10px;">
