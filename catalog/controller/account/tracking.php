@@ -65,6 +65,9 @@ class ControllerAccountTracking extends Controller {
 			$this->load->model('catalog/product');
 
 			$filter_data = array(
+				//start volyminhnhan@gmail.com modifications
+				'filter_quantity_greater_than_zero' => 1,
+				//end volyminhnhan@gmail.com modifications
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
 				'limit'       => 5

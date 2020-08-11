@@ -39,6 +39,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 				if ($setting['input_specific_product']==0){
 					$data['products'] = array();
 					$filter_data = array(
+						//start volyminhnhan@gmail.com modifications
+						$data['filter_quantity_greater_than_zero'] = 1;
+						//end volyminhnhan@gmail.com modifications
 						'filter_category_id' => $setting['cate_id'],
 						'sort'  => 'p.date_added',
 						'order' => 'DESC',
@@ -66,6 +69,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 			if ($setting['autoproduct']==0){
 				$data['products'] = array();
 				$filter_data = array(
+					//start volyminhnhan@gmail.com modifications
+					'filter_quantity_greater_than_zero' => 1,
+					//end volyminhnhan@gmail.com modifications
 					'sort'  => 'p.date_added',
 					'order' => 'DESC',
 					'start' => 0,
@@ -97,6 +103,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 		/* Get new product */
 		$this->load->model('catalog/product');
 		$filter_data = array(
+			//start volyminhnhan@gmail.com modifications
+			'filter_quantity_greater_than_zero' => 1,
+			//end volyminhnhan@gmail.com modifications
 			'sort'  => 'p.date_added',
 			'order' => 'DESC',
 			'start' => 0,

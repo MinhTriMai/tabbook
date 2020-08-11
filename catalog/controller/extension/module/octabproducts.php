@@ -57,6 +57,9 @@ class ControllerExtensionModuleOcTabProducts extends Controller {
 					} else {
 						if ($octab['input_specific_product']==0){
 							$filter_data = array(
+								//start volyminhnhan@gmail.com modifications
+								'filter_quantity_greater_than_zero' => 1,
+								//end volyminhnhan@gmail.com modifications
 								'filter_category_id' => $octab['cate_id'],
 								'sort'  => 'p.date_added',
 								'order' => 'DESC',
@@ -86,6 +89,9 @@ class ControllerExtensionModuleOcTabProducts extends Controller {
 			} else {
 				if ($octab['autoproduct']==0){
 					$filter_data = array(
+						//start volyminhnhan@gmail.com modifications
+						'filter_quantity_greater_than_zero' => 1,
+						//end volyminhnhan@gmail.com modifications
 						'sort'  => 'p.date_added',
 						'order' => 'DESC',
 						'start' => 0,
@@ -115,6 +121,9 @@ class ControllerExtensionModuleOcTabProducts extends Controller {
 			/* Get new product */
 			$this->load->model('catalog/product');
 			$filter_data = array(
+				//start volyminhnhan@gmail.com modifications
+				'filter_quantity_greater_than_zero' => 1,
+				//end volyminhnhan@gmail.com modifications
 				'sort'  => 'p.date_added',
 				'order' => 'DESC',
 				'start' => 0,
