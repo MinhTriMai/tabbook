@@ -306,6 +306,17 @@ class ControllerExtensionModuleAjaxlogin extends Controller {
                 $json['wishlist_total'] = sprintf($this->language->get('text_wishlist'), (isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0));
                 $json['cart_total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total, $this->session->data['currency']));
                 $json['success_message'] = $this->language->get('success_message');
+
+                //start volyminhnhan@gmail.com modifications
+                $seller_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int)$this->customer->getId() . "'");
+
+                if ($seller_query->num_rows) {
+                    $json['isSeller'] = 1;
+                }
+                else {
+                    $json['isSeller'] = 0;
+                }
+                //end volyminhnhan@gmail.com modifications
             }
         } else {
             if(!$json) {
