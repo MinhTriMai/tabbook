@@ -333,7 +333,7 @@ class ModelCheckoutOrder extends Model {
 					$product_query = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$order_product['product_id'] . "'");
 					if($product_query->num_rows) {
 						if($order_status_id == 1 && (int)$product_query->row['quantity'] <= 0) {
-							$this->db->query("UPDATE " . DB_PREFIX . "product SET status = '0' WHERE product_id = '" . (int)$product['product_id'] . "'");
+							$this->db->query("UPDATE " . DB_PREFIX . "product SET status = '0' WHERE product_id = '" . (int)$order_product['product_id'] . "'");
 						}
 					}
 					//end volyminhnhan@gmail.com modifications
