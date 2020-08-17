@@ -17,7 +17,7 @@
     {% set class = 'col-sm-12' %}
     {% endif %}
     <div id="content" class="{{ class }}">{{ content_top }}
-      <div class="col-sm-4" style="min-height: 200px;">
+      <div class="col-sm-4 dashboard-info-box" style="min-height: 210px;">
         <h2>{{ text_my_account }}</h2>
         <ul class="list-unstyled">
           <li><a href="{{ edit }}">{{ text_edit }}</a></li>
@@ -28,7 +28,7 @@
       </div>
 
       {% if credit_cards %}
-      <div class="col-sm-4" style="min-height: 200px;">
+      <div class="col-sm-4" style="min-height: 210px;">
         <h2>{{ text_credit_card }}</h2>
         <ul class="list-unstyled">
           {% for credit_card in credit_cards %}
@@ -38,7 +38,7 @@
       </div>
       {% endif %}
 
-      <div class="col-sm-4"  style="min-height: 200px;">
+      <div class="col-sm-4 dashboard-info-box green"  style="min-height: 210px;">
         <h2>{{ text_my_orders }}</h2>
         <ul class="list-unstyled">
           <li><a href="{{ order }}">{{ text_order }}</a></li>
@@ -52,7 +52,7 @@
         </ul>
       </div>
 
-      <div class="col-sm-4"  style="min-height: 200px;">
+      <div class="col-sm-4 dashboard-info-box orange"  style="min-height: 210px;">
         <h2>{{ text_my_affiliate }}</h2>
         <ul class="list-unstyled">
           {% if not tracking %}
@@ -64,7 +64,7 @@
         </ul>
       </div>
       
-      <div class="col-sm-4"  style="min-height: 200px;">
+      <div class="col-sm-4 dashboard-info-box pink"  style="min-height: 210px;">
         <h2>{{ text_my_newsletter }}</h2>
         <ul class="list-unstyled">
           <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
