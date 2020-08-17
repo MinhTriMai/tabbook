@@ -139,6 +139,46 @@ div.required .control-label:before {
 	font-weight: bold;
 }
 
+#information-contact #content h1 {
+	font-size: 25px;
+}
+#information-contact #content h3 {
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	color: #777;
+}
+
+#information-contact #content h3.connect-with-us {
+	color: #333;
+	font-size: 18px;
+	 font-weight: normal; 
+	margin-top: 25px;
+	/* font-family: "Lucida Console", Monaco, monospace; */
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+#information-contact #content .col-sm-10 {
+	margin-left:0px!important;
+	padding-left: 0px!important;
+}
+
+#information-contact #content .buttons {
+	margin-left: -15px!important;
+}
+
+#information-contact #content .panel {
+	margin-left: -15px!important;
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+}
+
+#information-contact #content .panel  .panel-body{
+	margin-left: 0px!important;
+	padding-left: 0px!important;
+}
+
 /* tooltip */
 .tooltip.top .tooltip-arrow {
   border-top-color: #00abe0;
