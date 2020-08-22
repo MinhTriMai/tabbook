@@ -17,6 +17,7 @@ class ControllerExtensionModuleOchozmegamenu extends Controller {
 		$data['customer']['isLogged'] = $customer->isLogged();
 		$data['customer']['isSeller'] = $customer->isKBMPSeller();
 		$data['txt_become_seller'] = $this->language->get('txt_become_seller');
+		$data['txt_seller_post_product'] = $this->language->get('txt_seller_post_product');
 		//end volyminhnhan@gmail.com modifications
 
       	$data['heading_title'] = $this->language->get('heading_title');

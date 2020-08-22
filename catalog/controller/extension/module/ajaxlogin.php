@@ -312,9 +312,11 @@ class ControllerExtensionModuleAjaxlogin extends Controller {
 
                 if ($seller_query->num_rows) {
                     $json['isSeller'] = 1;
+                    $json['isSellerApproved'] = $seller_query->row['approved'];
                 }
                 else {
                     $json['isSeller'] = 0;
+                    $json['isSellerApproved'] = 0;
                 }
                 //end volyminhnhan@gmail.com modifications
             }

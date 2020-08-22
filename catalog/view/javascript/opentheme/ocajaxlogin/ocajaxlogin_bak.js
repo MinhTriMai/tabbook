@@ -45,6 +45,9 @@ var ocajaxlogin = {
                         if(!json['isSeller']) {
                             $("#pt_custommenu").append('<div id="pt_menu_link9999" class="pt_menu pt_menu_link"><div class="parentMenu"><a href="index.php?route=account/seller"><span>Trở thành người bán</span></a></div></div>');
                         }
+                        else {
+                            $("#pt_custommenu").append('<div id="pt_menu_link9999" class="pt_menu pt_menu_link"><div class="parentMenu"><a href="index.php?route=kbmp_marketplace/products"><span>Đăng bán sản phẩm</span></a></div></div>');
+                        }
                         //end volyminhnhan@gmail.com modifications
                     }
                     ocajaxlogin.closeForm();

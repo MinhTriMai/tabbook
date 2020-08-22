@@ -31,6 +31,13 @@
 							<a href="index.php?route=account/seller"><span>{{ txt_become_seller }}</span></a>
 						</div>
 					</div>
+				{% endif %}
+				{% if (customer['isLogged']  and customer['isSeller'] is same as(1)) %}
+					<div id="pt_menu_link9998" class="pt_menu pt_menu_link">
+						<div class="parentMenu">
+							<a href="index.php?route=kbmp_marketplace/products"><span>{{ txt_seller_post_product }}</span></a>
+						</div>
+					</div>
                 {% endif %}
 			<!-- </div> -->
 		</div>
