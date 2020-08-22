@@ -3554,6 +3554,11 @@ label[for='input-quantity']{
 	border: 0;
 	margin-right: 4px;
 }
+.quantity-left {
+	float:left;
+	width: 100%;
+	margin-top: 10px;
+}
 .product-info-main label[for='input-quantity'], .product-info-main .quantity-box {
 	margin-top: 8px;
 }
