@@ -1315,17 +1315,17 @@ a:hover,.banner-3 a:hover::before,
 }
 .static-top-skybook1 .image a .text .text1 {
   font-weight: 700;
-  font-size: 20px;
-  text-transform: capitalize;
+  font-size: 28px;
+  text-transform: uppercase;
   color: #fff;
   display: block;
   line-height: 1;
   margin-bottom: 7px;
 }
 .static-top-skybook1 .image a .text .text2 {
-  font-size: 28px;
+  font-size: 20px;
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: capitalize;
   display: block;
   color: #fff;
   margin-right: -218px;
