@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_subject']  = '%s - Chương Trình Đại lý';
+$_['text_subject']        = '[%s] - Chương Trình Đại lý';
 $_['text_welcome']  = 'Cám ơn bạn đã tham gia chương trình %s Đại lý!';
 $_['text_login']          = 'Tài khoản của bạn đã được tạo và bạn có thể đăng nhập bằng cách sử dụng địa chỉ e-mail và mật khẩu bằng cách truy cập trang web của chúng tôi hoặc tại URL sau:';
 $_['text_approval']       = 'Tài khoản của bạn phải được chấp thuận trước khi bạn có thể đăng nhập. Sau khi được chấp thuận, bạn có thể đăng nhập bằng cách sử dụng địa chỉ e-mail và mật khẩu bằng cách truy cập trang web của chúng tôi hoặc tại URL sau:';

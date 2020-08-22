@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_subject']          = '%s - Order %s';
+$_['text_subject']        = '[%s] - Order %s';
 $_['text_greeting']         = 'Thank you for your interest in %s products. Your order has been received and will be processed once payment has been confirmed.';
 $_['text_link']             = 'To view your order click on the link below:';
 $_['text_order_detail']     = 'Order Details';
