@@ -26,11 +26,12 @@
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_order_id }}</b> {{ order_id }}<br />
           <b>{{ text_date_added }}</b> {{ date_added }}<br />
           <b>{{ text_payment_method }}</b> {{ payment_method }}<br />
-          {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }}
-          {% endif %}</td>
+         <!--  {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }}
+          {% endif %} -->
+        </td>
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><b>{{ text_email }}</b> {{ email }}<br />
           <b>{{ text_telephone }}</b> {{ telephone }}<br />
-          <b>{{ text_ip }}</b> {{ ip }}<br />
+          <!-- <b>{{ text_ip }}</b> {{ ip }}<br /> -->
           <b>{{ text_order_status }}</b> {{ order_status }}<br /></td>
       </tr>
     </tbody>
@@ -49,7 +50,7 @@
     </tbody>
   </table>
   {% endif %}
-  <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 20px;">
+  <!-- <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 20px;">
     <thead>
       <tr>
         <td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; background-color: #EFEFEF; font-weight: bold; text-align: left; padding: 7px; color: #222222;">{{ text_payment_address }}</td>
@@ -64,7 +65,7 @@
         <td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ shipping_address }}</td>
         {% endif %} </tr>
     </tbody>
-  </table>
+  </table> -->
   <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 20px;">
     <thead>
       <tr>
@@ -110,6 +111,20 @@
       </tfoot>
     
   </table>
+
+  <table style="width: 100%">
+  <tbody>
+    <tr>
+      <td class="box" style="border: 1px solid #D6D4D4; background-color: #f8f8f8; padding: 7px 14px;">
+        <p data-html-only="1" style="border-bottom: 1px solid #D6D4D4; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 18px; padding-bottom: 10px;">Thông tin người bán</p>
+        <span size="2" face="Open-sans, sans-serif" color="#555454" style="color: #555454; font-family: Open-sans, sans-serif; font-size: small;">
+        <span style="color: #777;"> <span style="color: #333;"><strong>Tên:</strong></span> {{seller_firstname}} {{seller_lastname}}<br> </span>
+        <span style="color: #777;"> <span style="color: #333;"><strong>Email:</strong></span> {{seller_email}}<br> </span> </span>
+        <span style="color: #777;"> <span style="color: #333;"><strong>Số điện thoại:</strong></span> {{seller_telephone}}<br> </span> 
+      </td>
+    </tr>
+  </tbody>
+</table>
   <p style="margin-top: 0px; margin-bottom: 20px;">{{ text_footer }}</p>
 </div>
 </body>
