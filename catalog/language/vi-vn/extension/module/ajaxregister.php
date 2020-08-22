@@ -6,7 +6,7 @@ $_['heading_title']        = 'Đăng ký tài khoản';
 // Text
 $_['text_account']         = 'Tài khoản';
 $_['text_register']        = 'Đăng ký';
-$_['text_account_already'] = 'Nếu bạn đã có tài khoản với chúng tôi, vui lòng đăng nhập. <a onclick="ocajaxlogin.appendLoginForm()" href="javascript:void(0);">click vào đây để đăng nhập</a>.';
+$_['text_account_already'] = 'Bạn đã là Tabber?. Vui lòng đăng nhập <a onclick="ocajaxlogin.appendLoginForm()" href="javascript:void(0);">tại đây</a>.';
 $_['text_your_details']    = 'Thông tin cá nhân chi tiết';
 $_['text_your_address']    = 'Địa chỉ của bạn';
 $_['text_newsletter']      = 'Bản tin';
