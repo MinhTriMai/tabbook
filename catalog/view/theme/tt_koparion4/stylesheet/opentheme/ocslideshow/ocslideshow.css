@@ -220,7 +220,7 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 }
 
 .banner7-content .title1 {
-	font-size: 50px;
+	font-size: 30px;
 	color: #fff;
 	font-weight: 700;
 	text-transform: capitalize;
@@ -230,10 +230,11 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 	font-family: 'Rufina', serif;
 }
 .banner7-content.slider-2 .title1 {
+	font-size: 45px;
 	color: #006f91!important;
 }
 .banner7-content .sub-title {
-	font-size: 40px;
+	font-size: 65px;
 	color: #fff;
 	font-weight: 400;
 	text-transform: capitalize;
@@ -243,6 +244,7 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 	font-family: 'Rufina', serif;
 }
 .banner7-content.slider-2 .sub-title {
+	font-size: 40px;
 	color: #006f91!important;
 }
 .banner7-content .banner7-des:first-letter{
