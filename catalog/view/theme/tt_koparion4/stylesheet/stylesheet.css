@@ -1652,6 +1652,7 @@ button.btn-compare:before {
 	background: transparent;
 	text-align: center;
 	position: relative;
+	min-height: 91px;
 }
 .item-inner .product-des {line-height: 24px;padding-bottom: 10px;}
 .product-name {
