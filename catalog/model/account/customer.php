@@ -18,6 +18,18 @@ class ModelAccountCustomer extends Model {
 		if ($customer_group_info['approval']) {
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "customer_approval` SET customer_id = '" . (int)$customer_id . "', type = 'customer', date_added = NOW()");
 		}
+
+		//start volyminhnhan@gmail.com modifications
+		if(isset($data['become_seller']) && (int)$data['become_seller'] == 1) {
+			$this->load->model('kbmp_marketplace/kbmp_marketplace');
+			$customer_address_details = array();
+            //Get the module configuration values
+            $store_id = (int) $this->config->get('config_store_id');
+            $settings = $this->model_setting_kbmp_marketplace->getSetting('kbmp_marketplace', $store_id);
+
+            $this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $customer_address_details, $settings, $store_id);
+		}
+		//end volyminhnhan@gmail.com modifications
 		
 		return $customer_id;
 	}

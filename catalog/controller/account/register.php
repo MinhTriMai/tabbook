@@ -18,8 +18,21 @@ class ControllerAccountRegister extends Controller {
 
 		$this->load->model('account/customer');
 
+		if(isset($this->request->get['become_seller']) && (int)$this->request->get['become_seller'] == 1) {
+			$become_seller = 1;
+		}
+		else {
+			$become_seller = 0;
+		}
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
+			//start volyminhnhan@gmail.com modifications
+			$postData = $this->request->post;
+			if((int)$become_seller == 1) {
+				$postData['become_seller'] = 1;
+			}
+			$customer_id = $this->model_account_customer->addCustomer($postData);
+			//start volyminhnhan@gmail.com modifications
 
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
@@ -97,7 +110,16 @@ class ControllerAccountRegister extends Controller {
 			$data['error_confirm'] = '';
 		}
 
-		$data['action'] = $this->url->link('account/register', '', true);
+		//start volyminhnhan@gmail.com modifications
+		if((int)$become_seller == 1) {
+			$url = "&become_seller=1";
+		}
+		else {
+			$url = "";
+		}
+
+		$data['action'] = $this->url->link('account/register', $url, true);
+		//end volyminhnhan@gmail.com modifications
 
 		$data['customer_groups'] = array();
 
