@@ -219,16 +219,8 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 
 }
 
-.banner7-content .sub-title {
-	color: #006f91!important;
-}
-
 .banner7-content .title1 {
-	color: #006f91!important;
-}
-
-.banner7-content .title1 {
-	font-size: 30px;
+	font-size: 50px;
 	color: #fff;
 	font-weight: 700;
 	text-transform: capitalize;
@@ -238,10 +230,10 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 	font-family: 'Rufina', serif;
 }
 .banner7-content.slider-2 .title1 {
-	
+	color: #006f91!important;
 }
 .banner7-content .sub-title {
-	font-size: 65px;
+	font-size: 40px;
 	color: #fff;
 	font-weight: 400;
 	text-transform: capitalize;
@@ -251,7 +243,7 @@ html[xmlns] .oc-banner7-container .slides {display: block;}
 	font-family: 'Rufina', serif;
 }
 .banner7-content.slider-2 .sub-title {
-	
+	color: #006f91!important;
 }
 .banner7-content .banner7-des:first-letter{
 	text-transform: uppercase;
