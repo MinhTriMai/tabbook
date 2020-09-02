@@ -1,5 +1,5 @@
 <?php
-class ControllerAccountAccount extends Controller {
+class ControllerAccountFixAccountError extends Controller {
 	public function index() {
 		$this->load->model('customer/customer');
 
