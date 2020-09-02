@@ -25,8 +25,11 @@ class ControllerAccountFixAccountError extends Controller {
 		        $addresses[] = $address;
 		        $this->model_account_customer->addAddressToCustomer($addresses, $customer['customer_id']);
 			}
-		}
 
-		echo "DONE!";
+			echo "FIX ERRORS DONE!";
+		}
+		else {
+			echo "NO ERRORS FOUND!";
+		}
 	}
 }
