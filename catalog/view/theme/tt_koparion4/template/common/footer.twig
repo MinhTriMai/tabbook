@@ -6,22 +6,20 @@
 			{{ block4 }}
 		{% endif %}	
 		<div class="row">
-			  
-			  {% if informations %}
 			  <div class="col-md-3 col-sm-6 col-footer">
 				<div class="footer-title"><h5>{{ text_information }}</h5></div>
 				<div class="footer-content">
 					<ul class="list-unstyled text-content">
 					 <li><a href="https://www.tabbookco.com">Về chúng tôi</a></li>
-					 {% for information in informations %}
-					  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
-					  {% endfor %}
+					 {% if informations %}
+						 {% for information in informations %}
+						  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+						  {% endfor %}
+					  {% endif %}
 					  <!-- <li><a href="{{ voucher }}">{{ text_voucher }}</a></li> -->
-					 
 					</ul>
 				</div>
 			  </div>
-			  {% endif %}
 			  <div class="col-md-3 col-sm-6 col-footer">
 				<div class="footer-title"><h5>{{ text_service }}</h5></div>
 				<div class="footer-content">
