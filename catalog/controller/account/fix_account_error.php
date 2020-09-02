@@ -1,7 +1,7 @@
 <?php
 class ControllerAccountFixAccountError extends Controller {
 	public function index() {
-		$this->load->model('customer/customer');
+		$this->load->model('account/customer');
 
 		$error_customers = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "address a ON (c.customer_id = a.customer_id) WHERE a.address_id IS NULL");
 
