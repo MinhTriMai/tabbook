@@ -7,6 +7,7 @@ class ControllerAccountFixAccountError extends Controller {
 
 		if($error_customers->num_rows) {
 			foreach ($error_customers->rows as $customer) {
+				var_dump($customer);
 				echo "Fixing customer ID " . $customer['customer_id'] . " with email: " . $customer['email'] . "....<br/>";
 
 				$addresses = array();
