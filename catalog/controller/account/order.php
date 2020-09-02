@@ -10,6 +10,7 @@ class ControllerAccountOrder extends Controller {
 		$this->load->language('account/order');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title_order'));
 		
 		$url = '';
 
@@ -103,6 +104,19 @@ class ControllerAccountOrder extends Controller {
 		$this->load->model('account/order');
 
 		$order_info = $this->model_account_order->getOrder($order_id);
+
+		//start volyminhnhan@gmail.com modifications
+		$this->load->model('kbmp_marketplace/kbmp_marketplace');
+		$this->load->model('customer/customer');
+
+		$seller = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId($order_info['customer_id']);
+		$customer_info = $this->model_customer_customer->getCustomer($seller['customer_id']);
+
+		$data['seller_firstname'] = $customer_info['firstname'];
+		$data['seller_lastname'] = $customer_info['lastname'];
+		$data['seller_email'] = $customer_info['email'];
+		$data['seller_telephone'] = $customer_info['telephone'];
+		//end volyminhnhan@gmail.com modifications
 
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));

@@ -1,6 +1,7 @@
 <?php
 // Heading
 $_['heading_title']         = 'Lịch Sử Đơn Hàng';
+$_['heading_title_order']         = 'Lịch Sử Đơn Hàng';
 
 // Text
 $_['text_account']          = 'Tài khoản';

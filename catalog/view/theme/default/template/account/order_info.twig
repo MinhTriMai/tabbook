@@ -24,7 +24,7 @@
     {% set class = 'col-sm-12' %}
     {% endif %}
     <div id="content" class="{{ class }}">{{ content_top }}
-      <h2>{{ heading_title }}</h2>
+      <h2>{{ heading_title_order }}</h2>
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -38,11 +38,12 @@
               <b>{{ text_date_added }}</b> {{ date_added }}</td>
             <td class="text-left" style="width: 50%;">{% if payment_method %} <b>{{ text_payment_method }}</b> {{ payment_method }}<br />
               {% endif %}
-              {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }} {% endif %}</td>
+              <!-- {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }} {% endif %} -->
+            </td>
           </tr>
         </tbody>
       </table>
-      <table class="table table-bordered table-hover">
+      <!-- <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <td class="text-left" style="width: 50%; vertical-align: top;">{{ text_payment_address }}</td>
@@ -57,7 +58,7 @@
             <td class="text-left">{{ shipping_address }}</td>
             {% endif %} </tr>
         </tbody>
-      </table>
+      </table> -->
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead>
@@ -112,6 +113,20 @@
             </tfoot>
           
         </table>
+
+        <table style="width: 100%">
+        <tbody>
+          <tr>
+            <td class="box" style="border: 1px solid #D6D4D4; background-color: #f8f8f8; padding: 7px 14px;">
+              <p data-html-only="1" style="border-bottom: 1px solid #D6D4D4; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 18px; padding-bottom: 10px;">Thông tin người bán</p>
+              <span size="2" face="Open-sans, sans-serif" color="#555454" style="color: #555454; font-family: Open-sans, sans-serif; font-size: small;">
+              <span style="color: #777;"> <span style="color: #333;"><strong>Tên:</strong></span> {{seller_firstname}} {{seller_lastname}}<br> </span>
+              <span style="color: #777;"> <span style="color: #333;"><strong>Email:</strong></span> {{seller_email}}<br> </span> </span>
+              <span style="color: #777;"> <span style="color: #333;"><strong>Số điện thoại:</strong></span> {{seller_telephone}}<br> </span> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
       </div>
       {% if comment %}
       <table class="table table-bordered table-hover">
