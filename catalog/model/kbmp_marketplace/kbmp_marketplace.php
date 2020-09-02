@@ -614,6 +614,39 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
      * Function to get seller information by customer Id
      */
 
+    public function getSellerByProductId($product_id) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "kb_mp_seller_product WHERE product_id = '" . (int) $product_id . "'";
+
+        $query = $this->db->query($sql);
+
+        if($query->num_rows) {
+            return $query->row['seller_id'];
+        }
+        else {
+            return 0;
+        }
+    }
+
+     /*
+     * Function to get seller information by customer Id
+     */
+
+    public function getSellerById($seller_id) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE seller_id = '" . (int) $seller_id . "'";
+
+        $query = $this->db->query($sql);
+
+        return $query->row;
+    }
+    
+    /*
+     * Function to get seller information by customer Id
+     */
+
+    /*
+     * Function to get seller information by customer Id
+     */
+
     public function getSellerByCustomerId() {
         $sql = "SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int) $this->customer->getId() . "'";
 

@@ -105,21 +105,7 @@ class ControllerAccountOrder extends Controller {
 
 		$order_info = $this->model_account_order->getOrder($order_id);
 
-		//start volyminhnhan@gmail.com modifications
-		$this->load->model('kbmp_marketplace/kbmp_marketplace');
-		$this->load->model('customer/customer');
-
-		$seller = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId($order_info['customer_id']);
-		echo '<pre>';
-		var_dump($seller);exit;
-		$seller_info = $this->model_customer_customer->getCustomer($seller['customer_id']);
-
-		$data['seller_firstname'] = $seller_info['firstname'];
-		$data['seller_lastname'] = $seller_info['lastname'];
-		$data['seller_email'] = $seller_info['email'];
-		$data['seller_telephone'] = $seller_info['telephone'];
-		//end volyminhnhan@gmail.com modifications
-
+	
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));
 
@@ -257,6 +243,21 @@ class ControllerAccountOrder extends Controller {
 			$products = $this->model_account_order->getOrderProducts($this->request->get['order_id']);
 
 			foreach ($products as $product) {
+				//start volyminhnhan@gmail.com modifications
+				$this->load->model('kbmp_marketplace/kbmp_marketplace');
+				$this->load->model('customer/customer');
+
+				$seller_id = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByProductId($product['product_id']);
+				$seller_info = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerById($seller_id);
+				$customer_info = $this->model_customer_customer->getCustomer($seller_info['customer_id']);
+
+				$data['seller_firstname'] = $customer_info['firstname'];
+				$data['seller_lastname'] = $customer_info['lastname'];
+				$data['seller_email'] = $customer_info['email'];
+				$data['seller_telephone'] = $customer_info['telephone'];
+				//end volyminhnhan@gmail.com modifications
+
+
 				$option_data = array();
 
 				$options = $this->model_account_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);

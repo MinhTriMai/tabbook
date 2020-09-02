@@ -2241,10 +2241,6 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
             return 0;
         }
     }
-    
-    /*
-     * Function to get seller information by customer Id
-     */
 
     public function getSellerByCustomerId($customer_id) {
         $sql = "SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int) $customer_id . "'";
