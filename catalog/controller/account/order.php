@@ -110,6 +110,8 @@ class ControllerAccountOrder extends Controller {
 		$this->load->model('customer/customer');
 
 		$seller = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId($order_info['customer_id']);
+		echo '<pre>';
+		var_dump($seller);exit;
 		$seller_info = $this->model_customer_customer->getCustomer($seller['customer_id']);
 
 		$data['seller_firstname'] = $seller_info['firstname'];
