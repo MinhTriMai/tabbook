@@ -24,6 +24,6 @@ class ControllerAccountAccount extends Controller {
 			}
 		}
 
-		echo "DONE!"
+		echo "DONE!";
 	}
 }
