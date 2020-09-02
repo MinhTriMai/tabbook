@@ -7,7 +7,7 @@ class ControllerAccountFixAccountError extends Controller {
 
 		if($error_customers->num_rows) {
 			foreach ($error_customers->rows as $customer) {
-				echo "Fixing customer email: " . $customer['email'] . "....<br/>";
+				echo "Fixing customer ID " . $customer . " with email: " . $customer['email'] . "....<br/>";
 				$address = array();
 		        $address['firstname'] = $this->request->post['firstname'];
 		        $address['lastname'] = $this->request->post['lastname'];
@@ -21,7 +21,7 @@ class ControllerAccountFixAccountError extends Controller {
 		        $address['default'] = true;//default address
 
 		        $addresses[] = $address;
-		        $customer_id = $this->model_account_customer->addAddressToCustomer($addresses, $customer['customer_id']);
+		        $this->model_account_customer->addAddressToCustomer($addresses, $customer['customer_id']);
 			}
 		}
 
