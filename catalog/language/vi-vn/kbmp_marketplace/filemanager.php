@@ -26,5 +26,5 @@ $_['error_exists'] = 'Cảnh báo: Một tệp hoặc thư mục có cùng tên 
 $_['error_directory'] = 'Cảnh báo: Thư mục không tồn tại!';
 $_['error_filesize'] = 'Cảnh báo: Kích thước tệp không chính xác!';
 $_['error_filetype'] = 'Cảnh báo: Loại tệp không chính xác!';
-$_['error_upload'] = 'Cảnh báo: Không thể tải lên tệp vì một lý do không xác định!';
+$_['error_upload'] = 'Cảnh báo: Tập tin bạn tải lên có kích thước > 300kb. Vui lòng giảm dung lượng hình ảnh.!';
 $_['error_delete'] = 'Cảnh báo: Bạn không thể xóa thư mục này!';
