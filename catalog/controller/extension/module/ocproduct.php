@@ -175,7 +175,7 @@ class ControllerExtensionModuleOcProduct extends Controller {
 					}
 				}
 				$c_words = 50;
-				$result['name'] = strlen($result['name']) > $c_words ? mb_substr($result['name'],0,$c_words)."..." : $result['name'];
+				$result['name'] = strlen($result['name']) > $c_words ? mb_substr($result['name'],0,$c_words, "utf-8")."..." : $result['name'];
 				if ($result['quantity'] <= 0) {
 					$stock = $result['stock_status'];
 				} elseif ($this->config->get('config_stock_display')) {
