@@ -37,7 +37,7 @@ class ModelAccountCustomer extends Model {
 	public function addAddressToCustomer($addresses,  $customer_id) {
 		$idx = 1;
 		foreach ($addresses as $address) {
-				echo "Adding address  " . $idx . " for customer ID: " . $customer_id . "....<br/>";
+				//echo "Adding address  " . $idx . " for customer ID: " . $customer_id . "....<br/>";
 
 				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : json_encode(array())) . "'");
 
