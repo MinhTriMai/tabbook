@@ -143,7 +143,7 @@ class ControllerProductManufacturer extends Controller {
 
 			$filter_data = array(
 				//start volyminhnhan@gmail.com modifications
-				'filter_quantity_greater_than_zero' => 1,
+				'filter_quantity_greater_than_zero' => 0,
 				//end volyminhnhan@gmail.com modifications
 				'filter_manufacturer_id' => $manufacturer_id,
 				'sort'                   => $sort,

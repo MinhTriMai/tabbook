@@ -176,7 +176,7 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$filter_data = array(
 				//start volyminhnhan@gmail.com modifications
-				'filter_quantity_greater_than_zero' => 1,
+				'filter_quantity_greater_than_zero' => 0,
 				//end volyminhnhan@gmail.com modifications
 				'filter_name'         => $search,
 				'filter_tag'          => $tag,

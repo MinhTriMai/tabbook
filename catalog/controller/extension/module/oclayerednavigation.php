@@ -64,7 +64,7 @@ class ControllerExtensionModuleOclayerednavigation extends Controller
 
             $filter_data = array(
                 //start volyminhnhan@gmail.com modifications
-                'filter_quantity_greater_than_zero' => 1,
+                'filter_quantity_greater_than_zero' => 0,
                 //end volyminhnhan@gmail.com modifications
                 'filter_category_id' => $category_id
             );
@@ -175,7 +175,7 @@ class ControllerExtensionModuleOclayerednavigation extends Controller
 
             $filter_data = array(
                 //start volyminhnhan@gmail.com modifications
-                'filter_quantity_greater_than_zero' => 1,
+                'filter_quantity_greater_than_zero' => 0,
                 //end volyminhnhan@gmail.com modifications
                 'filter_category_id' => $category_id
             );
@@ -408,7 +408,7 @@ class ControllerExtensionModuleOclayerednavigation extends Controller
 	
 			$filter_data = array(
                 //start volyminhnhan@gmail.com modifications
-                'filter_quantity_greater_than_zero' => 1,
+                'filter_quantity_greater_than_zero' => 0,
                 //end volyminhnhan@gmail.com modifications
 				'sort'  => 'p.date_added',
 				'order' => 'DESC',
@@ -434,7 +434,7 @@ class ControllerExtensionModuleOclayerednavigation extends Controller
            // var_dump($filter_price);die;
             $filter_data = array(
                 //start volyminhnhan@gmail.com modifications
-                'filter_quantity_greater_than_zero' => 1,
+                'filter_quantity_greater_than_zero' => 0,
                 //end volyminhnhan@gmail.com modifications
                 'filter_category_id' => $category_id,
                 'filter_filter'      => $filter,
