@@ -1663,6 +1663,7 @@ button.btn-compare:before {
 }
 .product-name a {
 	color: #333333;
+	max-height: 46px;
 	padding: 0;
 	display: block;
 	text-transform: capitalize;
