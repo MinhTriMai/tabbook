@@ -202,10 +202,15 @@ class ControllerMailOrder extends Controller {
 			$seller_info = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerById($seller_id);
 			$customer_info = $this->model_customer_customer->getCustomer($seller_info['customer_id']);
 
-			$data['seller_firstname'] = $customer_info['firstname'];
-			$data['seller_lastname'] = $customer_info['lastname'];
-			$data['seller_email'] = $customer_info['email'];
-			$data['seller_telephone'] = $customer_info['telephone'];
+            //hoai.nguyen modified 22/09/2020
+            //<nguyentanhoai072@gmail.com>
+            //093.132.9465
+            $seller['seller_firstname'] = isset($customer_info['firstname']) ? $customer_info['firstname'] : '';
+            $seller['seller_lastname'] = isset($customer_info['lastname']) ? $customer_info['lastname'] : '';
+            $seller['seller_email'] = isset($customer_info['email']) ? $customer_info['email'] : '';
+            $seller['seller_telephone'] = isset($customer_info['telephone']) ? $customer_info['telephone'] : '';
+            //end
+
 			//end volyminhnhan@gmail.com modifications
 				
 			$option_data = array();
@@ -232,7 +237,8 @@ class ControllerMailOrder extends Controller {
 			}
 
 			$data['products'][] = array(
-				'name'     => $order_product['name'],
+                'seller'   => $seller, //hoai.nguyen modified 22/09/2020
+                'name'     => $order_product['name'],
 				'model'    => $order_product['model'],
 				'option'   => $option_data,
 				'quantity' => $order_product['quantity'],
