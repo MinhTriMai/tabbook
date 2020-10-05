@@ -730,6 +730,14 @@ class ControllerCustomerCustomer extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
+
+        if (isset($this->request->post['student_id'])) {
+            $data['student_id'] = $this->request->post['student_id'];
+        } elseif (!empty($customer_info)) {
+            $data['student_id'] = $customer_info['student_id'];
+        } else {
+            $data['student_id'] = '';
+        }
 		
 		// Custom Fields
 		$this->load->model('customer/custom_field');

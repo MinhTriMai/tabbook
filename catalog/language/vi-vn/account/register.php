@@ -21,6 +21,7 @@ $_['entry_lastname_placeholder']            = 'VD: Nguyễn Trung';
 $_['entry_school_placeholder']            = 'VD: Trường Đại Học Kinh Tế HCM';
 $_['entry_email']          = 'Địa chỉ E-Mail';
 $_['entry_telephone']           = 'Điện Thoại:';;
+$_['entry_student_id']           = 'Mã sinh số sinh viên';;
 $_['entry_newsletter']     = 'Đăng ký';
 $_['entry_password']            = 'Mật Khẩu:';
 $_['entry_confirm']             = 'Nhập lại Mật Khẩu:';

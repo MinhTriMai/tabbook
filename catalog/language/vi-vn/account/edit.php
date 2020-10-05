@@ -17,7 +17,7 @@ $_['entry_lastname_placeholder']            = 'VD: Nguyễn Trung';
 $_['entry_school_placeholder']            = 'VD: Trường Đại Học Kinh Tế HCM';
 $_['entry_email']      = 'E-Mail:';
 $_['entry_telephone']  = 'Điện thoại:';
-
+$_['entry_student_id']           = 'Mã sinh số sinh viên';;
 // Error
 $_['error_exists']     = 'Lỗi: E-Mail đã có người sử dụng!';
 $_['error_firstname']  = 'Tên phải từ 1 đến 32 kí tự!';

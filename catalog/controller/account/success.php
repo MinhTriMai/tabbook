@@ -2,8 +2,21 @@
 class ControllerAccountSuccess extends Controller {
 	public function index() {
 		$this->load->language('account/success');
-
+        $this->load->model('account/token');
 		$this->document->setTitle($this->language->get('heading_title'));
+
+        $token = $this->request->get['token'];
+
+        $token_data = $this->model_account_token->getToken($token);
+
+        $current_date = date('Y-m-d');
+
+//        if ($current_date <= $token_data['expired_at']){
+//
+//        }
+
+        $this->model_account_token->activeCustomerById($token_data['customer_id']);
+        $data['active'] = $token ? true : false;
 
 		$data['breadcrumbs'] = array();
 

@@ -17,6 +17,7 @@ class ControllerAccountRegister extends Controller {
 		$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
 
 		$this->load->model('account/customer');
+        $this->load->model('account/token');
 
 		if(isset($this->request->get['become_seller']) && (int)$this->request->get['become_seller'] == 1) {
 			$become_seller = 1;
@@ -31,9 +32,14 @@ class ControllerAccountRegister extends Controller {
 			if((int)$become_seller == 1) {
 				$postData['become_seller'] = 1;
 			}
-			$customer_id = $this->model_account_customer->addCustomer($postData);
-			//start volyminhnhan@gmail.com modifications
 
+			$customer_id = $this->model_account_customer->addCustomer($postData);
+			//start volyminhnhan@gmail.com modifications;
+
+            $token = md5(uniqid($customer_id, true));
+            $current_date = strtotime(date('Y/m/d'));
+            $expired_at = date('Y-m-d', strtotime("+1 days", $current_date));
+            $this->model_account_token->addToken($customer_id, $token, $expired_at);
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 
@@ -41,7 +47,45 @@ class ControllerAccountRegister extends Controller {
 
 			unset($this->session->data['guest']);
 
-			$this->response->redirect($this->url->link('account/success'));
+            $this->load->language('mail/register');
+
+            $data['text_welcome'] = sprintf($this->language->get('text_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $data['text_login'] = $this->language->get('text_login');
+            $data['text_approval'] = $this->language->get('text_approval');
+            $data['text_service'] = $this->language->get('text_service');
+            $data['text_thanks'] = $this->language->get('text_thanks');
+
+            $this->load->model('account/customer_group');
+
+                $customer_group_id = $this->config->get('config_customer_group_id');
+
+            $customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+
+            if ($customer_group_info) {
+                $data['approval'] = $customer_group_info['approval'];
+            } else {
+                $data['approval'] = '';
+            }
+
+            $data['login'] = $str = str_replace('&amp;', '&', $this->url->link('account/success', '&token='.$token, true));
+            $data['store'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+
+            $mail = new Mail($this->config->get('config_mail_engine'));
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+            $mail->setTo($this->request->post['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $mail->setSubject(sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
+            $mail->setText($this->load->view('mail/register', $data));
+            $mail->send();
+
+            $this->response->redirect($this->url->link('account/success'));
 		}
 
 		$data['breadcrumbs'] = array();
