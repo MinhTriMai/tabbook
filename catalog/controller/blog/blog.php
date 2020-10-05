@@ -102,7 +102,8 @@ class ControllerBlogBlog extends Controller
 			} else {
 				$image = $this->model_tool_image->resize($result['image'], 100, 100);
 			}
-
+            $intro_text =html_entity_decode($result['intro_text'], ENT_QUOTES, 'UTF-8');
+            $intro_text_new = strlen($intro_text) > 200 ? substr($intro_text,0,200)."..." : $intro_text;
 			$data['articles'][] = array(
 				'article_id'  => $result['article_id'],
 				'name'        => $result['name'],
@@ -112,7 +113,7 @@ class ControllerBlogBlog extends Controller
 				'date_added_m'  => date("d", strtotime($result['date_added'])),
 				'date_added_d'  => date("F", strtotime($result['date_added'])),
 				'date_added_y'  => date("y", strtotime($result['date_added'])),
-				'intro_text' => html_entity_decode($result['intro_text'], ENT_QUOTES, 'UTF-8'),
+				'intro_text' => $intro_text_new,
 				'href'        => $this->url->link('blog/article', 'article_id=' . $result['article_id'] . $url),
                 'event_link'       => $result['event_link'],
                 'event_start_time' => date('Y-m-d',strtotime($result['event_start_time'])),
@@ -148,12 +149,11 @@ class ControllerBlogBlog extends Controller
 
         if(isset($this->request->get['week'])){
             $newData = array();
-            $current_date = strtotime(date('d/m/Y'));
+            $current_date = strtotime(date('Y/m/d'));
             $range = $this->getNumOfDayForWeek($this->request->get['week']);
-            $rangeDate = [date('Y-m-d', strtotime( $current_date . $range[0])), date('Y-m-d', strtotime($current_date . $range[1]))];
+            $rangeDate = [date('Y-m-d', strtotime("$range[0]", $current_date)), date('Y-m-d', strtotime("$range[1]", $current_date))];
             foreach($data['articles'] as $article){
                 $date_added = DateTime::createFromFormat('d/m/Y', $article['date_added'])->format('Y-m-d');
-
                 if ($date_added >= $rangeDate[1] && $date_added <= $rangeDate[0]){
                     $newData[] = $article;
                 }

@@ -38,6 +38,8 @@ class ControllerBlogArticle extends Controller {
 
 			$data['heading_title'] = $article_info['name'];
 			$data['author'] = $article_info['author'];
+            $data['event_start_time'] = date($this->language->get('date_format_short'), strtotime($article_info['event_start_time']));
+            $data['event_end_time'] = date($this->language->get('date_format_short'), strtotime($article_info['event_end_time']));
             $data['date'] = date($this->language->get('date_format_short'), strtotime($article_info['date_added']));
 			$data['article_id'] = (int)$this->request->get['article_id'];
 			

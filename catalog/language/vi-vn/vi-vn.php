@@ -70,7 +70,7 @@ $_['button_quote']          = 'Lấy trích dẫn';
 $_['button_list']           = 'Danh sách';
 $_['button_grid']           = 'Lưới sản phẩm';
 $_['button_map']            = 'Xem bản đồ Google';
-$_['button_buy_ticket']     = 'Mua vé';
+$_['button_buy_ticket']     = 'Đăng ký';
 
 // Error
 $_['error_exception']       = 'Lỗi Code(%s): %s ở %s trên hàng %s';

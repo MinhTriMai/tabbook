@@ -48,6 +48,7 @@ $_['entry_firstname']           = 'Tên';
 $_['entry_lastname']            = 'Họ';
 $_['entry_email']               = 'Địa chỉ E-Mail';
 $_['entry_telephone']           = 'Điện thoại';
+$_['entry_student_id']           = 'Mã số sinh viên';
 $_['entry_newsletter']          = 'Newsletter';
 $_['entry_status']              = 'Tình trạng';
 $_['entry_approved']            = 'Approved';
