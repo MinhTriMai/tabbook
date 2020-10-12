@@ -178,12 +178,17 @@ class ControllerExtensionModuleAjaxregister extends Controller {
 
     public function register() {
         $this->load->model('account/customer');
+        $this->load->model('account/token');
         $this->load->language('extension/module/ajaxregister');
 
         $json = array();
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $customer_id = $this->model_account_customer->addCustomer($this->request->post);
+            $token = md5(uniqid($customer_id, true));
+            $current_date = strtotime(date('Y/m/d'));
+            $expired_at = date('Y-m-d', strtotime("+1 days", $current_date));
+            $this->model_account_token->addToken($customer_id, $token, $expired_at);
 
             // Clear any previous login attempts for unregistered accounts.
             $this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
@@ -191,6 +196,29 @@ class ControllerExtensionModuleAjaxregister extends Controller {
             $this->customer->login($this->request->post['email'], $this->request->post['password']);
 
             unset($this->session->data['guest']);
+            $this->load->language('mail/register');
+            $data['text_welcome'] = sprintf($this->language->get('text_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $data['text_login'] = $this->language->get('text_login');
+            $data['text_approval'] = $this->language->get('text_approval');
+            $data['text_service'] = $this->language->get('text_service');
+            $data['text_thanks'] = $this->language->get('text_thanks');
+            $data['login'] = $str = str_replace('&amp;', '&', $this->url->link('account/success', '&token='.$token, true));
+            $data['store'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+
+            $mail = new Mail($this->config->get('config_mail_engine'));
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+            $mail->setTo($this->request->post['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $mail->setSubject(sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
+            $mail->setText($this->load->view('mail/register', $data));
+            $mail->send();
 
             if(!$json) {
                 $json['success'] = true;
