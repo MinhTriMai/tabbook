@@ -22,4 +22,4 @@ $_['entry_password']               = 'Mật khẩu';
 // Error
 $_['error_login']                  = 'Cảnh báo: Không trùng khớp Email hoặc Mật khẩu.';
 $_['error_attempts']               = 'Cảnh báo: Tài khoản của bạn đã vượt quá số lần thử đăng nhập được phép. Vui lòng thử lại sau 1 giờ.';
-$_['error_approved']               = 'Cảnh báo: Tài khoản của bạn cần được phê duyệt trước khi bạn có thể đăng nhập.';
+$_['error_approved']               = 'Thông báo: Để có thể đăng nhập, bạn vui lòng kích hoạt tài khoản bằng đường link đã được gửi trong email.';
