@@ -11,9 +11,13 @@ $_['text_success']      = 'Thành công: Tài khoản của bạn đã được 
 // Entry
 $_['entry_firstname']  = 'Tên:';
 $_['entry_lastname']   = 'Họ và tên lót:';
+$_['entry_school']            = 'Trường';
+$_['entry_firstname_placeholder']           = 'VD: Nghĩa';
+$_['entry_lastname_placeholder']            = 'VD: Nguyễn Trung';
+$_['entry_school_placeholder']            = 'VD: Trường Đại Học Kinh Tế HCM';
 $_['entry_email']      = 'E-Mail:';
 $_['entry_telephone']  = 'Điện thoại:';
-
+$_['entry_student_id']           = 'Mã sinh số sinh viên';;
 // Error
 $_['error_exists']     = 'Lỗi: E-Mail đã có người sử dụng!';
 $_['error_firstname']  = 'Tên phải từ 1 đến 32 kí tự!';

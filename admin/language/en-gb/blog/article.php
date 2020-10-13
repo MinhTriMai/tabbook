@@ -32,6 +32,9 @@ $_['entry_keyword']          = 'SEO Keyword';
 $_['entry_status']           = 'Status';
 $_['entry_sort_order']       = 'Sort Order';
 $_['entry_category']         = 'Categories';
+$_['entry_event_link']       = 'Event Link';
+$_['entry_event_start_time'] = 'Event Start Time';
+$_['entry_event_end_time']   = 'Event End Time';
 
 // Help
 $_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.';
@@ -43,4 +46,5 @@ $_['error_permission']       = 'Warning: You do not have permission to modify ar
 $_['error_name']             = 'Article Name must be greater than 3 and less than 255 characters!';
 $_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 $_['error_keyword']          = 'SEO keyword already in use!';
+$_['error_event_time']       = 'Event start time must be lower than Event end time';
 

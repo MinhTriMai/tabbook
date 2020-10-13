@@ -1,7 +1,7 @@
 <?php
 class ModelBlogArticle extends Model {
 	public function getArticle($article_id) {
-        $query = $this->db->query("SELECT DISTINCT a.article_id, a.image, a.author, a.sort_order, a.status, a.date_added, a.date_modified, ad.language_id, ad.name, ad.description, ad.intro_text, ad.meta_title, ad.meta_description, ad.meta_keyword FROM " . DB_PREFIX . "article a LEFT JOIN " . DB_PREFIX . "article_description ad ON (a.article_id = ad.article_id) LEFT JOIN ". DB_PREFIX ."article_to_store ats ON (a.article_id = ats.article_id) WHERE a.article_id = '" . (int)$article_id . "' AND ad.language_id = '" . (int)$this->config->get('config_language_id') . "' AND ats.store_id = '". (int)$this->config->get('config_store_id') ."' AND a.status = '1' ");
+        $query = $this->db->query("SELECT DISTINCT a.article_id, a.image, a.author, a.sort_order, a.status, a.date_added, a.date_modified, ad.language_id, ad.name, ad.description,ad.event_link,ad.event_start_time,ad.event_end_time, ad.intro_text, ad.meta_title, ad.meta_description, ad.meta_keyword FROM " . DB_PREFIX . "article a LEFT JOIN " . DB_PREFIX . "article_description ad ON (a.article_id = ad.article_id) LEFT JOIN ". DB_PREFIX ."article_to_store ats ON (a.article_id = ats.article_id) WHERE a.article_id = '" . (int)$article_id . "' AND ad.language_id = '" . (int)$this->config->get('config_language_id') . "' AND ats.store_id = '". (int)$this->config->get('config_store_id') ."' AND a.status = '1' ");
 
 		if ($query->num_rows) {
 			return array(
@@ -17,7 +17,10 @@ class ModelBlogArticle extends Model {
 				'sort_order'       => $query->row['sort_order'],
 				'status'           => $query->row['status'],
 				'date_added'       => $query->row['date_added'],
-				'date_modified'    => $query->row['date_modified']
+				'date_modified'    => $query->row['date_modified'],
+                'event_link'       => $query->row['event_link'],
+                'event_start_time' => $query->row['event_start_time'],
+                'event_end_time'   => $query->row['event_end_time'],
 			);
 		} else {
 			return false;

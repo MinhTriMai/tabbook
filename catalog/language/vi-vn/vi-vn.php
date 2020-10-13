@@ -17,8 +17,21 @@ $_['text_none']             = ' --- Không --- ';
 $_['text_select']           = ' --- Chọn --- ';
 $_['text_all_zones']        = 'Tất cả các khu vực';
 $_['text_pagination']       = 'Hiển thị %d đến %d trong %d (%d Trang)';
-$_['text_loading']                  = 'Đang Xử lý...';
-$_['text_no_results']               = 'Không có kết quả!';
+$_['text_loading']          = 'Đang Xử lý...';
+$_['text_no_results']       = 'Không có kết quả!';
+$_['text_up_coming']        = 'Sắp diễn ra';
+$_['text_on_going']         = 'Đang diễn ra';
+$_['text_finish']           = 'Đã kết thúc';
+$_['text_all_status']       = 'Tất cả';
+$_['text_no_filter_date']   = 'Không';
+$_['text_no_event']         = 'Không có sự kiện nào được tìm thấy';
+
+$_['option_1_week']         = '1 tuần';
+$_['option_2_week']         = '2 tuần';
+$_['option_3_week']         = '3 tuần';
+$_['option_4_week']         = '4 tuần';
+$_['select_filter_by_week'] = 'Hiển thị sự kiện gần đây';
+$_['select_filter_by_status']= 'Sắp xếp theo';
 
 // Buttons
 $_['button_address_add']    = 'Thêm địa chỉ';
@@ -57,6 +70,7 @@ $_['button_quote']          = 'Lấy trích dẫn';
 $_['button_list']           = 'Danh sách';
 $_['button_grid']           = 'Lưới sản phẩm';
 $_['button_map']            = 'Xem bản đồ Google';
+$_['button_buy_ticket']     = 'Đăng ký';
 
 // Error
 $_['error_exception']       = 'Lỗi Code(%s): %s ở %s trên hàng %s';

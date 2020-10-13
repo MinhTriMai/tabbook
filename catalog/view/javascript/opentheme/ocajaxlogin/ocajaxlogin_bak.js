@@ -39,6 +39,16 @@ var ocajaxlogin = {
                         $('#cart > ul').load('index.php?route=common/cart/info ul li');
 
                         $('body').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success_message'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+                        //start volyminhnhan@gmail.com modifications
+                        // add seller link to top menu
+                        if(!json['isSeller']) {
+                            $("#pt_custommenu").append('<div id="pt_menu_link9999" class="pt_menu pt_menu_link"><div class="parentMenu"><a href="index.php?route=account/seller"><span>Trở thành người bán</span></a></div></div>');
+                        }
+                        else {
+                            $("#pt_custommenu").append('<div id="pt_menu_link9999" class="pt_menu pt_menu_link"><div class="parentMenu"><a href="index.php?route=kbmp_marketplace/products"><span>Đăng bán sản phẩm</span></a></div></div>');
+                        }
+                        //end volyminhnhan@gmail.com modifications
                     }
                     ocajaxlogin.closeForm();
                     $('.ajax-load-img').hide();
@@ -87,6 +97,11 @@ var ocajaxlogin = {
                     // Last Name
                     if(json['error_lastname'] != '') {
                         $('.error-lastname').addClass('text-danger').html(json['error_lastname']).show();
+                    }
+
+                    // School
+                    if(json['error_school'] != '') {
+                        $('.error-school').addClass('text-danger').html(json['error_school']).show();
                     }
 
                     // Email

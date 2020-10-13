@@ -26,6 +26,7 @@ $_['text_support']                          = 'Support';
 $_['text_knowband_marketplace']             = 'KB MarketPlace';
 $_['text_no_results']                       = 'No results found';
 $_['text_edit']                             = 'Edit';
+$_['text_all']                 = 'All';
 $_['text_waiting_approval']                 = 'Waiting for Approval';
 $_['text_approve']                          = 'Approve';
 $_['text_disapprove']                       = 'Disapprove';

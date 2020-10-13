@@ -29,8 +29,10 @@ class ControllerKbmpMarketplaceProducts extends Controller {
     protected function getList() {
 
         $data['title'] = $this->document->getTitle();
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['text_back_to_site'] = $this->language->get('text_back_to_site');
         $data['text_my_account1'] = $this->language->get('text_my_account1');
         $data['text_logout'] = $this->language->get('text_logout');
@@ -130,7 +132,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 //        var_dump($results);die;
         $this->load->model('tool/image');
         
-        $this->load->adminmodel('catalog/product');
+        $this->load->model('catalog/product');
 
         foreach ($results as $result) {
 
@@ -140,7 +142,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 $image = $this->model_tool_image->resize('no_image.png', 40, 40);
             }
             
-            $product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
+            $product_specials = $this->model_catalog_product->getProductSpecialsByProductId($result['product_id']);
 
             $special = '';
             foreach ($product_specials  as $product_special) {
@@ -166,6 +168,8 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 		//Start Added changes to resolve issue of wrong product link 24-Dec-2018 - Harsh Agarwal
                 'link' => $this->url->link('product/product', 'product_id=' . $result['product_id'], true),
 		//Ends
+
+                'approval_status' => $result['approved']
             );
         }
 
@@ -181,6 +185,18 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $data['text_model'] = $this->language->get('text_model');
         $data['text_category'] = $this->language->get('text_category');
         $data['text_status'] = $this->language->get('text_status');
+
+        //start volyminhnhan@gmail modifications
+        $data['text_approval_status'] = $this->language->get('text_approval_status');
+        $data['text_waiting_approval'] = $this->language->get('text_waiting_approval');
+        $data['text_approve'] = $this->language->get('text_approve');
+        $data['text_disapprove'] = $this->language->get('text_disapprove');
+        $data['text_disapproved'] = $this->language->get('text_disapproved');
+        $data['entry_date_available'] = $this->language->get('entry_date_available');
+        $data['entry_category'] = $this->language->get('entry_category');
+        $data['entry_additional_image'] = $this->language->get('entry_additional_image');
+        //end volyminhnhan@gmail modifications
+
         $data['text_enabled'] = $this->language->get('text_enabled');
         $data['text_disabled'] = $this->language->get('text_disabled');
         $data['text_filter'] = $this->language->get('text_filter');
@@ -344,7 +360,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $this->load->model('kbmp_marketplace/kbmp_marketplace');
         $this->load->model('setting/kbmp_marketplace');
         
-        $this->load->adminmodel('catalog/product');
+        $this->load->model('catalog/product');
         
         //Get Seller Information
         $seller = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId();
@@ -370,6 +386,11 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             if (isset($this->request->get['product_id']) && !empty($this->request->get['product_id'])) {
                 //Edit Product and its details
                 $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+
+                //start volyminhnhan@gmail modifications
+                //reset approval status in this case
+                $this->model_kbmp_marketplace_kbmp_marketplace->updateProductApprovalStatus($this->request->get['product_id'], 0);
+                //end volyminhnhan@gmail modifications
             } else {                    
                 //Get Seller Products Count
                 $seller_data = array('seller_id' => $seller['seller_id']);
@@ -516,8 +537,10 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $this->load->language('kbmp_marketplace/common');
         
         $data['title'] = $this->document->getTitle();
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         $data['text_back_to_site'] = $this->language->get('text_back_to_site');
         $data['text_my_account1'] = $this->language->get('text_my_account1');
         $data['text_logout'] = $this->language->get('text_logout');
@@ -1017,7 +1040,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         } elseif (!empty($product_info)) {
             $data['weight'] = $product_info['weight'];
         } else {
-            $data['weight'] = '';
+            $data['weight'] = 1;
         }
 
         $this->load->adminmodel('localisation/weight_class');
@@ -1245,7 +1268,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         if (isset($this->request->post['product_special'])) {
             $product_specials = $this->request->post['product_special'];
         } elseif (isset($this->request->get['product_id'])) {
-            $product_specials = $this->model_catalog_product->getProductSpecials($this->request->get['product_id']);
+            $product_specials = $this->model_catalog_product->getProductSpecialsByProductId($this->request->get['product_id']);
         } else {
             $product_specials = array();
         }
@@ -1391,7 +1414,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/manufacturer');
+            $this->load->model('catalog/manufacturer');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1548,7 +1571,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/filter');
+            $this->load->model('catalog/filter');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1585,7 +1608,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/download');
+            $this->load->model('catalog/download');
             $this->load->model('kbmp_marketplace/kbmp_marketplace');
             
             $seller_data = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId();
@@ -1627,8 +1650,8 @@ class ControllerKbmpMarketplaceProducts extends Controller {
 //        $json = array();
 //
 //        if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_model'])) {
-//            $this->load->adminmodel('catalog/product');
-//            $this->load->adminmodel('catalog/option');
+//            $this->load->model('catalog/product');
+//            $this->load->model('catalog/option');
 //
 //            if (isset($this->request->get['filter_name'])) {
 //                $filter_name = $this->request->get['filter_name'];
@@ -1800,7 +1823,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_name'])) {
-            $this->load->adminmodel('catalog/attribute');
+            $this->load->model('catalog/attribute');
 
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
@@ -1841,7 +1864,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             $this->load->language('catalog/option');
             $this->load->language('kbmp_marketplace/products');
 
-            $this->load->adminmodel('catalog/option');
+            $this->load->model('catalog/option');
 
             $this->load->model('tool/image');
 
@@ -1932,9 +1955,9 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 $this->error['name'][$language_id] = $this->language->get('error_name');
             }
 
-            if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
-                $this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-            }
+//            if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
+//                $this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
+//            }
         }
 
         if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
@@ -1944,7 +1967,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         if (utf8_strlen($this->request->post['keyword']) > 0) {
             $this->load->adminmodel('design/seo_url');
 
-            $url_alias_info = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
+            $url_alias_info = $this->model_design_seo_url->getSeoUrlsByKeyword($this->request->post['keyword']);
             
             if ($url_alias_info && isset($this->request->get['product_id']) && $url_alias_info['query'] != 'product_id=' . $this->request->get['product_id']) {
                 $this->error['keyword'] = sprintf($this->language->get('error_keyword'));

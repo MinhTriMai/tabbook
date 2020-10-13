@@ -42,8 +42,10 @@ class ControllerKbmpMarketplaceProductImport extends Controller {
         $data['text_account_warning'] = $this->language->get('text_account_warning');
         $data['error_upload_file'] = $this->language->get('error_upload_file');
         
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
         
         $data['action'] = $this->url->link('kbmp_marketplace/product_import');
         $data['downloadTemplate_link'] = $this->url->link('kbmp_marketplace/product_import/downloadTemplate');

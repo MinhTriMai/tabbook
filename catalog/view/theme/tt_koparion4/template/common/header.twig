@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>{{ title }}</title>
 <base href="{{ base }}" />
@@ -34,6 +34,8 @@
 <link href="catalog/view/theme/tt_koparion4/stylesheet/opentheme/vermegamenu/css/ocvermegamenu.css" rel="stylesheet" />
 <link href="catalog/view/theme/tt_koparion4/stylesheet/opentheme/hozmegamenu/css/custommenu.css" rel="stylesheet" />
 <link href="catalog/view/theme/tt_koparion4/stylesheet/opentheme/css/animate.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:300,400,600,700&amp;lang=vi">
 
 <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" ></script>
@@ -106,7 +108,30 @@
 </head>
 <body class="{{ class }} home4">
 <div class="wrapper">
+<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v8.0'
+          });
+        };
 
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="2358532270827783"
+  theme_color="#00abe0">
+      </div>
 <nav id="top">
   <div class="container">
 	<div class="container-inner">	
@@ -185,14 +210,14 @@
 				{{ search }}
 			</div>
 			<div class="box-cart">
-				<div class="links" >
+				<!-- <div class="links" >
 					<div class="wishlist">
 						<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist2 }}"><span>{{ text_wishlist }}</span></a>
 					</div>
 					<div class="compare">
 						<a href="{{ compare }}" id="link-compare" title="{{ text_compare }}"><span>{{ text_compare }}</span></a>
 					</div>
-				</div>
+				</div> -->
 				{{ cart }}
 			</div>
 		  <div class="clearfix"></div>

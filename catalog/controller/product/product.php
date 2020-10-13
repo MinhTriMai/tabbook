@@ -242,6 +242,11 @@ class ControllerProductProduct extends Controller {
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$data['short_description'] = utf8_substr(trim(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'))),0,$this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..';
+
+			//start volyminhnhan@gmail.com modifications
+			$data['text_remaining_quantity'] = $this->language->get('text_remaining_quantity');
+			$data['quantity'] = $product_info['quantity'];
+			//end volyminhnhan@gmail.com modifications
 			
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];

@@ -133,6 +133,9 @@
 				</div>
 				<input type="hidden" name="product_id" value="{{ product_id }}" />              
 				<button type="button" class="button button-cart btn" id="button-cart" data-loading-text="{{ text_loading }}">{{ button_cart }}</button>
+				<div class="quantity-left">
+					({{ text_remaining_quantity }} {{ quantity }})
+				</div>
 				<button class="button btn-wishlist btn btn-default" type="button"   title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');"><span>{{ button_wishlist }}</span></button>
 				<button class="button btn-compare btn btn-default" type="button"   title="{{ button_compare }}" onclick="compare.add('{{ product_id }}');">{{ button_compare }}</button>
             </div>
@@ -494,6 +497,9 @@ $('#button-cart').on('click', function() {
 				}
 				if (json['error']['recurring']) {
 					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+				if (json['error']['exceeded_quantity']) {
+					$('.breadcrumb').after('<div class="alert alert-danger">' + json['error']['exceeded_quantity'] + '</div>');
 				}
 				// Highlight any found errors
 				$('.text-danger').parent().addClass('has-error');

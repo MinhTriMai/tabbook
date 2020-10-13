@@ -63,6 +63,14 @@ class ControllerAccountEdit extends Controller {
 			$data['error_lastname'] = '';
 		}
 
+		//start volyminhnhan@gmail.com modifications
+		if (isset($this->error['school'])) {
+			$data['error_school'] = $this->error['school'];
+		} else {
+			$data['error_school'] = '';
+		}
+		//end volyminhnhan@gmail.com modifications
+
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
 		} else {
@@ -103,6 +111,16 @@ class ControllerAccountEdit extends Controller {
 			$data['lastname'] = '';
 		}
 
+		//start volyminhnhan@gmail.com modifications
+		if (isset($this->request->post['school'])) {
+			$data['school'] = $this->request->post['school'];
+		} elseif (!empty($customer_info)) {
+			$data['school'] = $customer_info['school'];
+		} else {
+			$data['school'] = '';
+		}
+		//end volyminhnhan@gmail.com modifications
+
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} elseif (!empty($customer_info)) {
@@ -118,6 +136,14 @@ class ControllerAccountEdit extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
+
+        if (isset($this->request->post['student_id'])) {
+            $data['student_id'] = $this->request->post['student_id'];
+        } elseif (!empty($customer_info)) {
+            $data['student_id'] = $customer_info['student_id'];
+        } else {
+            $data['student_id'] = '';
+        }
 
 		// Custom Fields
 		$data['custom_fields'] = array();
@@ -160,6 +186,12 @@ class ControllerAccountEdit extends Controller {
 		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
+
+		//start volyminhnhan@gmail.com modifications
+		if ((utf8_strlen(trim($this->request->post['school'])) < 1) || (utf8_strlen(trim($this->request->post['school'])) > 255)) {
+			$this->error['school'] = $this->language->get('error_school');
+		}
+		//start volyminhnhan@gmail.com modifications
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');

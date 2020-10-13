@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html dir="{{ direction }}" lang="{{ lang }}">
-<!--<![endif]-->
-<head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,8 +57,7 @@
 {% for script in scripts %} 
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %} 
-</head>
-<body class="">
+
     <div class="vss_marketplace_page skin-black-light sidebar-mini" style="padding: 36px;padding-left: 57px">
       {% if (error_warning is defined and error_warning is not empty) %} 
     <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
@@ -122,30 +118,30 @@
                             <i class="fa fa-credit-card"></i> {{ text_seller_transactions }} 
                         </a>
                     </li>
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ payout_request_link }}" title="{{ text_payout_request }}">
                             <i class="fa fa-credit-card"></i> {{ text_payout_request }} 
                         </a>
                     </li>
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ category_request_link }}" title="{{ text_category_request }}">
                             <i class="fa fa-tags"></i> {{ text_category_request }} 
                         </a>
                     </li>
                     <!--Condition added by Harsh to make option configurable using admin settings on 11-Dec-2018 for CCIC implementation-->
                     {% if (kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_seller_shipping'] is defined and kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_seller_shipping']) %} 
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ shipping_link }}" title="{{ text_seller_shipping }}">
                             <i class="fa fa-truck"></i> {{ text_seller_shipping }} 
                         </a>
                     </li>
                     {% endif %} 
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ product_import_link }}" title="{{ text_product_import }}">
                             <i class="fa fa-file"></i> {{ text_product_import }} 
                         </a>
                     </li>
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ return_link }}" title="{{ text_product_return }}">
                             <i class="fa fa-reply"></i> {{ text_product_return }} 
                         </a>
@@ -155,12 +151,12 @@
                             <i class="fa fa-money"></i> {{ text_coupons }} 
                         </a>
                     </li>
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ downloads_link }}" title="{{ text_downloads }}">
                             <i class="fa fa-download"></i> {{ text_downloads }} 
                         </a>
                     </li>
-                    <li>
+                    <li style="display:none;">
                         <a href="{{ support_link }}" title="{{ text_support_system }}">
                             <i class="fa fa-comment"></i> {{ text_support_system }} 
                         </a>
@@ -202,7 +198,7 @@
 .toggleMenu{
 	display:none;
 }
-@media(max-width:1245px){
+/*@media(max-width:1245px){
 	#content-wrapper{
 		width: 70% !important;
 	}
@@ -244,5 +240,5 @@
 }
 @media(max-width:767px){	
 	
-}
+}*/
 </style>

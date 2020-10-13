@@ -24,6 +24,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 		} else if ($setting['option']==1){
 			if($setting['productfrom']==1){
 				$data['filter_category_id'] = $setting['cate_id'];
+				//start volyminhnhan@gmail.com modifications
+				$data['filter_quantity_greater_than_zero'] = 1;
+				//end volyminhnhan@gmail.com modifications
 				$results = $this->model_catalog_product->getProducts($data);
 			} else if($setting['productfrom']==0) {
 				if (!empty($setting['productcate'])) {
@@ -36,6 +39,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 				if ($setting['input_specific_product']==0){
 					$data['products'] = array();
 					$filter_data = array(
+						//start volyminhnhan@gmail.com modifications
+						'filter_quantity_greater_than_zero' => 0,
+						//end volyminhnhan@gmail.com modifications
 						'filter_category_id' => $setting['cate_id'],
 						'sort'  => 'p.date_added',
 						'order' => 'DESC',
@@ -63,6 +69,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 			if ($setting['autoproduct']==0){
 				$data['products'] = array();
 				$filter_data = array(
+					//start volyminhnhan@gmail.com modifications
+					'filter_quantity_greater_than_zero' => 0,
+					//end volyminhnhan@gmail.com modifications
 					'sort'  => 'p.date_added',
 					'order' => 'DESC',
 					'start' => 0,
@@ -94,6 +103,9 @@ class ControllerExtensionModuleOcProduct extends Controller {
 		/* Get new product */
 		$this->load->model('catalog/product');
 		$filter_data = array(
+			//start volyminhnhan@gmail.com modifications
+			'filter_quantity_greater_than_zero' => 0,
+			//end volyminhnhan@gmail.com modifications
 			'sort'  => 'p.date_added',
 			'order' => 'DESC',
 			'start' => 0,
@@ -163,7 +175,7 @@ class ControllerExtensionModuleOcProduct extends Controller {
 					}
 				}
 				$c_words = 50;
-				$result['name'] = strlen($result['name']) > $c_words ? substr($result['name'],0,$c_words)."..." : $result['name'];
+				$result['name'] = strlen($result['name']) > $c_words ? mb_substr($result['name'],0,$c_words, "utf-8")."..." : $result['name'];
 				if ($result['quantity'] <= 0) {
 					$stock = $result['stock_status'];
 				} elseif ($this->config->get('config_stock_display')) {

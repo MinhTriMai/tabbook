@@ -12,6 +12,14 @@ class ControllerExtensionModuleOchozmegamenu extends Controller {
 		$data['mobile_menu'] = $setting['mobile'];
 		$data['sticky_menu'] = $setting['sticky'];
 
+		//start volyminhnhan@gmail.com modifications
+		$customer = new Cart\Customer($this->registry);
+		$data['customer']['isLogged'] = $customer->isLogged();
+		$data['customer']['isSeller'] = $customer->isKBMPSeller();
+		$data['txt_become_seller'] = $this->language->get('txt_become_seller');
+		$data['txt_seller_post_product'] = $this->language->get('txt_seller_post_product');
+		//end volyminhnhan@gmail.com modifications
+
       	$data['heading_title'] = $this->language->get('heading_title');
 		$data['category_title'] = $this->language->get('category_title');
 		$mobile = $this->model_hozmegamenu_menu->getblockCategTree();

@@ -21,6 +21,9 @@ class ControllerExtensionFeedGoogleBase extends Controller {
 
 			foreach ($google_base_categories as $google_base_category) {
 				$filter_data = array(
+					//start volyminhnhan@gmail.com modifications
+					'filter_quantity_greater_than_zero' => 0,
+					//end volyminhnhan@gmail.com modifications
 					'filter_category_id' => $google_base_category['category_id'],
 					'filter_filter'      => false
 				);

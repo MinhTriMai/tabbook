@@ -328,6 +328,16 @@ class ModelCheckoutOrder extends Model {
 					foreach ($order_options as $order_option) {
 						$this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity - " . (int)$order_product['quantity'] . ") WHERE product_option_value_id = '" . (int)$order_option['product_option_value_id'] . "' AND subtract = '1'");
 					}
+
+					//start volyminhnhan@gmail.com modifications
+					//temporarily disable stock update when quantity fall below 0
+					// $product_query = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+					// if($product_query->num_rows) {
+					// 	if($order_status_id == 1 && (int)$product_query->row['quantity'] <= 0) {
+					// 		$this->db->query("UPDATE " . DB_PREFIX . "product SET status = '0' WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+					// 	}
+					// }
+					//end volyminhnhan@gmail.com modifications
 				}
 				
 				// Add commission if sale is linked to affiliate referral.

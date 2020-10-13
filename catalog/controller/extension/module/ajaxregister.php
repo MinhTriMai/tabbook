@@ -29,6 +29,10 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         $data['entry_customer_group'] = $this->language->get('entry_customer_group');
         $data['entry_firstname'] = $this->language->get('entry_firstname');
         $data['entry_lastname'] = $this->language->get('entry_lastname');
+        $data['entry_school'] = $this->language->get('entry_school');
+        $data['entry_firstname_placeholder'] = $this->language->get('entry_firstname_placeholder');
+        $data['entry_lastname_placeholder'] = $this->language->get('entry_lastname_placeholder');
+        $data['entry_lastname_school'] = $this->language->get('entry_lastname_school');
         $data['entry_email'] = $this->language->get('entry_email');
         $data['entry_telephone'] = $this->language->get('entry_telephone');
         $data['entry_fax'] = $this->language->get('entry_fax');
@@ -79,6 +83,14 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         } else {
             $data['lastname'] = '';
         }
+
+        //start volyminhnhan@gmail.com modifications
+        if (isset($this->request->post['school'])) {
+            $data['school'] = $this->request->post['school'];
+        } else {
+            $data['school'] = '';
+        }
+        //end volyminhnhan@gmail.com modifications
 
         if (isset($this->request->post['email'])) {
             $data['email'] = $this->request->post['email'];
@@ -166,12 +178,17 @@ class ControllerExtensionModuleAjaxregister extends Controller {
 
     public function register() {
         $this->load->model('account/customer');
+        $this->load->model('account/token');
         $this->load->language('extension/module/ajaxregister');
 
         $json = array();
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $customer_id = $this->model_account_customer->addCustomer($this->request->post);
+            $token = md5(uniqid($customer_id, true));
+            $current_date = strtotime(date('Y/m/d'));
+            $expired_at = date('Y-m-d', strtotime("+1 days", $current_date));
+            $this->model_account_token->addToken($customer_id, $token, $expired_at);
 
             // Clear any previous login attempts for unregistered accounts.
             $this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
@@ -179,6 +196,29 @@ class ControllerExtensionModuleAjaxregister extends Controller {
             $this->customer->login($this->request->post['email'], $this->request->post['password']);
 
             unset($this->session->data['guest']);
+            $this->load->language('mail/register');
+            $data['text_welcome'] = sprintf($this->language->get('text_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $data['text_login'] = $this->language->get('text_login');
+            $data['text_approval'] = $this->language->get('text_approval');
+            $data['text_service'] = $this->language->get('text_service');
+            $data['text_thanks'] = $this->language->get('text_thanks');
+            $data['login'] = $str = str_replace('&amp;', '&', $this->url->link('account/success', '&token='.$token, true));
+            $data['store'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
+
+            $mail = new Mail($this->config->get('config_mail_engine'));
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+            $mail->setTo($this->request->post['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $mail->setSubject(sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
+            $mail->setText($this->load->view('mail/register', $data));
+            $mail->send();
 
             if(!$json) {
                 $json['success'] = true;
@@ -203,6 +243,14 @@ class ControllerExtensionModuleAjaxregister extends Controller {
                 } else {
                     $json['error_lastname'] = '';
                 }
+
+                //start volyminhnhan@gmail.com modifications
+                if (isset($this->error['school'])) {
+                    $json['error_school'] = $this->error['school'];
+                } else {
+                    $json['error_school'] = '';
+                }
+                //end volyminhnhan@gmail.com modifications
 
                 if (isset($this->error['email'])) {
                     $json['error_email'] = $this->error['email'];
@@ -253,6 +301,12 @@ class ControllerExtensionModuleAjaxregister extends Controller {
         if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
             $this->error['lastname'] = $this->language->get('error_lastname');
         }
+
+        //start volyminhnhan@gmail.com modifications
+        if ((utf8_strlen(trim($this->request->post['school'])) < 1) || (utf8_strlen(trim($this->request->post['school'])) > 255)) {
+            $this->error['school'] = $this->language->get('error_school');
+        }
+        //end volyminhnhan@gmail.com modifications
 
         if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
             $this->error['email'] = $this->language->get('error_email');

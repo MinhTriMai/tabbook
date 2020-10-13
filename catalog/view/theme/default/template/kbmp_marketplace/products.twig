@@ -1,4 +1,7 @@
 {{ header }} 
+
+{{ sidebar }}
+
         <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
             <header class="main-header">
                 <nav class="navbar navbar-static-top">
@@ -35,11 +38,11 @@
                     </div>
                 </h2>
                 <div class="well">
-                    <div data-toggle="seller_product_filter" class="kbmp-filter-header">
+                    <div class="kbmp-filter-header" data-toggle="collapse" data-target="#seller_product_filter" aria-expanded="false" aria-controls="seller_product_filter">
                         {{ text_filter_search }} 
                         <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
                     </div>
-                    <div id="seller_product_filter">
+                    <div class="collapse" id="seller_product_filter">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -110,6 +113,9 @@
                                 <td class="text-left">
                                     {{ text_status }} 
                                 </td>
+                                <td class="text-left">
+                                    {{ text_approval_status }} 
+                                </td>
                                 <td class="text-right">
                                     {{ text_quantity_sold }} 
                                 </td>
@@ -146,7 +152,14 @@
                                         </span>
                                     </td>
                                     <td class="text-left">{{ product['status'] is not empty ? text_enabled : text_disabled }}</td>
-                                    <td class="text-right">{{ product['quantity'] }}</td>
+                                    <td class="text-center">
+                                {% if (product['approval_status'] is defined and product['approval_status'] == 1) %}
+                                <i class="fa fa-check text-success" title="{{ text_approve }}"></i>
+                                 {% else %} 
+                                 <i class="fa fa-ban text-danger" title="{{ text_disapproved }}"></i>
+                                 {% endif %}
+                                </td>
+                                <td class="text-right">{{ product['quantity'] }}</td>
                                     <td class="text-right">
                                         <span class="text-success">{{ product['earning'] }}</span>
                                     </td>

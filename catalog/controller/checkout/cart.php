@@ -316,6 +316,26 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			if (!$json) {
+				//start volyminhnhan@gmail.com modifications
+				//check quantity in cart vs available quantity
+				$current_cart_products = $this->cart->getProducts();
+				if(!empty($current_cart_products) && !is_null($current_cart_products)) {
+					foreach ($current_cart_products as $product) {
+						if((int)$product['product_id'] == (int)$this->request->post['product_id']) {
+							$expected_quantity = (int)$quantity + (int)$product['quantity'];
+							if((int)$expected_quantity > (int)$product_info['quantity']) {
+								$json['error']['exceeded_quantity'] = $this->language->get('text_exceed_quantity');
+								$json['success'] = 0;
+
+								$this->response->addHeader('Content-Type: application/json');
+								$this->response->setOutput(json_encode($json));
+								return;
+							}
+						}
+					}
+				}
+				//end volyminhnhan@gmail.com modifications
+
 				$this->cart->add($this->request->post['product_id'], $quantity, $option, $recurring_id);
 
 				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));

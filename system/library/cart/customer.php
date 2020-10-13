@@ -9,6 +9,9 @@ class Customer {
 	private $telephone;
 	private $newsletter;
 	private $address_id;
+	//start volyminhnhan@gmail.com modifications
+	private $kbmp_seller_registration;
+	//end volyminhnhan@gmail.com modifications
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -28,6 +31,17 @@ class Customer {
 				$this->telephone = $customer_query->row['telephone'];
 				$this->newsletter = $customer_query->row['newsletter'];
 				$this->address_id = $customer_query->row['address_id'];
+
+				//start volyminhnhan@gmail.com modifications
+				$seller_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int)$this->db->escape($customer_query->row['customer_id']) . "'");
+
+				if ($seller_query->num_rows) {
+					$this->kbmp_seller_registration = 1;
+				}
+				else {
+					$this->kbmp_seller_registration = 0;
+				}
+				//end volyminhnhan@gmail.com modifications
 
 				$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
@@ -60,6 +74,17 @@ class Customer {
 			$this->telephone = $customer_query->row['telephone'];
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->address_id = $customer_query->row['address_id'];
+
+			//start volyminhnhan@gmail.com modifications
+			$seller_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int)$this->db->escape($customer_query->row['customer_id']) . "'");
+
+			if ($seller_query->num_rows) {
+				$this->kbmp_seller_registration = 1;
+			}
+			else {
+				$this->kbmp_seller_registration = 0;
+			}
+			//end volyminhnhan@gmail.com modifications
 		
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
@@ -81,6 +106,12 @@ class Customer {
 		$this->newsletter = '';
 		$this->address_id = '';
 	}
+
+	//start volyminhnhan@gmail.com modifications
+	public function isKBMPSeller() {
+		return $this->kbmp_seller_registration;
+	}
+	//end volyminhnhan@gmail.com modifications
 
 	public function isLogged() {
 		return $this->customer_id;

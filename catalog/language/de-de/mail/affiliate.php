@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_subject']        = '%s - Affiliate Program';
+$_['text_subject']        = '[%s] - Affiliate Program';
 $_['text_welcome']        = 'Thank you for joining the %s Affiliate Program!';
 $_['text_login']          = 'Your account has now been created and you can log in by using your e-mail address and password by visiting our website or at the following URL:';
 $_['text_approval']       = 'Your account must be approved before you can login. Once approved you can log in by using your e-mail address and password by visiting our website or at the following URL:';

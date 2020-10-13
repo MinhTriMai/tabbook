@@ -1,7 +1,7 @@
 <?php
 // Heading 
 $_['heading_title'] 	 = 'Bản tin';
-$_['heading_title2'] 	 = 'Đăng ký để <span>gửi bản tin</span>';
+$_['heading_title2'] 	 = 'Đăng ký để <span>nhận bản tin</span>';
 $_['heading_title3'] 	 = 'Ưu đãi đặc biệt cho người đăng ký';
 $_['text_colose'] 	 = 'Đóng';
 

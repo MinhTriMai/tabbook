@@ -36,6 +36,7 @@ $_['text_error']                     = 'Xử lý lỗi';
 // Entry
 $_['entry_meta_title']                 = 'Tên Cửa Hàng';
 $_['entry_meta_description']    = 'Mô tả từ khóa:';
+$_['entry_google_survey']    = 'Đường dẫn survey<br><i style="font-weight: 400;">Hiển thị khi thanh toán thành công</i>';
 $_['entry_meta_keyword']             = 'Thẻ từ khóa';
 $_['entry_layout']                   = 'Default Layout';
 $_['entry_theme']                    = 'Giao diện';

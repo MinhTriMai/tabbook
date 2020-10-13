@@ -7,6 +7,12 @@ class ControllerInformationContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		//start volyminhnhan@gmail.com modifications
+		$data['text_form_fill'] = $this->language->get('text_form_fill');
+		$data['text_support_title'] = $this->language->get('text_support_title');
+		$data['text_support'] = $this->language->get('text_support');
+		//end volyminhnhan@gmail.com modifications
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$mail = new Mail($this->config->get('config_mail_engine'));
 			$mail->parameter = $this->config->get('config_mail_parameter');

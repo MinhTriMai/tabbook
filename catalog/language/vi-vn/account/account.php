@@ -24,3 +24,4 @@ $_['text_transactions']  = 'Các giao dịch';
 $_['text_affiliate_add']  = 'Đăng ký tài khoản đại lý';
 $_['text_affiliate_edit'] = 'Chỉnh sửa thông tin đại lý của bạn';
 $_['text_tracking']       = 'Mã Theo dõi đại lý Tuỳ chỉnh ';
+$_['text_edit']           = 'Chỉnh sửa thông tin tài khoản';

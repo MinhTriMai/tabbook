@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_subject']      = '%s - Đơn hàng %s';
+$_['text_subject']        = '[%s] - Đơn hàng %s';
 $_['text_received']     = 'Bạn đã nhận được một đơn đặt hàng.';
 $_['text_order_id']     = 'ID Đơn hàng:';
 $_['text_date_added']   = 'Ngày tạo:';

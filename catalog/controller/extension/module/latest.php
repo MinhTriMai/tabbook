@@ -10,6 +10,9 @@ class ControllerExtensionModuleLatest extends Controller {
 		$data['products'] = array();
 
 		$filter_data = array(
+			//start volyminhnhan@gmail.com modifications
+            'filter_quantity_greater_than_zero' => 0,
+            //end volyminhnhan@gmail.com modifications
 			'sort'  => 'p.date_added',
 			'order' => 'DESC',
 			'start' => 0,

@@ -8,7 +8,7 @@ footer, header, hgroup, menu, nav, section {
 ol, ul {
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 0; 
 }
 blockquote, q {
 	quotes: none;
@@ -24,7 +24,7 @@ table {
 }
 /*------------*/
 body {
-	font-family: 'Rufina', serif;
+	font-family: 'Quicksand'!important;
 	font-weight: 400;
 	color: #666666;
 	font-size: 14px;
@@ -38,7 +38,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	color: #333333;
 	line-height: 1.35;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Quicksand'!important;
 }
 /* default font size */
 .fa {
@@ -100,6 +100,7 @@ legend {
 	font-size: 18px;
 	padding: 7px 0px
 }
+
 label {
 	font-size: 13px;
 	font-weight: normal;
@@ -137,6 +138,108 @@ div.required .control-label:before {
 	content: '* ';
 	color: #F00;
 	font-weight: bold;
+}
+
+#information-contact #content h1 {
+	font-size: 25px;
+}
+#information-contact #content h3 {
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	color: #777;
+}
+#information-contact #content h3.connect-with-us {
+	color: #333;
+	font-size: 18px;
+	 font-weight: normal; 
+	margin-top: 25px;
+	/* font-family: "Lucida Console", Monaco, monospace; */
+	font-family: Verdana, Geneva, sans-serif;
+}
+#information-contact #content .col-sm-10 {
+	margin-left:0px!important;
+	padding-left: 0px!important;
+}
+#information-contact #content .buttons {
+	margin-left: -15px!important;
+}
+#information-contact #content .panel {
+	margin-left: -15px!important;
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+}
+#information-contact #content .panel  .panel-body{
+	margin-left: 0px!important;
+	padding-left: 0px!important;
+}
+
+
+#account-account .dashboard-info-box {
+    padding: 10px;
+    background: #fff;
+}
+#account-account .dashboard-info-box h2 {
+    background: #1e85ad;
+    margin: 0;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+#account-account .dashboard-info-box .list-unstyled {
+	background: #5dade2;
+	padding: 15px;
+}
+#account-account .dashboard-info-box .list-unstyled li a{
+	color: #555;
+}
+#account-account .dashboard-info-content {
+    padding: 0px 15px 10px;
+}
+#account-account h5.dash-count {
+    display: inline-block;
+    float: right;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 8px;
+}
+#account-account .dashboard-info-content i {
+    font-size: 40px;
+    opacity: 0.5;
+    color: #ffffff;
+	margin-right: 10px;
+}
+#account-account .dashboard-info-box.green .list-unstyled {
+    background: #50b5bf;
+}
+#account-account .dashboard-info-box.green h2 {
+    background: #208c96;
+}
+#account-account .dashboard-info-box.pink .list-unstyled {
+    background: #fb7683;
+}
+#account-account .dashboard-info-box.pink h2 {
+    background: #f15a69;
+}
+#account-account .dashboard-info-box.orange .list-unstyled {
+    background: #799bd8;
+}
+#account-account .dashboard-info-box.orange h2 {
+    background: #416ab3;
+}
+#account-account .dashboard-info-box.yellow .list-unstyled {
+    background: #ffd366;
+}
+#account-account .dashboard-info-box.yellow h2 {
+    background: #f1c40f;
+}
+#account-account .dashboard-listGroup li:hover .dashboard-info-content i {
+    opacity: 1;
+    transition: 0.75s ease;
 }
 
 /* tooltip */
@@ -529,6 +632,14 @@ a:hover,.banner-3 a:hover::before,
 	border-bottom: 1px solid #ededed;
 	font-family: 'Open Sans', sans-serif;
 }
+#top .box{
+	border-radius: 0px!important;
+    background: none!important;
+    border-top: 0px solid #d2d6de!important;
+    margin-bottom: 0px!important;
+    width: auto!important;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1)!important;
+}
 #top .box-left {
 	float:left;
 	margin: 0;
@@ -672,6 +783,9 @@ a:hover,.banner-3 a:hover::before,
 #logo{
 	padding: 44px 0;
 }
+#logo img{
+	width: 170px;
+}
 #logo a{
 	display: inline-block;
 }
@@ -690,7 +804,7 @@ a:hover,.banner-3 a:hover::before,
 .top-search {
 	position: absolute;
 	top: 50%;
-	right: 370px;
+	right: 400px;
 	-moz-transform:  translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
@@ -942,7 +1056,7 @@ a:hover,.banner-3 a:hover::before,
     font-family: 'FontAwesome';
     display: inline-block;
     vertical-align: top;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #a1a1a1;
 }
 .box-cart .links .compare a:before {
@@ -1202,17 +1316,17 @@ a:hover,.banner-3 a:hover::before,
 }
 .static-top-skybook1 .image a .text .text1 {
   font-weight: 700;
-  font-size: 20px;
-  text-transform: capitalize;
+  font-size: 28px;
+  text-transform: uppercase;
   color: #fff;
   display: block;
   line-height: 1;
   margin-bottom: 7px;
 }
 .static-top-skybook1 .image a .text .text2 {
-  font-size: 28px;
+  font-size: 20px;
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: capitalize;
   display: block;
   color: #fff;
   margin-right: -218px;
@@ -1236,12 +1350,12 @@ a:hover,.banner-3 a:hover::before,
 }
 .static-top-skybook4 .col1 {
   float: left;
-  width: 55.748%;
+  width: 50%;
   padding-right: 15px;
 }
 .static-top-skybook4 .col2 {
   float: left;
-  width: 44.252%;
+  width: 50%;
   padding-left: 15px;
 }
 .static-slider-skybook4 {
@@ -1539,6 +1653,7 @@ button.btn-compare:before {
 	background: transparent;
 	text-align: center;
 	position: relative;
+	min-height: 91px;
 }
 .item-inner .product-des {line-height: 24px;padding-bottom: 10px;}
 .product-name {
@@ -1548,6 +1663,7 @@ button.btn-compare:before {
 }
 .product-name a {
 	color: #333333;
+	max-height: 46px;
 	padding: 0;
 	display: block;
 	text-transform: capitalize;
@@ -3440,6 +3556,11 @@ label[for='input-quantity']{
 	float: left;
 	border: 0;
 	margin-right: 4px;
+}
+.quantity-left {
+	float:left;
+	width: 100%;
+	margin-top: 10px;
 }
 .product-info-main label[for='input-quantity'], .product-info-main .quantity-box {
 	margin-top: 8px;

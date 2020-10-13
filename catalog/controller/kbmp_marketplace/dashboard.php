@@ -75,8 +75,11 @@ class ControllerKbmpMarketplaceDashboard extends Controller {
         
         
         
-        $data['header'] = $this->load->controller('kbmp_marketplace/header');
-        $data['footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['sidebar'] = $this->load->controller('kbmp_marketplace/header');
+        $data['kbmp_footer'] = $this->load->view('kbmp_marketplace/footer', $data);
+        $data['header'] = $this->load->controller('common/header');
+        $data['footer'] = $this->load->controller('common/footer');
+
 
         $data['home_link'] = $this->url->link('common/home');
         $data['account_link'] = $this->url->link('account/account', '', true);

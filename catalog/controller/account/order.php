@@ -10,6 +10,7 @@ class ControllerAccountOrder extends Controller {
 		$this->load->language('account/order');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title_order'));
 		
 		$url = '';
 
@@ -104,6 +105,7 @@ class ControllerAccountOrder extends Controller {
 
 		$order_info = $this->model_account_order->getOrder($order_id);
 
+	
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));
 
@@ -239,8 +241,23 @@ class ControllerAccountOrder extends Controller {
 			$data['products'] = array();
 
 			$products = $this->model_account_order->getOrderProducts($this->request->get['order_id']);
-
 			foreach ($products as $product) {
+				//start volyminhnhan@gmail.com modifications
+				$this->load->model('kbmp_marketplace/kbmp_marketplace');
+				$this->load->model('customer/customer');
+				$seller_id = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByProductId($product['product_id']);
+				$seller_info = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerById($seller_id);
+				$customer_info = $this->model_customer_customer->getCustomer($seller_info['customer_id']);
+
+				//hoai.nguyen modified 22/09/2020
+                //<nguyentanhoai072@gmail.com>
+                //093.132.9465
+				$seller['seller_firstname'] = isset($customer_info['firstname']) ? $customer_info['firstname'] : '';
+                $seller['seller_lastname'] = isset($customer_info['lastname']) ? $customer_info['lastname'] : '';
+                $seller['seller_email'] = isset($customer_info['email']) ? $customer_info['email'] : '';
+                $seller['seller_telephone'] = isset($customer_info['telephone']) ? $customer_info['telephone'] : '';
+                //end
+
 				$option_data = array();
 
 				$options = $this->model_account_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);
@@ -273,6 +290,7 @@ class ControllerAccountOrder extends Controller {
 				}
 
 				$data['products'][] = array(
+				    'seller'   => $seller, //hoai.nguyen modified 22/09/2020
 					'name'     => $product['name'],
 					'model'    => $product['model'],
 					'option'   => $option_data,
@@ -283,7 +301,6 @@ class ControllerAccountOrder extends Controller {
 					'return'   => $this->url->link('account/return/add', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], true)
 				);
 			}
-
 			// Voucher
 			$data['vouchers'] = array();
 

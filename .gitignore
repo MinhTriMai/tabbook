@@ -4,3 +4,4 @@ system/storage/*
 /config.php
 install/*
 image/cache/*
+image/catalog/*

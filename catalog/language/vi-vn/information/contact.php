@@ -1,8 +1,13 @@
 <?php
 // Heading
-$_['heading_title']      = 'Liên hệ với chúng tôi';
+$_['heading_title']      = 'Gửi tin nhắn cho chúng tôi';
 
 // Text 
+//start volyminhnhan@gmail.com modifications
+$_['text_support_title']      = 'Liên lạc qua email:';
+$_['text_support']      = 'Nếu bạn có bất kỳ thắc mắc hay cần thông tin gì:<br/>Hãy email cho chúng tôi: <a href="mailto:support@tabbook.vn">support@tabbook.vn</a>';
+$_['text_form_fill']      = 'Vui lòng điền thông tin bên dưới và chúng tôi sẽ liên lạc lại với bạn trong thời gian sớm nhất:';
+//end volyminhnhan@gmail.com modifications
 $_['text_location']      = 'Thông tin của chúng tôi';
 $_['text_store']     = 'Gian hàng của chúng tôi';
 $_['text_contact']       = 'Thông tin liên hệ';

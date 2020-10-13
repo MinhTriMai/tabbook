@@ -31,6 +31,8 @@ $_['text_semi_month']          = 'Nửa tháng';
 $_['text_month']               = 'Tháng';
 $_['text_year']                = 'Năm';
 
+$_['text_remaining_quantity']                = 'Số lượng còn lại: ';
+
 // Entry
 $_['entry_qty']                = 'Số lượng';
 $_['entry_name']               = 'Tên bạn';
