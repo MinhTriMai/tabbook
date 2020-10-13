@@ -19,4 +19,4 @@ $_['entry_password']               = 'Mật khẩu:';
 // Error
 $_['error_login']                  = 'Lỗi: Email hoặc mật khẩu không chính xác.';
 $_['error_attempts']               = 'Cảnh báo: Tài khoản của bạn đã vượt quá số lần đăng nhập cố định. Vui lòng thử lại trong 1 giờ.';
-$_['error_approved']               = 'Thông báo: Để có thể đăng nhập, bạn vui lòng kích hoạt tài khoản bằng đường link đã được gửi trong email.';
+$_['error_approved']               = 'Để có thể đăng nhập, bạn vui lòng kích hoạt tài khoản bằng đường link đã được gửi trong email.';
