@@ -1,6 +1,6 @@
 <?php
 // Heading 
-$_['heading_title'] = 'Hozmegamenu';
+$_['heading_title'] = 'LỊCH SỬ ĐƠN HÀNG CỦA BẠN';
 $_['category_title'] = 'Danh mục';
 $_['menu_title'] = 'Menu';
 
