@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']     = 'Đăng ký tài khoản bán sách';
+$_['heading_title']     = 'Đăng ký trở thành người bán';
 
 // Text
 $_['text_account']      = 'Tài khoản';
