@@ -68,7 +68,11 @@ class ControllerCommonblock3 extends Controller {
 				}
 			}
 		}
+        $customer = new Cart\Customer($this->registry);
 
+        if ($customer->isLogged() && !$customer->isKBMPSeller()){
+            $data['modules'][0]= html_entity_decode("&lt;a href=&quot;index.php?route=account/seller&quot; title=&quot;Trở thành người bán&quot;&gt;Trở thành người bán&lt;/a&gt;");
+        }
 		return $this->load->view('common/block3', $data);
 	}
 }

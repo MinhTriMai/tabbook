@@ -10,7 +10,7 @@ $_['text_logout']                   = 'Đăng xuất';
 $_['text_my_account1']              = 'Tài khoản của tôi';
 
 // Text
-$_['text_add'] = 'Thêm';
+$_['text_add'] = 'Thêm sản phẩm';
 $_['text_edit'] = 'Chỉnh sửa';
 $_['text_delete'] = 'Xóa';
 $_['text_filter_search'] = 'Lọc tìm kiếm của bạn';
