@@ -1,5 +1,5 @@
 {{ header }}
-<div id="account-account" class="container" style="width: 60%;">
+<div id="account-account" class="container general-block">
   <ul class="breadcrumb">
     {% for breadcrumb in breadcrumbs %}
       <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
@@ -27,13 +27,14 @@
       </div>
 
 
-      <div class="col-md-6 col-6 dashboard-info-box" style="min-height: 210px;">
+      <div class="col-md-6 col-6 dashboard-info-box">
         <h2><div class="myaccount-icon"><img style="border-radius: 50%;" src="/image/catalog/my_account/noun_account.png" /></div> {{ text_my_account }}<span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ edit }}">{{ text_edit }}</a></li>
           <li><a href="{{ password }}">{{ text_password }}</a></li>
           <!-- <li><a href="{{ address }}">{{ text_address }}</a></li> -->
           <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ compare }}">{{ text_compare }}</a></li>
         </ul>
       </div>
 
@@ -48,7 +49,7 @@
         </div>
       {% endif %}
 
-      <div class="col-md-6 col-6 dashboard-info-box green"  style="min-height: 210px;">
+      <div class="col-md-6 col-6 dashboard-info-box green">
         <h2><div class="myaccount-icon"><img src="/image/catalog/my_account/noun_list.png" /></div> {{ text_my_orders }} <span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ order }}">{{ text_order }}</a></li>
@@ -62,7 +63,7 @@
         </ul>
       </div>
 
-      <!-- <div class="col-sm-4 dashboard-info-box orange"  style="min-height: 210px;">
+      <!-- <div class="col-sm-4 dashboard-info-box orange">
         <h2>{{ text_my_affiliate }}</h2>
         <ul class="list-unstyled">
           {% if not tracking %}
@@ -74,7 +75,7 @@
         </ul>
       </div> -->
 
-      <div class="col-md-6 col-6 dashboard-info-box pink"  style="min-height: 210px;">
+      <div class="col-md-6 col-6 dashboard-info-box pink">
         <h2><div class="myaccount-icon"><img style="border-radius: 50%;" src="/image/catalog/my_account/noun_newsletter.png" /></div> {{ text_my_newsletter }}<span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
@@ -86,6 +87,9 @@
 {{ footer }}
 
 <style>
+  .general-block{
+    width: 60%;
+  }
   .right-arrow{
     width: 30px;
     height: 30px;
@@ -101,6 +105,9 @@
   }
   .myaccount-icon img{
     margin-bottom: 5px;
+  }
+  #account-account .dashboard-info-box{
+    min-height: 210px;
   }
 
   #account-account .dashboard-info-box .list-unstyled,
@@ -131,6 +138,7 @@
     color: rgb(42, 78, 118);
   }
   #arrow-right{
+    margin-left: 10px;
     position: relative;
     padding: 10px;
     margin-left: 5%;
@@ -186,5 +194,58 @@
     padding-left: 50px;
     font-size: 20px;
     color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .out {
+      margin-left: 10%;
+      width: 80%;
+    }
+
+    .general-block {
+      width: 80%;
+    }
+
+    .out .sell-product .button-sell-products {
+      padding-left: 25px;
+    }
+
+    .myaccount-icon {
+      margin-left: 10px;
+      width: 30px;
+      height: 30px;
+    }
+
+    .myaccount-icon img {
+      margin-top: 2px;
+    }
+
+    #account-account .dashboard-info-box h2,
+    #account-account .dashboard-info-box.green h2,
+    #account-account .dashboard-info-box.pink h2,
+    #account-account .dashboard-info-box.yellow h2 {
+      line-height: 2 !important;
+      padding: 5px 5px;
+      font-size: 15px !important;
+      color: white;
+      font-weight: unset;
+      background: rgb(42, 78, 118);
+    }
+
+    #arrow-right {
+      margin-left: 20px !important;
+    }
+
+    #arrow-right:after {
+      height: 25%;
+    }
+
+    #arrow-right:before {
+      top: 20%;
+      height: 25%;
+    }
+    #account-account .dashboard-info-box{
+      min-height: unset;
+    }
   }
 </style>

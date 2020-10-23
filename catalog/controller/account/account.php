@@ -55,7 +55,8 @@ class ControllerAccountAccount extends Controller {
 		$data['wishlist'] = $this->url->link('account/wishlist');
 		$data['order'] = $this->url->link('account/order', '', true);
 		$data['download'] = $this->url->link('account/download', '', true);
-		
+        $data['compare'] = $this->url->link('product/compare', '', true);
+
 		if ($this->config->get('total_reward_status')) {
 			$data['reward'] = $this->url->link('account/reward', '', true);
 		} else {
