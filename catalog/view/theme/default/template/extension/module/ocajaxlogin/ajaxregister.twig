@@ -230,7 +230,7 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset style="display: none">
                 <legend>{{ text_newsletter }}</legend>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{ entry_newsletter }}</label>
@@ -263,14 +263,14 @@
                         <input type="checkbox" name="agree" value="1" />
                     {% endif %}
                     &nbsp;
-                    <input type="button" onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
+                    <input type="button" id="btn-register" onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
                     <img class="ajax-load-img" alt="" src="{{ loader_img }}" width="30" height="30" />
                 </div>
             </div>
             {% else %}
             <div class="buttons">
                 <div class="pull-right">
-                    <button type="button" onclick="ocajaxlogin.registerAction();"  class="button"><span>{{ button_continue }}</span></button>
+                    <button type="button" disabled="disabled" onclick="ocajaxlogin.registerAction();"  class="button"><span>{{ button_continue }}</span></button>
                     <img class="ajax-load-img" alt="" src="{{ loader_img }}" width="30" height="30" />
                 </div>
             </div>
@@ -294,6 +294,14 @@
             $('#account .form-group:first').before(this);
         }
     });
+
+    $('input[name=\'agree\']').on('change',function(){
+        if (this.checked){
+            $('#btn-register').prop('disabled','');
+        }else{
+            $('#btn-register').prop('disabled','disabled');
+        }
+    })
 
     $('#address .form-group[data-sort]').detach().each(function() {
         if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#address .form-group').length) {

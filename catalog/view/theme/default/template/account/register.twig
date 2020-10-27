@@ -272,7 +272,7 @@
               {% endif %} </div>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset style="display: none">
           <legend>{{ text_newsletter }}</legend>
           <div class="form-group">
             <label class="col-sm-2 control-label">{{ entry_newsletter }}</label>
@@ -303,7 +303,7 @@
             <input type="checkbox" name="agree" value="1" />
             {% endif %}
             &nbsp;
-            <input type="submit" value="{{ button_continue }}" class="btn btn-primary" />
+            <input type="submit" id="btn-register" disabled="disabled" value="{{ button_continue }}" class="btn btn-primary" />
           </div>
         </div>
         {% else %}
@@ -336,6 +336,14 @@ $('#account .form-group[data-sort]').detach().each(function() {
 		$('#account .form-group:first').before(this);
 	}
 });
+
+$('input[name=\'agree\']').on('change',function(){
+        if (this.checked){
+            $('#btn-register').prop('disabled','');
+        }else{
+            $('#btn-register').prop('disabled','disabled');
+        }
+})
 
 $('input[name=\'customer_group_id\']').on('change', function() {
 	$.ajax({
