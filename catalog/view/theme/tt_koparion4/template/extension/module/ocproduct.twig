@@ -397,7 +397,7 @@
 				lazyLoad: true,
                 responsive:{
 					0:{
-						items: 1,
+						items: {{ config_module.smobile }},
 						nav: false
 					},
 					480:{
@@ -426,7 +426,7 @@
 						$("#product_module{{ config_module.module_id }} .tt-product .owl-item").removeClass('first');
 						$("#product_module{{ config_module.module_id }} .tt-product .owl-item.active:first").addClass('first');
 					}
-					
+
 				},
 				onTranslated: function() {
 					var count = $("#product_module{{ config_module.module_id }} .tt-product .owl-item.active").length;
