@@ -263,14 +263,14 @@
                         <input type="checkbox" name="agree" value="1" />
                     {% endif %}
                     &nbsp;
-                    <input type="button" id="btn-register" onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
+                    <input type="button" id="btn-register"  disabled="disabled" onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
                     <img class="ajax-load-img" alt="" src="{{ loader_img }}" width="30" height="30" />
                 </div>
             </div>
             {% else %}
             <div class="buttons">
                 <div class="pull-right">
-                    <button type="button" disabled="disabled" onclick="ocajaxlogin.registerAction();"  class="button"><span>{{ button_continue }}</span></button>
+                    <button type="button" onclick="ocajaxlogin.registerAction();"  class="button"><span>{{ button_continue }}</span></button>
                     <img class="ajax-load-img" alt="" src="{{ loader_img }}" width="30" height="30" />
                 </div>
             </div>
