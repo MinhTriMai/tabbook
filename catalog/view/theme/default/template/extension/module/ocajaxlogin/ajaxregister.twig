@@ -263,7 +263,7 @@
                         <input type="checkbox" name="agree" value="1" />
                     {% endif %}
                     &nbsp;
-                    <input type="button" id="btn-register"  disabled="disabled" onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
+                    <input type="button" id="btn-register"  onclick="ocajaxlogin.registerAction();" value="{{ button_continue }}" class="btn btn-primary" />
                     <img class="ajax-load-img" alt="" src="{{ loader_img }}" width="30" height="30" />
                 </div>
             </div>
@@ -295,13 +295,13 @@
         }
     });
 
-    $('input[name=\'agree\']').on('change',function(){
-        if (this.checked){
-            $('#btn-register').prop('disabled','');
-        }else{
-            $('#btn-register').prop('disabled','disabled');
-        }
-    })
+    // $('input[name=\'agree\']').on('change',function(){
+    //     if (this.checked){
+    //         $('#btn-register').prop('disabled','');
+    //     }else{
+    //         $('#btn-register').prop('disabled','disabled');
+    //     }
+    // })
 
     $('#address .form-group[data-sort]').detach().each(function() {
         if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#address .form-group').length) {
