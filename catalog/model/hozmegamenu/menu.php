@@ -19,6 +19,9 @@ class ModelHozmegamenuMenu extends Model {
 				 }
 			}
 			$url =  $this->url->link('common/home');
+		    //hoai nguyen modified at 28/10/2020
+            //0931329465
+		    $url = str_replace('index.php?route=common/home','trang-chu', $url);
             $id = "_home";
             $this->_menuLink .= '<div id="pt_menu' . $id . '" class="pt_menu' . $act . '">';
             $this->_menuLink .= '<div class="parentMenu">';
