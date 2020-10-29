@@ -1,50 +1,61 @@
 {{ header }}
-<div id="account-account" class="container">
+<div id="account-account" class="container general-block">
   <ul class="breadcrumb">
     {% for breadcrumb in breadcrumbs %}
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+      <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
     {% endfor %}
   </ul>
   {% if success %}
-  <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
   {% endif %}
   <div class="row">{{ column_left }}
     {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
+      {% set class = 'col-sm-6' %}
     {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
+      {% set class = 'col-sm-9' %}
     {% else %}
-    {% set class = 'col-sm-12' %}
+      {% set class = 'col-sm-12' %}
     {% endif %}
+
     <div id="content" class="{{ class }}">{{ content_top }}
-      <div class="col-sm-4 dashboard-info-box" style="min-height: 210px;">
-        <h2>{{ text_my_account }}</h2>
+      <div class="row">
+        <div class="out">
+          <div class="sell-product text-content">
+            <a class="button-sell-products" href="index.php?route=kbmp_marketplace/products">Đăng bán sản phẩm</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-6 dashboard-info-box">
+        <h2><div class="myaccount-icon"><img style="border-radius: 50%;" src="/image/catalog/my_account/noun_account.png" /></div> {{ text_my_account }}<span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ edit }}">{{ text_edit }}</a></li>
           <li><a href="{{ password }}">{{ text_password }}</a></li>
           <!-- <li><a href="{{ address }}">{{ text_address }}</a></li> -->
           <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ compare }}">{{ text_compare }}</a></li>
         </ul>
       </div>
 
       {% if credit_cards %}
-      <div class="col-sm-4" style="min-height: 210px;">
-        <h2>{{ text_credit_card }}</h2>
-        <ul class="list-unstyled">
-          {% for credit_card in credit_cards %}
-          <li><a href="{{ credit_card.href }}">{{ credit_card.name }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+        <div class="col-md-6 col-6 " style="min-height: 210px;">
+          <h2>{{ text_credit_card }}</h2>
+          <ul class="list-unstyled">
+            {% for credit_card in credit_cards %}
+              <li><a href="{{ credit_card.href }}">{{ credit_card.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endif %}
 
-      <div class="col-sm-4 dashboard-info-box green"  style="min-height: 210px;">
-        <h2>{{ text_my_orders }}</h2>
+      <div class="col-md-6 col-6 dashboard-info-box green">
+        <h2><div class="myaccount-icon"><img src="/image/catalog/my_account/noun_list.png" /></div> {{ text_my_orders }} <span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ order }}">{{ text_order }}</a></li>
-          <li><a href="{{ download }}">{{ text_download }}</a></li>
+          {#<li><a href="{{ download }}">{{ text_download }}</a></li>#}
           {% if reward %}
-         <!--  <li><a href="{{ reward }}">{{ text_reward }}</a></li> -->
+            <!--  <li><a href="{{ reward }}">{{ text_reward }}</a></li> -->
           {% endif %}
           <!-- <li><a href="{{ return }}">{{ text_return }}</a></li> -->
           <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
@@ -52,7 +63,7 @@
         </ul>
       </div>
 
-      <!-- <div class="col-sm-4 dashboard-info-box orange"  style="min-height: 210px;">
+      <!-- <div class="col-sm-4 dashboard-info-box orange">
         <h2>{{ text_my_affiliate }}</h2>
         <ul class="list-unstyled">
           {% if not tracking %}
@@ -63,9 +74,9 @@
           {% endif %}
         </ul>
       </div> -->
-      
-      <div class="col-sm-4 dashboard-info-box pink"  style="min-height: 210px;">
-        <h2>{{ text_my_newsletter }}</h2>
+
+      <div class="col-md-6 col-6 dashboard-info-box pink">
+        <h2><div class="myaccount-icon"><img style="border-radius: 50%;" src="/image/catalog/my_account/noun_newsletter.png" /></div> {{ text_my_newsletter }}<span id="arrow-right"></span></h2>
         <ul class="list-unstyled">
           <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
         </ul>
@@ -74,3 +85,177 @@
     {{ column_right }}</div>
 </div>
 {{ footer }}
+
+<style>
+  .general-block{
+    width: 60%;
+  }
+  .right-arrow{
+    width: 30px;
+    height: 30px;
+  }
+  .myaccount-icon{
+    /*padding-top: 3px;*/
+    width: 40px;
+    float: left;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  .myaccount-icon img{
+    margin-bottom: 5px;
+  }
+  #account-account .dashboard-info-box{
+    min-height: 210px;
+  }
+  #account-account .dashboard-info-box {
+    padding: 0;
+    width: 45%;
+    margin: 10px;
+    border: 1px solid rgb(42, 78, 118);
+    height: 100%;
+    background: #fff;
+  }
+
+  #account-account .dashboard-info-box .list-unstyled,
+  #account-account .dashboard-info-box.green .list-unstyled ,
+  #account-account .dashboard-info-box.pink .list-unstyled,
+  #account-account .dashboard-info-box.yellow .list-unstyled{
+    /*border: 1px solid rgb(42, 78, 118);*/
+    background: transparent !important;
+    padding: 15px;
+  }
+
+  #account-account .dashboard-info-box h2,
+  #account-account .dashboard-info-box.green h2,
+  #account-account .dashboard-info-box.pink h2,
+  #account-account .dashboard-info-box.yellow h2{
+    line-height: 2 !important;
+    padding: 15px 10px;
+    font-size: 20px !important;
+    color: white;
+    font-weight: unset;
+    background: rgb(42, 78, 118);
+  }
+
+  #account-account .dashboard-info-box .list-unstyled li a:hover,
+  #account-account .dashboard-info-box.green .list-unstyled li a:hover,
+  #account-account .dashboard-info-box.pink .list-unstyled li a:hover,
+  #account-account .dashboard-info-box.yellow .list-unstyled li a:hover{
+    color: rgb(42, 78, 118);
+  }
+  #arrow-right{
+    margin-left: 10px;
+    position: relative;
+    padding: 10px;
+    margin-left: 5%;
+  }
+
+  #arrow-right:before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: -28%;
+    height: 35%;
+    width: 25%;
+    background: white;
+    -webkit-transform: skew(45deg, 0deg);
+    -moz-transform: skew(45deg, 0deg);
+    -ms-transform: skew(45deg, 0deg);
+    -o-transform: skew(45deg, 0deg);
+    transform: skew(45deg, 0deg);
+  }
+  #arrow-right:after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    right: 100%;
+    height: 35%;
+    width: 25%;
+    background: white;
+    -webkit-transform: skew(-45deg, 0deg);
+    -moz-transform: skew(-45deg, 0deg);
+    -ms-transform: skew(-45deg, 0deg);
+    -o-transform: skew(-45deg, 0deg);
+    transform: skew(-45deg, 0deg);
+  }
+  .out{
+    margin-left: 32%;
+    width: 30%;
+    margin-right: 20%;
+    border-radius: 10px;
+    background-color: white;
+    border-color: wheat;
+    padding: 0.5px;
+    margin-bottom: 10px;
+    background: white;
+    border: 1.5px solid grey;
+    box-shadow: 0 0 0 3px rgb(213,213,213);
+  }
+  .out .sell-product{
+    border-radius: 10px;
+    background-color: rgb(42, 78, 118);
+  }
+  .out .sell-product .button-sell-products{
+    line-height: 2.25;
+    padding-left: 17%;
+    font-size: 20px;
+    color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .out {
+      margin-left: 10%;
+      width: 80%;
+    }
+
+    .general-block {
+      width: 80%;
+    }
+
+    .out .sell-product .button-sell-products {
+      padding-left: 10%;
+      padding-left: 25px;
+    }
+
+    .myaccount-icon {
+      margin-left: 10px;
+      width: 30px;
+      height: 30px;
+    }
+
+    .myaccount-icon img {
+      margin-top: 2px;
+    }
+
+    #account-account .dashboard-info-box h2,
+    #account-account .dashboard-info-box.green h2,
+    #account-account .dashboard-info-box.pink h2,
+    #account-account .dashboard-info-box.yellow h2 {
+      line-height: 2 !important;
+      padding: 5px 5px;
+      font-size: 15px !important;
+      color: white;
+      font-weight: unset;
+      background: rgb(42, 78, 118);
+    }
+
+    #arrow-right {
+      margin-left: 20px !important;
+    }
+
+    #arrow-right:after {
+      height: 25%;
+    }
+
+    #arrow-right:before {
+      top: 20%;
+      height: 25%;
+    }
+    #account-account .dashboard-info-box{
+      width: 90%;
+      min-height: unset;
+    }
+  }
+</style>

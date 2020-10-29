@@ -60,7 +60,9 @@ class ControllerCommonHeader extends Controller {
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['compare'] = $this->url->link('product/compare', '', true);
 		$data['logged'] = $this->customer->isLogged();
-		$data['account'] = $this->url->link('account/account', '', true);
+		$url_my_account = $this->url->link('account/account', '', true);
+        $url_my_account = str_replace('index.php?route=account/account','tai-khoan-cua-toi', $url_my_account);
+		$data['account'] = $url_my_account;
 		$data['register'] = $this->url->link('account/register', '', true);
 		$data['login'] = $this->url->link('account/login', '', true);
 		$data['order'] = $this->url->link('account/order', '', true);

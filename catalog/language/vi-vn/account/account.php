@@ -4,6 +4,7 @@ $_['heading_title']      = 'Thông tin tài khoản';
 
 // Text
 $_['text_account']       = 'Tài khoản';
+$_['text_compare']       = 'So sánh sản phẩm';
 $_['text_my_account']    = 'Tài khoản của tôi';
 $_['text_my_orders']     = 'Đơn hàng của tôi';
 $_['text_my_affiliate']   = 'Tài khoản đại lý của tôi';

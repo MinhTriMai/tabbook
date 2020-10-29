@@ -239,7 +239,7 @@
 		$('.setting').find('button').on('click',function () {
 			var url = new URL(window.location.href);
 			var route = url.searchParams.get("route");
-			if (route === "kbmp_marketplace/products") {
+			if (route === "kbmp_marketplace/products" || route === "kbmp_marketplace/products/add") {
 				$(this).parent().hasClass('open') ? $(this).parent().removeClass('open') : $(this).parent().addClass('open');
 			}
 		})

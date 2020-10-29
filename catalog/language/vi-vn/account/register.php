@@ -9,7 +9,7 @@ $_['text_account_already'] = 'Nếu bạn đã đăng ký tài khoản, vui lòn
 $_['text_your_details']    = 'Thông tin cá nhân';
 $_['text_newsletter']      = 'Thư thông báo';
 $_['text_your_password']   = 'Mật khẩu';
-$_['text_agree']           = 'Tôi đã đọc và đồng ý với điều khoản <a class="fancybox" href="%s" alt="%s"><b>%s</b></a>';
+$_['text_agree']           = 'Tôi đã đọc và đồng ý với <a class="fancybox" href="%s" alt="%s"><b>%s</b></a> của Tabbook';
 
 // Entry
 $_['entry_customer_group'] = 'Nhóm khách hàng';
