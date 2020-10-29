@@ -109,7 +109,9 @@ class ControllerKbmpMarketplaceProducts extends Controller {
         //Get Seller ID
         $sellerId = $this->model_kbmp_marketplace_kbmp_marketplace->getSellerByCustomerId();
         $data['seller_details'] = $sellerId;
-        
+        if (empty($sellerId)){
+            $this->response->redirect($this->url->link('account/seller'));
+        }
         $filter_data = array(
             'seller_id' => $sellerId['seller_id'],
             'filter_productname' => trim($filter_productname),

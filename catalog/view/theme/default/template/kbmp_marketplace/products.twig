@@ -32,7 +32,8 @@
             <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
                 <h2 class="marketplaceHeading">
                     {{ text_products }}
-                    <a href="{% if(seller_details['approved'] != '1') %}javascript:void(0){% else %}index.php?route=kbmp_marketplace/products/add{% endif %}" style="margin-left: 35%; background-color: #006f91" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add }}"><i class="fa fa-plus"></i> {{ text_add }}</a>
+                    {#<a href="{% if(seller_details['approved'] != '1') %}javascript:void(0){% else %}index.php?route=kbmp_marketplace/products/add{% endif %}" style="margin-left: 35%; background-color: #006f91" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add }}"><i class="fa fa-plus"></i> {{ text_add }}</a>#}
+                    <a href="index.php?route=kbmp_marketplace/products/add" style="margin-left: 35%; background-color: #006f91" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add }}"><i class="fa fa-plus"></i> {{ text_add }}</a>
                     <div class="pull-right">
 
                         <a href="javascript://" onclick="checkForDeletion()" data-toggle="tooltip" class="btn btn-danger" title="" data-original-title="{{ text_delete }}"><i class="fa fa-trash-o"></i></a>
