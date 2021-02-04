@@ -1,3 +1,4 @@
+// Dung add to test
 <?php
 class ControllerCheckoutSuccess extends Controller {
 	public function index() {
