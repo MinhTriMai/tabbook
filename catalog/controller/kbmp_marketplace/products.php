@@ -469,6 +469,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                     }
                 } else {
                     //Add Product and its details
+                    // var_dump($this->request->post['product_category']);die();
                     $product_id = $this->model_catalog_product->addProduct($this->request->post);
 
                     //Add product entry in seller table of products to map products with seller
@@ -1126,8 +1127,8 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             $categories = array();
         }
 
-        $data['product_categories'] = array();
-
+        $data['product_categories'] = array(); //$this->model_kbmp_marketplace_kbmp_marketplace->getFullCategory();
+        // var_dump($data['product_categories']);die();
         foreach ($categories as $category_id) {
             $category_info = $this->model_kbmp_marketplace_kbmp_marketplace->getCategory($category_id);
 
@@ -1460,7 +1461,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 'sort' => 'name',
                 'order' => 'ASC',
                 'start' => 0,
-                'limit' => 5
+                'limit' => 100
             );
 
             $results = $this->model_kbmp_marketplace_kbmp_marketplace->getAssignedCategoriesList($filter_data);
@@ -1578,7 +1579,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
                 'start' => 0,
-                'limit' => 5
+                'limit' => 100
             );
 
             $filters = $this->model_catalog_filter->getFilters($filter_data);

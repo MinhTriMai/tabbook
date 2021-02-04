@@ -40,6 +40,10 @@ $_['text_week']                      = 'hàng tuần';
 $_['text_semi_month']                = 'nửa tháng';
 $_['text_month']                     = 'hàng tháng';
 $_['text_year']                      = 'hàng năm';
+// Dung new added
+$_['text_checkout_agree']      = 'Đồng ý liên hệ với người mua để giao dịch';
+// end
+
 
 // Column
 $_['column_name']                    = 'Tên sản phẩm';
@@ -94,3 +98,7 @@ $_['error_no_shipping']              = 'Lỗi: Không có tùy chọn phương t
 $_['error_payment']                  = 'Lỗi: Thiếu phương thức thanh toán!';
 $_['error_no_payment']               = 'Lỗi: Không có tùy chọn phương thức thanh toán. Vui lòng <a href="%s">liên hệ chúng tôi</a> để được tư vấn!';
 $_['error_custom_field']             = '%s là yêu cầu bắt buộc!';
+
+// Dung new added
+$_['error_checkout_agree']          = 'Cảnh báo: Bạn phải ĐỒNG Ý liên hệ với người bán để thực hiện giao dịch!';	
+//end

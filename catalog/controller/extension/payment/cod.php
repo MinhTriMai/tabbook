@@ -5,14 +5,15 @@ class ControllerExtensionPaymentCod extends Controller {
 	}
 
 	public function confirm() {
+		$this->load->language('checkout/checkout');
 		$json = array();
-		
 		if ($this->session->data['payment_method']['code'] == 'cod') {
 			$this->load->model('checkout/order');
 
 			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('payment_cod_order_status_id'));
 		
 			$json['redirect'] = $this->url->link('checkout/success');
+			//$json['name_response'] = "Dung la chinh xac roai";
 		}
 		
 		$this->response->addHeader('Content-Type: application/json');

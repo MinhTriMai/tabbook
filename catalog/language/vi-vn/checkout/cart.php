@@ -16,6 +16,12 @@ $_['text_week']                = 'Tuần';
 $_['text_semi_month']          = 'Nửa tháng';
 $_['text_month']               = 'Tháng';
 $_['text_year']                = 'Năm';
+
+// Dung new added
+$_['text_checkout_agree']      = 'Đồng ý liên hệ với người mua để giao dịch';
+// end
+
+
 $_['text_trial']               = '%s every %s %s for %s payments then ';
 $_['text_recurring']           = '%s every %s %s';
 $_['text_payment_cancel']      = 'Cho đến khi hủy';
@@ -24,6 +30,7 @@ $_['text_payment_recurring']   = 'Hồ sơ thanh toán';
 $_['text_trial_description']   = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
 $_['text_payment_cancel']      = '%s every %d %s(s) until canceled';
+
 
 $_['text_exceed_quantity']   = 'Số lượng còn lại của sản phẩm bằng hoặc nhỏ hơn số lượng trong giỏ hàng của bạn!';
 
@@ -41,3 +48,7 @@ $_['error_minimum']          = 'Số lượng đặt tối thiểu cho %s là %s
 $_['error_required']         = '%s không được bỏ trống!';	
 $_['error_product']          = 'Cảnh báo: Không có sản phẩm trong giỏ hàng của bạn!';	
 $_['error_recurring_required'] = 'Vui lòng chọn một khoản thanh toán định kỳ!';
+
+// Dung new added
+$_['error_checkout_agree']          = 'Cảnh báo: Bạn phải ĐỒNG Ý liên hệ với người bán để thực hiện giao dịch!';	
+//end

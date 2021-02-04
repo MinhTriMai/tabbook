@@ -48,8 +48,8 @@ $_['text_conf Confirm'] = 'Bạn có chắc không?';
 
 //Add Product Variables
 $_['tab_general'] = 'Tổng quan';
-$_['tab_data'] = 'Dữ liệu';
-$_['tab_links'] = 'Liên kết';
+$_['tab_data'] = 'Giá';
+$_['tab_links'] = 'Danh mục';
 $_['tab_attribution'] = 'Thuộc tính';
 $_['tab_option'] = 'Tùy chọn';
 $_['tab_discount'] = 'Giảm giá';

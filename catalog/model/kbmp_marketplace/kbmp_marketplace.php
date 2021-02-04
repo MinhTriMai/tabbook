@@ -1487,6 +1487,18 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         return $query->row;
     }
 
+    /* Dung start adding new code
+     * Function to get all categories
+     */
+
+    // public function getFullCategory() {
+    //     $query = $this->db->query("SELECT DISTINCT c.category_id, cd.name FROM " . DB_PREFIX . "category c JOIN " . DB_PREFIX . "category_description cd ON c.category_id = cd.category_id");
+
+    //     return $query->rows;
+    // }
+    //end
+
+
     /*
      * Function to add seller product in seller table
      */

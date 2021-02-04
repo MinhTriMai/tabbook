@@ -74,6 +74,7 @@
             <div class="panel-body"></div>
           </div>
         </div>
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">{{ text_checkout_confirm }}</h4>
@@ -83,6 +84,7 @@
           </div>
         </div>
       </div>
+
       {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
@@ -143,6 +145,7 @@ $(document).ready(function() {
 $(document).delegate('#button-account', 'click', function() {
     $.ajax({
         url: 'index.php?route=checkout/' + $('input[name=\'account\']:checked').val(),
+        type:'POST',
         dataType: 'html',
         beforeSend: function() {
         	$('#button-account').button('loading');

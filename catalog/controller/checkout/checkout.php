@@ -91,6 +91,8 @@ class ControllerCheckoutCheckout extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+		
+		$data['text_checkout_agree'] = $this->language->get('text_checkout_agree');
 
 		$this->response->setOutput($this->load->view('checkout/checkout', $data));
 	}

@@ -83,6 +83,7 @@ class ModelCatalogProduct extends Model {
 		}
 
 		if (isset($data['product_category'])) {
+			var_dump($data['product_category']);die();
 			foreach ($data['product_category'] as $category_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "'");
 			}
