@@ -1,3 +1,8 @@
+<div class="checkbox-agree">
+	<input type="checkbox" id="checkbox-agree" name="checkbox-agree" value="1">
+	<label for="checkbox-agree"> Tôi sẽ liên hệ với người bán để thực hiện giao dịch</label><br>
+</div>
+<div id="checkbox-error" class="alert alert-error text-danger"></div>
 <div class="buttons">
   <div class="pull-right">
     <input type="button" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
@@ -5,23 +10,30 @@
 </div>
 <script type="text/javascript"><!--
 $('#button-confirm').on('click', function() {
-	$.ajax({
-		url: 'index.php?route=extension/payment/cod/confirm',
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-confirm').button('loading');
-		},
-		complete: function() {
-			$('#button-confirm').button('reset');
-		},
-		success: function(json) {
-			if (json['redirect']) {
-				location = json['redirect'];	
+	if ($('#checkbox-agree').is(":checked"))
+	{
+		$.ajax({
+			url: 'index.php?route=extension/payment/cod/confirm',
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-confirm').button('loading');
+			},
+			complete: function() {
+				$('#button-confirm').button('reset');
+			},
+			success: function(json) {
+				if (json['redirect']) {
+					location = json['redirect'];	
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+		});
+	}else{
+		$('#checkbox-error').html('<h3 class="text-danger">***Bạn phải tick đồng ý liên hệ với người bán</h3>');
+		console.log($('#checkbox-error'));
+	}
+
 });
 //--></script>

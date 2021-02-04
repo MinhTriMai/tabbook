@@ -13,7 +13,7 @@ $_['text_seller_shipping']                  = 'Shipping';
 
 $_['text_account']                          = 'Seller Account';
 
-$_['seller_order_email_subject']            = 'An order has been placed on your store';
+$_['seller_order_email_subject']            = 'Đơn hàng của bạn đã được đặt mua';
 $_['text_kbmp_product']                     = 'Product';
 $_['text_kbmp_model']                       = 'Model';
 $_['text_kbmp_quantity']                    = 'Quantity';

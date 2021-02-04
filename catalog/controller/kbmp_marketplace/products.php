@@ -1138,7 +1138,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 );
             }
         }
-
+        
         // Filters
         $this->load->adminmodel('catalog/filter');
 
@@ -1460,7 +1460,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
                 'sort' => 'name',
                 'order' => 'ASC',
                 'start' => 0,
-                'limit' => 5
+                'limit' => 20
             );
 
             $results = $this->model_kbmp_marketplace_kbmp_marketplace->getAssignedCategoriesList($filter_data);
@@ -1578,7 +1578,7 @@ class ControllerKbmpMarketplaceProducts extends Controller {
             $filter_data = array(
                 'filter_name' => $this->request->get['filter_name'],
                 'start' => 0,
-                'limit' => 5
+                'limit' => 6
             );
 
             $filters = $this->model_catalog_filter->getFilters($filter_data);

@@ -1,7 +1,7 @@
 <?php
 // Text
-$_['text_subject']        = '[%s] - Đơn hàng %s';
-$_['text_greeting']         = 'Cảm ơn bạn đã quan tâm đến sản phẩm %s. Đơn đặt hàng của bạn đã nhận được và sẽ được xử lý một khi khoản thanh toán đã được xác nhận.';
+$_['text_subject']        = 'Đặt hàng thành công - Hãy liên hệ với người bán';
+$_['text_greeting']         = 'Đơn hàng của bạn được đặt, hãy liên hệ với người bán theo thông tin bên dưới.';
 $_['text_link']             = 'Để xem đơn đặt hàng của bạn, hãy nhấp vào liên kết bên dưới:';
 $_['text_order_detail']     = 'Chi tiết Đơn hàng';
 $_['text_instruction']      = 'Hướng dẫn';

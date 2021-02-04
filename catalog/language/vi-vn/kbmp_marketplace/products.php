@@ -48,8 +48,8 @@ $_['text_conf Confirm'] = 'Bạn có chắc không?';
 
 //Add Product Variables
 $_['tab_general'] = 'Tổng quan';
-$_['tab_data'] = 'Dữ liệu';
-$_['tab_links'] = 'Liên kết';
+$_['tab_data'] = 'Giá';
+$_['tab_links'] = 'Danh mục';
 $_['tab_attribution'] = 'Thuộc tính';
 $_['tab_option'] = 'Tùy chọn';
 $_['tab_discount'] = 'Giảm giá';
@@ -58,7 +58,8 @@ $_['tab_image'] = 'Hình ảnh';
 
 // Entry
 $_['entry_name'] = 'Tên sản phẩm';
-$_['entry_description'] = 'Mô tả';
+$_['entry_description'] = 'Mô tả thêm';
+$_['entry_description_detail'] = 'Ví dụ: 60%';
 $_['entry_meta_title'] = 'Tiêu đề thẻ meta';
 $_['entry_meta_keyword'] = 'Từ khóa thẻ meta';
 $_['entry_meta_description'] = 'Mô tả thẻ meta';
@@ -72,7 +73,6 @@ $_['entry_ean'] = 'EAN';
 $_['entry_jan'] = 'JAN';
 $_['entry_vdn'] = 'ISBN';
 $_['entry_mpn'] = 'MPN';
-$_['entry_location'] = 'Vị trí';
 $_['entry_category'] = 'Danh mục';
 $_['entry_shipping'] = 'Yêu cầu giao hàng';
 $_['entry_man sản xuất'] = 'Nhà sản xuất';

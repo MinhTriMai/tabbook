@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']        = 'Đơn đặt hàng của bạn đã được đặt!';
+$_['heading_title']        = 'Hãy liên hệ với NGƯỜI BÁN!';
 
 // Text
 $_['text_basket']   	= 'Giỏ hàng';
