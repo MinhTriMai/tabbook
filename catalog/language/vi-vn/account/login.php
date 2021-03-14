@@ -5,11 +5,11 @@ $_['heading_title']                = 'Đăng nhập tài khoản';
 // Text
 $_['text_account']                 = 'Tài khoản';
 $_['text_login']                   = 'Đăng nhập';
-$_['text_new_customer']            = 'Khách hàng mới';
+$_['text_new_customer']            = 'Chưa có tài khoản';
 $_['text_register']                = 'Đăng kí tài khoản';
-$_['text_register_account']        = 'Bằng cách tạo tài khoản bạn sẽ có thể mua sắm nhanh hơn, cập nhật tình trạng đơn hàng, theo dõi những đơn hàng đã đặt.';
-$_['text_returning_customer']      = 'Khách hàng cũ';
-$_['text_i_am_returning_customer'] = 'Tôi là khách hàng cũ';
+$_['text_register_account']        = 'Bạn vui lòng đăng ký tài khoản để tham gia cộng đồng trao đổi Tabbook.';
+$_['text_returning_customer']      = 'Đăng nhập';
+$_['text_i_am_returning_customer'] = 'Tôi đã có tài khoản';
 $_['text_forgotten']               = 'Quên mật khẩu';
 
 // Entry

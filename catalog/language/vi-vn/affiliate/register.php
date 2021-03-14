@@ -5,7 +5,7 @@ $_['heading_title']             = 'Chương Trình Đại Lý';
 // Text
 $_['text_account']              = 'Tài Khoản';
 $_['text_register']             = 'Đăng Kí đại lý';
-$_['text_account_already']      = 'Bạn đã là Tabber?. Vui lòng đăng nhập <a href="%s">tại đây</a>.';
+$_['text_account_already']      = 'Bạn đã có tài khoản? Vui lòng đăng nhập <a href="%s">TẠI ĐÂY</a>.';
 $_['text_signup']               = 'Để tạo tài khoản đại lý, điền vào mẫu bên dưới và đảm bảo rằng bạn đã điền các trường bắt buộc:';
 $_['text_your_details']         = 'Thông tin cá nhân';
 $_['text_your_address']         = 'Địa chỉ của bạn';
