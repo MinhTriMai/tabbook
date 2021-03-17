@@ -1,5 +1,3 @@
-// Dung add to test
-// Dung add to test push from Dung's Local
 <?php
 class ControllerCheckoutSuccess extends Controller {
 	public function index() {
