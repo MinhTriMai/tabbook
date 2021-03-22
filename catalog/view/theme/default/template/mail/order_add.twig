@@ -4,11 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>{{ title }}</title>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000;">
-<div style="width: 480px;"><a href="{{ store_url }}" title="{{ store_name }}"><img src="{{ logo }}" alt="{{ store_name }}" style="margin-bottom: 20px; border: none;" /></a>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #000000;">
+<div style="width: 680px;"><a href="{{ store_url }}" title="{{ store_name }}"><img src="{{ logo }}" alt="{{ store_name }}" style="margin-bottom: 20px; border: none;" /></a>
   <p style="margin-top: 0px; margin-bottom: 20px;">{{ text_greeting }}</p>
   {% for key,product in products %}
     <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; margin-bottom: 20px;">
+        <tr>
+            <td colspan="5" class="box" style="border: 1px solid #D6D4D4; background-color: #f8f8f8; padding: 7px 14px;">
+            <p data-html-only="1" style="border-bottom: 1px solid #D6D4D4; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 18px; padding-bottom: 10px;">Thông tin người bán</p>
+            <span size="2" face="Open-sans, sans-serif" color="#555454" style="color: #555454; font-family: Open-sans, sans-serif; font-size: small;">
+            <span style="color: #777;"> <span style="color: #333;"><strong>Tên người bán:</strong></span> {{product.seller.seller_firstname}} {{product.seller.seller_lastname}}<br> </span>
+            <span style="color: #777;"> <span style="color: #333;"><strong>Email:</strong></span> {{product.seller.seller_email}}<br> </span> </span>
+            <span style="color: #777;"> <span style="color: #333;"><strong>Số điện thoại:</strong></span> {{product.seller.seller_telephone}}<br> </span>
+            </td>
+        </tr>
         <thead>
           <tr>
               <td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; background-color: #EFEFEF; font-weight: bold; text-align: left; padding: 7px; color: #222222;">{{ text_product }}</td>
@@ -19,15 +28,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-              <td colspan="5" class="box" style="border: 1px solid #D6D4D4; background-color: #f8f8f8; padding: 7px 14px;">
-              <p data-html-only="1" style="border-bottom: 1px solid #D6D4D4; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 18px; padding-bottom: 10px;">Thông tin người bán</p>
-              <span size="2" face="Open-sans, sans-serif" color="#555454" style="color: #555454; font-family: Open-sans, sans-serif; font-size: small;">
-              <span style="color: #777;"> <span style="color: #333;"><strong>Tên người bán:</strong></span> {{product.seller.seller_firstname}} {{product.seller.seller_lastname}}<br> </span>
-              <span style="color: #777;"> <span style="color: #333;"><strong>Email:</strong></span> {{product.seller.seller_email}}<br> </span> </span>
-              <span style="color: #777;"> <span style="color: #333;"><strong>Số điện thoại:</strong></span> {{product.seller.seller_telephone}}<br> </span>
-              </td>
-          </tr>
           <tr>
               <td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;">{{ product.name }}
                   {% for option in product.option %}<br />
